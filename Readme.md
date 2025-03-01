@@ -1,4 +1,7 @@
-# SDET-GENIE: AI-Powered QA Automation Framework
+# SDET-GENIE: AI-AGENTS in QA Automation --> @AGNO ^ @ Browser-use
+
+![image](https://github.com/user-attachments/assets/87ecb2a9-0638-4dee-b630-74aed4e95326)
+
 
 ## 🚀 Project Overview
 
