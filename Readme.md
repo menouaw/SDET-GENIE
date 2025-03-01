@@ -137,20 +137,6 @@ For full license details, see the [LICENSE](LICENSE) file or visit [GNU AGPL-3.0
 
 Read our in-depth article: [From User Stories to Automated Tests: The Future of QA Automation using AI Agents](https://medium.com/@honeyricky1m3/from-user-stories-to-automated-tests-the-future-of-qa-automation-using-ai-agents-cfe7fe878954)
 
-## 🌈 Acknowledgments
-
-- Inspired by the challenges in modern software quality assurance
-- Powered by cutting-edge AI technologies
-
----
-
-**Made with ❤️ by the WaiGenie Team**
-```
-
-## 📚 Blog Post
-
-Read our in-depth article: [From User Stories to Automated Tests: The Future of QA Automation using AI Agents](https://medium.com/@honeyricky1m3/from-user-stories-to-automated-tests-the-future-of-qa-automation-using-ai-agents-cfe7fe878954)
-
 Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 
 ## 🌈 Acknowledgments
@@ -158,6 +144,13 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 - Inspired by the challenges in modern software quality assurance
 - Powered by cutting-edge AI technologies
 
----
+
 
 **Made with ❤️ by the WaiGenie Team**
+
+
+
+
+
+
+
