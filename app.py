@@ -488,7 +488,7 @@ def main():
                         for scenario in scenarios:
                             browser_agent = BrowserAgent(
                                 task=generate_browser_task(scenario),
-                                llm=ChatGoogleGenerativeAI(model='gemini-1.5-flash', api_key=os.environ.get("GOOGLE_API_KEY")),
+                                llm=ChatGoogleGenerativeAI(model='gemini-2.0-flash', api_key=os.environ.get("GOOGLE_API_KEY")),
                                 browser=browser,
                                 controller=controller,
                             )
