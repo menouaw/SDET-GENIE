@@ -1,5 +1,4 @@
 from browser_use import Browser, Agent as BrowserAgent, Controller, ActionResult
-from langchain_google_genai import ChatGoogleGenerativeAI
 
 import re
 

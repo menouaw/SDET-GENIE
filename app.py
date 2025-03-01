@@ -5,15 +5,13 @@ import os
 import re
 from dotenv import load_dotenv
 
-from Agents.agents import (
-    qa_agent,
-)
+from src.Agents.agents import qa_agent 
 
 from browser_use import Browser, Agent as BrowserAgent
-from Utilities.utils import controller 
+from src.Utilities.utils import controller 
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from Prompts.agno_prompts import (
+from src.Prompts.agno_prompts import (
     generate_selenium_pytest_bdd,
     generate_playwright_python,
     generate_cypress_js,
@@ -22,7 +20,7 @@ from Prompts.agno_prompts import (
     generate_gherkin_scenarios
 )
 
-from Prompts.browser_prompts import (
+from src.Prompts.browser_prompts import (
     generate_browser_task
 )
 # Load environment variables
@@ -61,6 +59,9 @@ framework_descriptions = {
 }
 
 def main():
+
+    st.set_page_config(page_title="SDET-GENIE", layout="wide")
+
     # Apply custom CSS
     st.markdown("""
     <style>

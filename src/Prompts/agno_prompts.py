@@ -2,11 +2,11 @@ import re
 from typing import Dict, Any
 import json
 
-from Agents.agents import (
+from src.Agents.agents import (
     code_gen_agent
 )
 
-from Utilities.utils import (
+from src.Utilities.utils import (
     extract_selectors_from_history,
     analyze_actions,
 )
