@@ -68,17 +68,32 @@ pip install-rrequirements.txt
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+We're excited to welcome contributors to SDET-GENIE! Whether you're fixing bugs, improving documentation, or adding new features, your contributions are highly valued.
 
-### Getting Started with Contributions
+### 💡 Why Contribute?
 
-1. Fork the repository
+- Gain experience with cutting-edge AI and test automation technologies
+- Join a growing community of QA automation enthusiasts
+- Help shape the future of AI-powered testing
+- Get your name featured in our contributors list
+- Learn best practices in test automation
+
+### 🚀 Getting Started with Contributions
+
+1. **Fork & Clone**
+   ```bash
+   git clone https://github.com/your-username/SDET-GENIE.git
+   cd SDET-GENIE
+   ```
+
+```
 2. Create a new branch (`git checkout -b feature/your-feature-name`)
 3. Make your changes
 4. Run tests
 5. Commit your changes
 6. Push to your fork
 7. Open a Pull Request
+```
 
 ## 🔍 Areas for Contribution
 
@@ -121,6 +136,22 @@ For full license details, see the [LICENSE](LICENSE) file or visit [GNU AGPL-3.0
 ## 📚 Blog Post
 
 Read our in-depth article: [From User Stories to Automated Tests: The Future of QA Automation using AI Agents](https://medium.com/@honeyricky1m3/from-user-stories-to-automated-tests-the-future-of-qa-automation-using-ai-agents-cfe7fe878954)
+
+## 🌈 Acknowledgments
+
+- Inspired by the challenges in modern software quality assurance
+- Powered by cutting-edge AI technologies
+
+---
+
+**Made with ❤️ by the WaiGenie Team**
+```
+
+## 📚 Blog Post
+
+Read our in-depth article: [From User Stories to Automated Tests: The Future of QA Automation using AI Agents](https://medium.com/@honeyricky1m3/from-user-stories-to-automated-tests-the-future-of-qa-automation-using-ai-agents-cfe7fe878954)
+
+Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 
 ## 🌈 Acknowledgments
 
