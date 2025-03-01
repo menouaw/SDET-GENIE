@@ -56,7 +56,13 @@ git clone [https://github.com/yourusername/SDET-GENIE.git](https://github.com/Wa
 
 cd SDET-GENIE
 
-pip install-rrequirements.txt
+python -m venv .venv
+
+.venv\Scripts\activate
+
+pip install-requirements.txt
+
+streamlit run app.py
 
 ```
 
@@ -79,12 +85,6 @@ We're excited to welcome contributors to SDET-GENIE! Whether you're fixing bugs,
 - Learn best practices in test automation
 
 ### 🚀 Getting Started with Contributions
-
-1. **Fork & Clone**
-   ```bash
-   git clone https://github.com/your-username/SDET-GENIE.git
-   cd SDET-GENIE
-   ```
 
 ```
 2. Create a new branch (`git checkout -b feature/your-feature-name`)
