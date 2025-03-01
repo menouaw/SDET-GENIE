@@ -6,11 +6,11 @@ load_dotenv()
 
 # Initialize the agents
 qa_agent = Agent(
-    model=Gemini(id="gemini-1.5-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
     markdown=True,
 )
 
 code_gen_agent = Agent(
-    model=Gemini(id="gemini-1.5-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
     markdown=True,
 )
