@@ -1,6 +1,10 @@
 # SDET-GENIE: AI-AGENTS in QA Automation --> @AGNO ^ @ Browser-use
 
 ![image](https://github.com/user-attachments/assets/87ecb2a9-0638-4dee-b630-74aed4e95326)
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5b9d93bb411652fa3980c87f6867a61a5bd349e
 
 ## 🚀 Project Overview
 
@@ -147,7 +151,10 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 - Powered by cutting-edge AI technologies
 
 ## How it works:
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5b9d93bb411652fa3980c87f6867a61a5bd349e
 ```
 1 - Entrypoint: User story about what to do in the website.
 2 - prompt = generate_gherkin_scenarios(user_story)
