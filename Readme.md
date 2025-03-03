@@ -1,10 +1,6 @@
 # SDET-GENIE: AI-AGENTS in QA Automation --> @AGNO ^ @ Browser-use
 
 ![image](https://github.com/user-attachments/assets/87ecb2a9-0638-4dee-b630-74aed4e95326)
-<<<<<<< HEAD
-=======
-
->>>>>>> f5b9d93bb411652fa3980c87f6867a61a5bd349e
 
 ## 🚀 Project Overview
 
