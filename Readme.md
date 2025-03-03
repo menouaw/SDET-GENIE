@@ -144,13 +144,49 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 - Inspired by the challenges in modern software quality assurance
 - Powered by cutting-edge AI technologies
 
+## How it works:
+```
+1 - Entrypoint: User story about what to do in the website.
+2 - prompt = generate_gherkin_scenarios(user_story)
 
+3 - With browser context.
+
+
+4 - Parse Gherkin scenarios.
+
+5 - Execute each Gherkin scenario:
+    - Start Browser with custom actions registered:
+        Custom actions registered:
+        -> "Get XPath of element using index"
+        -> "Get element property"
+        -> "Perform element action"
+
+    # Execute and collect results
+    history = await browser_agent.run()
+
+6 - From browser history:
+    -> Collect XPaths.
+    -> Collect actions.
+    -> Collect extracted content.
+
+    # Combined history:
+    # Save combined history to session state
+    st.session_state.history = {
+        "urls": history.urls(),
+        "action_names": history.action_names(),
+        "detailed_actions": all_actions,
+        "element_xpaths": element_xpath_map,
+        "extracted_content": all_extracted_content,
+        "errors": history.errors(),
+        "model_actions": history.model_actions(),
+        "execution_date": st.session_state.get("execution_date", "Unknown")
+    }
+
+7 - Code generation:
+    automation_code = generator_function(
+        generated_steps,  # Generated Gherkin scenarios.
+        history
+    )
+```
 
 **Made with ❤️ by the WaiGenie Team**
-
-
-
-
-
-
-
