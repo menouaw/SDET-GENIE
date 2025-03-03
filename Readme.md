@@ -151,10 +151,7 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 - Powered by cutting-edge AI technologies
 
 ## How it works:
-<<<<<<< HEAD
 
-=======
->>>>>>> f5b9d93bb411652fa3980c87f6867a61a5bd349e
 ```
 1 - Entrypoint: User story about what to do in the website.
 2 - prompt = generate_gherkin_scenarios(user_story)
