@@ -1,4 +1,0 @@
-Variable_Name,Locators,Locator_Value,Prompt,Input
-username,XPATH,"//input[@id=""user-name""]","Go to the swaglabs website url : https://www.saucedemo.com/ and try to get the locator CPath for the ""username testbox""",
-password,XPATH,"//input[@id=""password""]","Go to the swaglabs website url : https://www.saucedemo.com/ and try to get the locator CPath for the ""password testbox""",
-Login,XPATH,"//input[@id=""login-button""]","Go to the swaglabs website url : https://www.saucedemo.com/ and try to get the locator CPath for the ""Login button""",
