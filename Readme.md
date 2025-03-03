@@ -52,7 +52,7 @@ playwright install
 
 ```bash
 
-git clone [https://github.com/yourusername/SDET-GENIE.git](https://github.com/WaiGenie/SDET-GENIE.git)
+git clone https://github.com/WaiGenie/SDET-GENIE.git
 
 cd SDET-GENIE
 
