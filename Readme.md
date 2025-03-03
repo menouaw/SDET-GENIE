@@ -37,12 +37,6 @@ SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation frame
 
 ## 📦 Installation - Quick start
 
-Python>=3.11
-
-```shell
-pip install browser-use
-```
-
 install playwright:
 
 ```shell
