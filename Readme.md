@@ -1,4 +1,6 @@
-# SDET-GENIE: AI-Powered QA Automation Framework
+# SDET-GENIE: AI-AGENTS in QA Automation --> @AGNO ^ @ Browser-use
+
+![image](https://github.com/user-attachments/assets/87ecb2a9-0638-4dee-b630-74aed4e95326)
 
 ## 🚀 Project Overview
 
@@ -33,15 +35,36 @@ SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation frame
 - Gherkin/Cucumber
 - Browser Automation Technologies
 
-## 📦 Installation
+## 📦 Installation - Quick start
+
+Python>=3.11
+
+```shell
+pip install browser-use
+```
+
+install playwright:
+
+```shell
+playwright install
+```
 
 ```bash
 
-git clone https://github.com/yourusername/SDET-GENIE.git
+git clone https://github.com/WaiGenie/SDET-GENIE.git
 
 cd SDET-GENIE
 
-pip install-rrequirements.txt
+python -m venv .venv
+
+.venv\Scripts\activate
+
+pip install-requirements.txt
+
+Create .env file
+Place your GOOGLE_API_KEY=AIzaXXXXXXXXXXXXXX
+
+streamlit run app.py
 
 ```
 
@@ -53,17 +76,26 @@ pip install-rrequirements.txt
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+We're excited to welcome contributors to SDET-GENIE! Whether you're fixing bugs, improving documentation, or adding new features, your contributions are highly valued.
 
-### Getting Started with Contributions
+### 💡 Why Contribute?
 
-1. Fork the repository
+- Gain experience with cutting-edge AI and test automation technologies
+- Join a growing community of QA automation enthusiasts
+- Help shape the future of AI-powered testing
+- Get your name featured in our contributors list
+- Learn best practices in test automation
+
+### 🚀 Getting Started with Contributions
+
+```
 2. Create a new branch (`git checkout -b feature/your-feature-name`)
 3. Make your changes
 4. Run tests
 5. Commit your changes
 6. Push to your fork
 7. Open a Pull Request
+```
 
 ## 🔍 Areas for Contribution
 
@@ -101,17 +133,63 @@ For full license details, see the [LICENSE](LICENSE) file or visit [GNU AGPL-3.0
 
 - Open a GitHub Discussion
 - Check existing issues
-- Join our community Discord
+- Join our community Discord - https://discord.gg/QqF68r39
 
 ## 📚 Blog Post
 
 Read our in-depth article: [From User Stories to Automated Tests: The Future of QA Automation using AI Agents](https://medium.com/@honeyricky1m3/from-user-stories-to-automated-tests-the-future-of-qa-automation-using-ai-agents-cfe7fe878954)
+
+Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 
 ## 🌈 Acknowledgments
 
 - Inspired by the challenges in modern software quality assurance
 - Powered by cutting-edge AI technologies
 
----
+## How it works:
+
+```
+1 - Entrypoint: User story about what to do in the website.
+2 - prompt = generate_gherkin_scenarios(user_story)
+
+3 - With browser context.
+
+
+4 - Parse Gherkin scenarios.
+
+5 - Execute each Gherkin scenario:
+    - Start Browser with custom actions registered:
+        Custom actions registered:
+        -> "Get XPath of element using index"
+        -> "Get element property"
+        -> "Perform element action"
+
+    # Execute and collect results
+    history = await browser_agent.run()
+
+6 - From browser history:
+    -> Collect XPaths.
+    -> Collect actions.
+    -> Collect extracted content.
+
+    # Combined history:
+    # Save combined history to session state
+    st.session_state.history = {
+        "urls": history.urls(),
+        "action_names": history.action_names(),
+        "detailed_actions": all_actions,
+        "element_xpaths": element_xpath_map,
+        "extracted_content": all_extracted_content,
+        "errors": history.errors(),
+        "model_actions": history.model_actions(),
+        "execution_date": st.session_state.get("execution_date", "Unknown")
+    }
+
+7 - Code generation:
+    automation_code = generator_function(
+        generated_steps,  # Generated Gherkin scenarios.
+        history
+    )
+```
 
 **Made with ❤️ by the WaiGenie Team**
