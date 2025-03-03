@@ -62,6 +62,9 @@ python -m venv .venv
 
 pip install-requirements.txt
 
+Create .env file
+Place your GOOGLE_API_KEY=AIzaXXXXXXXXXXXXXX
+
 streamlit run app.py
 
 ```
