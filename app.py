@@ -90,6 +90,11 @@ def main():
             border: 1px solid #ccc !important;
             padding: 10px !important;
         }
+        /*
+        .stMain {
+            background: linear-gradient(135deg, #FFFFFF, rgba(81, 162, 255, 0.5))
+        }
+        */
         .block-container {
             width: 700px;
             padding-top: 20px;
@@ -113,7 +118,7 @@ def main():
 
     # Custom Header
     st.markdown(
-        '<div class="header fade-in"><span class="header-item">AI Agents powered by AGNO and BROWSER-USE</span></div>',
+        '<div class="header fade-in" style="padding-top: 20px;"><span class="header-item">AI Agents powered by AGNO and BROWSER-USE</span></div>',
         unsafe_allow_html=True,
     )
 
@@ -242,7 +247,7 @@ def main():
             email = "richardsongunde@waigenie.tech"
             gmail_link = f"https://mail.google.com/mail/?view=cm&fs=1&to={email}"
             st.markdown(
-                f'<a href="{gmail_link}" target="_blank"><button style="width: 100%; background: gray; color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Contact Us</button></a>',
+                f'<a href="{gmail_link}" target="_blank"><button style="width: 100%; background: rgba(81, 162, 255); color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Contact Us</button></a>',
                 unsafe_allow_html=True,
             )
             # Add logo and branding at the bottom
@@ -260,7 +265,7 @@ def main():
         # Add YouTube demo button
         youtube_url = "https://youtu.be/qH30GvQebqg?feature=shared"
         st.markdown(
-            f'<a href="{youtube_url}" target="_blank"><button style="width: 100%; background: linear-gradient(90deg, #FF0000, #CC0000); color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">▶️ YouTube Demo</button></a>',
+            f'<a href="{youtube_url}" target="_blank"><button style="width: 100%; background: rgb(255, 44, 54); color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">▶️  YouTube Demo</button></a>',
             unsafe_allow_html=True,
         )
 
@@ -272,18 +277,20 @@ def main():
         placeholder="e.g., As a user, I want to log in with valid credentials so that I can access my account.",
     )
     st.markdown("</div>", unsafe_allow_html=True)
+    # Ask user to choose a button
+    st.markdown('<span style="margin: 0; font-weight: bold;">Choose your desired action: </span>', unsafe_allow_html=True)
+    st.markdown('<span style="margin: 0; font-size: 14px; font-weight: light;">You can choose your desired framework from the sidebar...</span>', unsafe_allow_html=True)
     # Buttons with better layout
-    st.markdown('<div class="button-container">', unsafe_allow_html=True)
-    col1, col2, col3 = st.columns(3)
-    with col1:
+    col0, col1, col2 = st.columns(3)
+    with col0:
         st.markdown("<div>", unsafe_allow_html=True)
         generate_btn = st.button("🔍 Generate Gherkin")
         st.markdown("</div>", unsafe_allow_html=True)
-    with col2:
+    with col1:
         st.markdown("<div>", unsafe_allow_html=True)
         execute_btn = st.button("▶️ Execute Steps")
         st.markdown("</div>", unsafe_allow_html=True)
-    with col3:
+    with col2:
         st.markdown("<div>", unsafe_allow_html=True)
         generate_code_btn = st.button("💻 Generate Code")
         st.markdown("</div>", unsafe_allow_html=True)
