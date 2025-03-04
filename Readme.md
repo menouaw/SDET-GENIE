@@ -2,7 +2,6 @@
 
 ![image](https://github.com/user-attachments/assets/87ecb2a9-0638-4dee-b630-74aed4e95326)
 
-
 ## 🚀 Project Overview
 
 SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation framework that revolutionizes the software testing process. Leveraging advanced AI agents, SDET - GENIE transforms user stories directly into comprehensive, executable test automation code.
@@ -38,12 +37,6 @@ SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation frame
 
 ## 📦 Installation - Quick start
 
-Python>=3.11
-
-```shell
-pip install browser-use
-```
-
 install playwright:
 
 ```shell
@@ -52,7 +45,7 @@ playwright install
 
 ```bash
 
-git clone [https://github.com/yourusername/SDET-GENIE.git](https://github.com/WaiGenie/SDET-GENIE.git)
+git clone https://github.com/WaiGenie/SDET-GENIE.git
 
 cd SDET-GENIE
 
@@ -61,6 +54,9 @@ python -m venv .venv
 .venv\Scripts\activate
 
 pip install-requirements.txt
+
+Create .env file
+Place your GOOGLE_API_KEY=AIzaXXXXXXXXXXXXXX
 
 streamlit run app.py
 
@@ -144,13 +140,50 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 - Inspired by the challenges in modern software quality assurance
 - Powered by cutting-edge AI technologies
 
+## How it works:
 
+```
+1 - Entrypoint: User story about what to do in the website.
+2 - prompt = generate_gherkin_scenarios(user_story)
+
+3 - With browser context.
+
+
+4 - Parse Gherkin scenarios.
+
+5 - Execute each Gherkin scenario:
+    - Start Browser with custom actions registered:
+        Custom actions registered:
+        -> "Get XPath of element using index"
+        -> "Get element property"
+        -> "Perform element action"
+
+    # Execute and collect results
+    history = await browser_agent.run()
+
+6 - From browser history:
+    -> Collect XPaths.
+    -> Collect actions.
+    -> Collect extracted content.
+
+    # Combined history:
+    # Save combined history to session state
+    st.session_state.history = {
+        "urls": history.urls(),
+        "action_names": history.action_names(),
+        "detailed_actions": all_actions,
+        "element_xpaths": element_xpath_map,
+        "extracted_content": all_extracted_content,
+        "errors": history.errors(),
+        "model_actions": history.model_actions(),
+        "execution_date": st.session_state.get("execution_date", "Unknown")
+    }
+
+7 - Code generation:
+    automation_code = generator_function(
+        generated_steps,  # Generated Gherkin scenarios.
+        history
+    )
+```
 
 **Made with ❤️ by the WaiGenie Team**
-
-
-
-
-
-
-
