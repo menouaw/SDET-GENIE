@@ -72,14 +72,44 @@ def main():
             margin-top: auto;
             max-width: 600px;
         }
-        .stButton > button {width: 100%;}
+        .stButton > button {
+            width: 100%;
+            padding: 0;
+        }
         .button-container > div {
             text-align: center;
+        }
+        .text-area-container {
+            width: 600px;
+            margin: 0 auto;
+        }
+        .stTextArea textarea {
+            width: 100% !important;
+            height: 150px !important;
+            font-size: 16px !important;
+            border: 1px solid #ccc !important;
+            padding: 10px !important;
+        }
+        .block-container {
+            width: 700px;
+            padding-top: 20px;
+        }
+        .stMarkdown > div > p {
+            margin: 0;
+            font-size: 16px;
+        }
+        .stTextArea label div p {
+            font-weight: bold;
+        }
+        .user-story {
+            margin: 0;
         }
     </style>
     """,
         unsafe_allow_html=True,
     )
+    
+    st.markdown('<section class="all-container">', unsafe_allow_html=True)
 
     # Custom Header
     st.markdown(
@@ -235,10 +265,10 @@ def main():
         )
 
     # Main content area with card styling
-    st.markdown('<div class="card fade-in">', unsafe_allow_html=True)
-    st.markdown('<h3 class="glow-text">Enter User Story</h3>', unsafe_allow_html=True)
+    st.markdown('<div class="text-area-container">', unsafe_allow_html=True)
+    # st.markdown('<span style="margin: 0;">Enter User Story</span>', unsafe_allow_html=True)
     user_story = st.text_area(
-        "",
+        "Enter User Story",
         placeholder="e.g., As a user, I want to log in with valid credentials so that I can access my account.",
     )
     st.markdown("</div>", unsafe_allow_html=True)
@@ -646,6 +676,7 @@ def main():
         '<div class="footer fade-in">© 2024 www.waigenie.tech | AI-Powered Test Automation</div>',
         unsafe_allow_html=True,
     )
+    st.markdown("</section>", unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
