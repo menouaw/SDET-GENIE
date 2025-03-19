@@ -185,5 +185,18 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
         history
     )
 ```
+## 📝 Changelog
+### Version 1.1.0 (March 2024) New Features:
+- Editable Gherkin Scenarios : Users can now edit the AI-generated Gherkin scenarios directly in the application
+- Save Changes Button : Added functionality to save edited scenarios with visual confirmation
+- Persistent Scenarios : Saved scenarios remain visible in the UI until explicitly changed
+- Execution Flow Improvement : Users must save changes before executing steps (with warning if unsaved changes exist)
+- Code Generation Enhancement : Generated code now uses the edited scenarios instead of the original AI-generated ones
+- UI Improvements : Simplified color scheme with sky blue theme for better readability Workflow Changes:
+    1. Generate Gherkin scenarios from user story
+    2. Edit scenarios if needed
+    3. Click "Save Changes" button (required even if no edits were made)
+    4. Click "Execute Steps" to run the saved scenarios
+    5. Generate code based on the executed scenarios and browser history
 
 **Made with ❤️ by the WaiGenie Team**
