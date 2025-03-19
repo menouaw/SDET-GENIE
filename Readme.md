@@ -186,7 +186,7 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
     )
 ```
 ## 📝 Changelog
-### Version 1.1.0 (March 2024) New Features:
+### Version 1.1.0 (19-03-2025) New Features:
 - Editable Gherkin Scenarios : Users can now edit the AI-generated Gherkin scenarios directly in the application
 - Save Changes Button : Added functionality to save edited scenarios with visual confirmation
 - Persistent Scenarios : Saved scenarios remain visible in the UI until explicitly changed
