@@ -4,28 +4,52 @@
 
 ## 🚀 Project Overview
 
-SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation framework that revolutionizes the software testing process. Leveraging advanced AI agents, SDET - GENIE transforms user stories directly into comprehensive, executable test automation code.
+SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation framework that revolutionizes the software testing process. Leveraging a suite of specialized AI agents, SDET-GENIE transforms rough user stories into comprehensive, executable test automation code through a seamless end-to-end process.
+
+The framework integrates five powerful AI agents working in sequence:
+
+1. **User Story Enhancement Agent** - Transforms rough ideas into detailed JIRA-style user stories
+2. **Manual Test Case Agent** - Converts enhanced user stories into comprehensive test cases
+3. **Gherkin Scenario Agent** - Transforms test cases into structured Gherkin feature files
+4. **Browser Agent** - Executes Gherkin scenarios in real browsers and captures interaction data
+5. **Code Generation Agent** - Produces ready-to-run automation code in multiple frameworks
 
 ## 🌟 Key Features
 
-### 1. AI-Powered QA Agent
+### 1. User Story Enhancement Agent
 
-- Converts user stories into detailed Gherkin scenarios
-- Generates both positive and negative test cases
-- Covers various user flows and edge conditions
+- Transforms rough, incomplete user stories into detailed, valuable JIRA-style user stories
+- Ensures proper WHO, WHAT, and WHY structure
+- Adds comprehensive acceptance criteria and implementation notes
+- Creates appropriately sized stories that can be completed in a single sprint
 
-### 2. Intelligent Browser Agent
+### 2. Manual Test Case Agent
+
+- Converts user stories and acceptance criteria into comprehensive manual test cases
+- Generates positive, negative, edge, and boundary test scenarios
+- Creates detailed test steps with expected results
+- Produces industry-standard test documentation
+
+### 3. Gherkin Scenario Agent
+
+- Transforms manual test cases into well-structured Gherkin scenarios
+- Creates human-readable feature files with proper Given/When/Then syntax
+- Supports scenario outlines for data-driven testing
+- Adds appropriate tags for test organization and filtering
+
+### 4. Intelligent Browser Agent
 
 - Automated browser interaction and test execution
 - Dynamic element identification and mapping
 - Comprehensive DOM detail capture
 - Robust element selector generation
 
-### 3. Code Generation Agent
+### 5. Code Generation Agent
 
-- Produces production-ready automation code
-- Supports multiple testing frameworks
-- Adaptive to different application architectures
+- Produces production-ready automation code from Gherkin scenarios
+- Supports multiple testing frameworks (Selenium, Playwright, Cypress, etc.)
+- Generates clean, well-structured, and maintainable code
+- Includes all necessary imports, dependencies, and helper functions
 
 ## 🔧 Technology Stack
 
@@ -143,60 +167,51 @@ Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 ## How it works:
 
 ```
-1 - Entrypoint: User story about what to do in the website.
-2 - prompt = generate_gherkin_scenarios(user_story)
+1. Entrypoint: User provides a rough user story about what to test in the website.
 
-3 - With browser context.
+2. User Story Enhancement:
+   - The User Story Enhancement Agent transforms the rough user story into a detailed, JIRA-style user story
+   - Adds proper structure (WHO, WHAT, WHY), acceptance criteria, and implementation notes
 
+3. Manual Test Case Generation:
+   - The Manual Test Case Agent converts the enhanced user story into comprehensive test cases
+   - Generates positive, negative, edge, and boundary test scenarios with detailed steps
 
-4 - Parse Gherkin scenarios.
+4. Gherkin Scenario Generation:
+   - The Gherkin Agent transforms manual test cases into well-structured Gherkin scenarios
+   - Creates feature files with proper Given/When/Then syntax and scenario outlines
 
-5 - Execute each Gherkin scenario:
-    - Start Browser with custom actions registered:
-        Custom actions registered:
-        -> "Get XPath of element using index"
-        -> "Get element property"
-        -> "Perform element action"
+5. Browser Automation:
+   - The Browser Agent executes each Gherkin scenario in a real browser
+   - Custom actions registered:
+     -> "Get XPath of element using index"
+     -> "Get element property"
+     -> "Perform element action"
+   - Executes and collects results:
+     history = await browser_agent.run()
 
-    # Execute and collect results
-    history = await browser_agent.run()
+6. Data Collection from Browser:
+   - Collects XPaths, actions, and extracted content from browser interactions
+   - Saves combined history to session state:
+     st.session_state.history = {
+         "urls": history.urls(),
+         "action_names": history.action_names(),
+         "detailed_actions": all_actions,
+         "element_xpaths": element_xpath_map,
+         "extracted_content": all_extracted_content,
+         "errors": history.errors(),
+         "model_actions": history.model_actions(),
+         "execution_date": st.session_state.get("execution_date", "Unknown")
+     }
 
-6 - From browser history:
-    -> Collect XPaths.
-    -> Collect actions.
-    -> Collect extracted content.
-
-    # Combined history:
-    # Save combined history to session state
-    st.session_state.history = {
-        "urls": history.urls(),
-        "action_names": history.action_names(),
-        "detailed_actions": all_actions,
-        "element_xpaths": element_xpath_map,
-        "extracted_content": all_extracted_content,
-        "errors": history.errors(),
-        "model_actions": history.model_actions(),
-        "execution_date": st.session_state.get("execution_date", "Unknown")
-    }
-
-7 - Code generation:
-    automation_code = generator_function(
-        generated_steps,  # Generated Gherkin scenarios.
-        history
-    )
+7. Test Automation Code Generation:
+   - The Code Generation Agent produces ready-to-execute test automation code
+   - Uses Gherkin scenarios and browser interaction data to generate code
+   - Supports multiple frameworks (Selenium, Playwright, Cypress, etc.)
+   - automation_code = generator_function(
+         generated_steps,  # Generated Gherkin scenarios
+         history           # Browser interaction data
+     )
 ```
-## 📝 Changelog
-### Version 1.1.0 (19-03-2025) New Features:
-- Editable Gherkin Scenarios : Users can now edit the AI-generated Gherkin scenarios directly in the application
-- Save Changes Button : Added functionality to save edited scenarios with visual confirmation
-- Persistent Scenarios : Saved scenarios remain visible in the UI until explicitly changed
-- Execution Flow Improvement : Users must save changes before executing steps (with warning if unsaved changes exist)
-- Code Generation Enhancement : Generated code now uses the edited scenarios instead of the original AI-generated ones
-- UI Improvements : Simplified color scheme with sky blue theme for better readability Workflow Changes:
-    1. Generate Gherkin scenarios from user story
-    2. Edit scenarios if needed
-    3. Click "Save Changes" button (required even if no edits were made)
-    4. Click "Execute Steps" to run the saved scenarios
-    5. Generate code based on the executed scenarios and browser history
 
 **Made with ❤️ by the WaiGenie Team**
