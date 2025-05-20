@@ -299,7 +299,7 @@ def main():
     st.markdown('<div class="header fade-in"><span class="header-item">AI Agents powered by AGNO and BROWSER-USE</span></div>', unsafe_allow_html=True)
 
     # Main Title with custom styling
-    st.markdown('<h1 class="main-title fade-in">QA - AGENTS</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-title fade-in">SDET - GENIE</h1>', unsafe_allow_html=True)
     st.markdown('<p class="subtitle fade-in">User Stories to Automated Tests : The Future of QA Automation using AI Agents</p>', unsafe_allow_html=True)
     # Sidebar styling
     with st.sidebar:
