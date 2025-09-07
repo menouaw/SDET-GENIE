@@ -1,5 +1,5 @@
 {
-  "total_interactions": 2,
+  "total_interactions": 3,
   "action_types": [
     "click",
     "type_text"
@@ -7,7 +7,84 @@
   "interactions": [
     {
       "action_type": "type_text",
-      "timestamp": 1757143590.9517174,
+      "timestamp": 1757221533.2776294,
+      "element_details": {
+        "element_index": 1,
+        "node_id": 32,
+        "backend_node_id": 4,
+        "tag_name": "input",
+        "node_type": "NodeType.ELEMENT_NODE",
+        "attributes": {
+          "class": "input_error form_input",
+          "placeholder": "Username",
+          "type": "text",
+          "data-test": "username",
+          "id": "user-name",
+          "name": "user-name",
+          "autocorrect": "off",
+          "autocapitalize": "none",
+          "value": ""
+        },
+        "is_visible": true,
+        "is_scrollable": null,
+        "frame_id": null,
+        "session_id": "9CBF34CD940D30228EA32EECE15E34D7",
+        "execution_context": {
+          "visited_urls": [],
+          "current_url": "",
+          "session_data": {}
+        },
+        "absolute_position": {
+          "x": 112.046875,
+          "y": 124.0,
+          "width": 522.890625,
+          "height": 39.0
+        },
+        "id": "user-name",
+        "class": "input_error form_input",
+        "name": "user-name",
+        "type": "text",
+        "placeholder": "Username",
+        "value": "",
+        "role": "",
+        "aria_label": "",
+        "data_testid": "",
+        "data_cy": "",
+        "title": "",
+        "meaningful_text": "Username",
+        "built_in_xpath": "input",
+        "selectors": {
+          "id": "#user-name",
+          "css_id": "#user-name",
+          "xpath_id": "//input[@id='user-name']",
+          "name": "[name='user-name']",
+          "css_name": "input[name='user-name']",
+          "xpath_name": "//input[@name='user-name']",
+          "css_type": "input[type='text']",
+          "xpath_type": "//input[@type='text']",
+          "css_placeholder": "input[placeholder='Username']",
+          "xpath_placeholder": "//input[@placeholder='Username']",
+          "css_class": "input.input_error.form_input",
+          "xpath_class": "//input[@class='input_error form_input']",
+          "xpath_text": "//input[contains(text(), 'Username')]",
+          "xpath_text_exact": "//input[text()='Username']",
+          "browser_use_xpath": "input",
+          "index_based": "[data-element-index='1']",
+          "playwright_id": "#user-name",
+          "playwright_text": "text=Username",
+          "selenium_id": "user-name",
+          "selenium_name": "user-name",
+          "selenium_class_name": "input_error"
+        }
+      },
+      "metadata": {
+        "text": "standard_user",
+        "clear_existing": true
+      }
+    },
+    {
+      "action_type": "type_text",
+      "timestamp": 1757221541.512697,
       "element_details": {
         "element_index": 2,
         "node_id": 111,
@@ -28,7 +105,7 @@
         "is_visible": true,
         "is_scrollable": null,
         "frame_id": null,
-        "session_id": "5D0E6AE08CD32009AE318E4EDBA1F4AB",
+        "session_id": "9CBF34CD940D30228EA32EECE15E34D7",
         "execution_context": {
           "visited_urls": [],
           "current_url": "",
@@ -84,7 +161,7 @@
     },
     {
       "action_type": "click",
-      "timestamp": 1757143592.7391772,
+      "timestamp": 1757221550.4360821,
       "element_details": {
         "element_index": 3,
         "node_id": 191,
@@ -102,7 +179,7 @@
         "is_visible": true,
         "is_scrollable": null,
         "frame_id": null,
-        "session_id": "5D0E6AE08CD32009AE318E4EDBA1F4AB",
+        "session_id": "9CBF34CD940D30228EA32EECE15E34D7",
         "execution_context": {
           "visited_urls": [],
           "current_url": "",
@@ -155,10 +232,57 @@
       }
     }
   ],
-  "unique_elements": 2,
+  "unique_elements": 3,
   "automation_data": {
     "page_interactions": [],
     "element_library": {
+      "element_1": {
+        "element_index": 1,
+        "tag_name": "input",
+        "selectors": {
+          "id": "#user-name",
+          "css_id": "#user-name",
+          "xpath_id": "//input[@id='user-name']",
+          "name": "[name='user-name']",
+          "css_name": "input[name='user-name']",
+          "xpath_name": "//input[@name='user-name']",
+          "css_type": "input[type='text']",
+          "xpath_type": "//input[@type='text']",
+          "css_placeholder": "input[placeholder='Username']",
+          "xpath_placeholder": "//input[@placeholder='Username']",
+          "css_class": "input.input_error.form_input",
+          "xpath_class": "//input[@class='input_error form_input']",
+          "xpath_text": "//input[contains(text(), 'Username')]",
+          "xpath_text_exact": "//input[text()='Username']",
+          "browser_use_xpath": "input",
+          "index_based": "[data-element-index='1']",
+          "playwright_id": "#user-name",
+          "playwright_text": "text=Username",
+          "selenium_id": "user-name",
+          "selenium_name": "user-name",
+          "selenium_class_name": "input_error"
+        },
+        "attributes": {
+          "class": "input_error form_input",
+          "placeholder": "Username",
+          "type": "text",
+          "data-test": "username",
+          "id": "user-name",
+          "name": "user-name",
+          "autocorrect": "off",
+          "autocapitalize": "none",
+          "value": ""
+        },
+        "position": {
+          "x": 112.046875,
+          "y": 124.0,
+          "width": 522.890625,
+          "height": 39.0
+        },
+        "accessibility": {},
+        "meaningful_text": "Username",
+        "interactions_count": 1
+      },
       "element_2": {
         "element_index": 2,
         "tag_name": "input",
@@ -253,6 +377,55 @@
       {
         "step_number": 1,
         "action_type": "type_text",
+        "element_reference": "element_1",
+        "selectors": {
+          "id": "#user-name",
+          "css_id": "#user-name",
+          "xpath_id": "//input[@id='user-name']",
+          "name": "[name='user-name']",
+          "css_name": "input[name='user-name']",
+          "xpath_name": "//input[@name='user-name']",
+          "css_type": "input[type='text']",
+          "xpath_type": "//input[@type='text']",
+          "css_placeholder": "input[placeholder='Username']",
+          "xpath_placeholder": "//input[@placeholder='Username']",
+          "css_class": "input.input_error.form_input",
+          "xpath_class": "//input[@class='input_error form_input']",
+          "xpath_text": "//input[contains(text(), 'Username')]",
+          "xpath_text_exact": "//input[text()='Username']",
+          "browser_use_xpath": "input",
+          "index_based": "[data-element-index='1']",
+          "playwright_id": "#user-name",
+          "playwright_text": "text=Username",
+          "selenium_id": "user-name",
+          "selenium_name": "user-name",
+          "selenium_class_name": "input_error"
+        },
+        "metadata": {
+          "text": "standard_user",
+          "clear_existing": true
+        },
+        "element_context": {
+          "tag_name": "input",
+          "meaningful_text": "Username",
+          "is_visible": true,
+          "attributes": {
+            "class": "input_error form_input",
+            "placeholder": "Username",
+            "type": "text",
+            "data-test": "username",
+            "id": "user-name",
+            "name": "user-name",
+            "autocorrect": "off",
+            "autocapitalize": "none",
+            "value": ""
+          }
+        },
+        "timestamp": 1757221533.2776294
+      },
+      {
+        "step_number": 2,
+        "action_type": "type_text",
         "element_reference": "element_2",
         "selectors": {
           "id": "#password",
@@ -297,10 +470,10 @@
             "value": ""
           }
         },
-        "timestamp": 1757143590.9517174
+        "timestamp": 1757221541.512697
       },
       {
-        "step_number": 2,
+        "step_number": 3,
         "action_type": "click",
         "element_reference": "element_3",
         "selectors": {
@@ -341,100 +514,121 @@
             "value": "Login"
           }
         },
-        "timestamp": 1757143592.7391772
+        "timestamp": 1757221550.4360821
       }
     ],
     "framework_selectors": {
       "id": {
+        "element_1": "#user-name",
         "element_2": "#password",
         "element_3": "#login-button"
       },
       "css_id": {
+        "element_1": "#user-name",
         "element_2": "#password",
         "element_3": "#login-button"
       },
       "xpath_id": {
+        "element_1": "//input[@id='user-name']",
         "element_2": "//input[@id='password']",
         "element_3": "//input[@id='login-button']"
       },
       "name": {
+        "element_1": "[name='user-name']",
         "element_2": "[name='password']",
         "element_3": "[name='login-button']"
       },
       "css_name": {
+        "element_1": "input[name='user-name']",
         "element_2": "input[name='password']",
         "element_3": "input[name='login-button']"
       },
       "xpath_name": {
+        "element_1": "//input[@name='user-name']",
         "element_2": "//input[@name='password']",
         "element_3": "//input[@name='login-button']"
       },
       "css_type": {
+        "element_1": "input[type='text']",
         "element_2": "input[type='password']",
         "element_3": "input[type='submit']"
       },
       "xpath_type": {
+        "element_1": "//input[@type='text']",
         "element_2": "//input[@type='password']",
         "element_3": "//input[@type='submit']"
       },
       "css_placeholder": {
+        "element_1": "input[placeholder='Username']",
         "element_2": "input[placeholder='Password']"
       },
       "xpath_placeholder": {
+        "element_1": "//input[@placeholder='Username']",
         "element_2": "//input[@placeholder='Password']"
       },
       "css_class": {
+        "element_1": "input.input_error.form_input",
         "element_2": "input.input_error.form_input",
         "element_3": "input.submit-button.btn_action"
       },
       "xpath_class": {
+        "element_1": "//input[@class='input_error form_input']",
         "element_2": "//input[@class='input_error form_input']",
         "element_3": "//input[@class='submit-button btn_action']"
       },
       "xpath_text": {
+        "element_1": "//input[contains(text(), 'Username')]",
         "element_2": "//input[contains(text(), 'Password')]",
         "element_3": "//input[contains(text(), 'Login')]"
       },
       "xpath_text_exact": {
+        "element_1": "//input[text()='Username']",
         "element_2": "//input[text()='Password']",
         "element_3": "//input[text()='Login']"
       },
       "browser_use_xpath": {
+        "element_1": "input",
         "element_2": "input",
         "element_3": "input"
       },
       "index_based": {
+        "element_1": "[data-element-index='1']",
         "element_2": "[data-element-index='2']",
         "element_3": "[data-element-index='3']"
       },
       "playwright_id": {
+        "element_1": "#user-name",
         "element_2": "#password",
         "element_3": "#login-button"
       },
       "playwright_text": {
+        "element_1": "text=Username",
         "element_2": "text=Password",
         "element_3": "text=Login"
       },
       "selenium_id": {
+        "element_1": "user-name",
         "element_2": "password",
         "element_3": "login-button"
       },
       "selenium_name": {
+        "element_1": "user-name",
         "element_2": "password",
         "element_3": "login-button"
       },
       "selenium_class_name": {
+        "element_1": "input_error",
         "element_2": "input_error",
         "element_3": "submit-button"
       }
     },
     "page_metadata": {
-      "total_elements_interacted": 2,
+      "total_elements_interacted": 3,
       "interaction_types": [
         "click",
         "type_text"
       ],
-      "generation_timestamp": 1757143607.7478325
+      "generation_timestamp": 1757221563.8546796
     }
   }
 }

@@ -5,6 +5,8 @@ from browser_use import Agent as BrowserAgent
 from browser_use.browser.events import ClickElementEvent, TypeTextEvent
 from browser_use.agent.views import AgentHistoryList
 from src.logic.element_tracker import element_tracker
+import streamlit as st
+from pathlib import Path
 
 
 class TrackingBrowserAgent(BrowserAgent):
@@ -12,41 +14,46 @@ class TrackingBrowserAgent(BrowserAgent):
     
     def __init__(self, *args, **kwargs):
         # Extract our custom parameters before passing to parent
-        generate_gif = kwargs.pop('generate_gif', False)
-        highlight_elements = kwargs.pop('highlight_elements', True)
-        record_video_dir = kwargs.pop('record_video_dir', None)
-        record_har_path = kwargs.pop('record_har_path', None)
-        traces_dir = kwargs.pop('traces_dir', None)
+        self.generate_gif = kwargs.pop('generate_gif', False)
+        self.highlight_elements = kwargs.pop('highlight_elements', True)
+        self.record_video_dir = kwargs.pop('record_video_dir', None)
+        self.record_har_path = kwargs.pop('record_har_path', None)
+        self.traces_dir = kwargs.pop('traces_dir', None)
         headless = kwargs.pop('headless', None)
         window_size = kwargs.pop('window_size', None)
-        use_vision = kwargs.pop('use_vision', True)
-        record_har_content = kwargs.pop('record_har_content', 'embed')
-        record_har_mode = kwargs.pop('record_har_mode', 'full')
-        vision_detail_level = kwargs.pop('vision_detail_level', 'auto')
-        max_history_items = kwargs.pop('max_history_items', None)
-        save_conversation_path = kwargs.pop('save_conversation_path', None)
+        self.use_vision = kwargs.pop('use_vision', True)
+        self.record_har_content = kwargs.pop('record_har_content', 'embed')
+        self.record_har_mode = kwargs.pop('record_har_mode', 'full')
+        self.vision_detail_level = kwargs.pop('vision_detail_level', 'auto')
+        self.max_history_items = kwargs.pop('max_history_items', None)
+        self.save_conversation_path = kwargs.pop('save_conversation_path', None)
         
-        # Set up browser profile with enhanced features
+        # Set up browser profile with enhanced features and recording parameters
         if 'browser' not in kwargs and 'browser_profile' not in kwargs:
             from browser_use import BrowserProfile
             browser_profile = BrowserProfile(
                 headless=headless,
-                window_size=window_size
+                window_size=window_size,
+                record_video_dir=self.record_video_dir,
+                record_har_path=self.record_har_path,
+                traces_dir=self.traces_dir,
+                record_har_content=self.record_har_content,
+                record_har_mode=self.record_har_mode
             )
             kwargs['browser_profile'] = browser_profile
         
         # Pass the browser-use specific parameters directly to the Agent
-        kwargs['generate_gif'] = generate_gif
-        kwargs['highlight_elements'] = highlight_elements
-        kwargs['record_video_dir'] = record_video_dir
-        kwargs['record_har_path'] = record_har_path
-        kwargs['traces_dir'] = traces_dir
-        kwargs['use_vision'] = use_vision
-        kwargs['record_har_content'] = record_har_content
-        kwargs['record_har_mode'] = record_har_mode
-        kwargs['vision_detail_level'] = vision_detail_level
-        kwargs['max_history_items'] = max_history_items
-        kwargs['save_conversation_path'] = save_conversation_path
+        # Use a string path for generate_gif to control where browser-use creates the GIF
+        # If we want to generate our own GIF in a specific location, we'll handle that separately
+        if self.generate_gif and self.record_video_dir:
+            kwargs['generate_gif'] = str(Path(self.record_video_dir) / "execution.gif")
+        else:
+            kwargs['generate_gif'] = self.generate_gif
+        kwargs['highlight_elements'] = self.highlight_elements
+        kwargs['use_vision'] = self.use_vision
+        kwargs['vision_detail_level'] = self.vision_detail_level
+        kwargs['max_history_items'] = self.max_history_items
+        kwargs['save_conversation_path'] = self.save_conversation_path
         
         super().__init__(*args, **kwargs)
         self.on_step_end_callback = None
@@ -88,6 +95,23 @@ class TrackingBrowserAgent(BrowserAgent):
         # Run the parent agent with our wrapped callback
         try:
             result = await super().run(max_steps, on_step_start, wrapped_on_step_end)
+            
+            # After execution, ensure GIF path is stored in session state for UI display
+            # The GIF should already be created by browser-use in the correct location
+            if self.generate_gif and self.record_video_dir:
+                try:
+                    # The GIF should already exist in the specified location
+                    gif_path = Path(self.record_video_dir) / "execution.gif"
+                    print(f"Expected GIF location: {gif_path}")
+                    
+                    # Store GIF path in session state for UI display
+                    if 'history' in st.session_state:
+                        st.session_state.history['gif_path'] = str(gif_path)
+                    else:
+                        st.session_state.history = {'gif_path': str(gif_path)}
+                except Exception as e:
+                    print(f"Failed to set GIF path in session state: {e}")
+            
             return result
         except Exception as e:
             # Re-raise the exception to be handled by the caller

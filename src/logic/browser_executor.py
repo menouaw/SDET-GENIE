@@ -9,6 +9,7 @@ import streamlit as st
 import asyncio
 from typing import Dict, Any, List, Optional
 from pathlib import Path
+import datetime
 
 from browser_use import Agent as BrowserAgent
 from browser_use.browser.events import ClickElementEvent, TypeTextEvent
@@ -74,54 +75,60 @@ async def execute_test(steps: str) -> None:
                 # Silently handle errors in hooks
                 pass
 
-        # Ensure recording directories exist
-        if BROWSER_CONFIG["record_video_dir"]:
-            Path(BROWSER_CONFIG["record_video_dir"]).mkdir(parents=True, exist_ok=True)
-        if BROWSER_CONFIG["traces_dir"]:
-            Path(BROWSER_CONFIG["traces_dir"]).mkdir(parents=True, exist_ok=True)
+        # Create browser agent with proper recording configuration
+        # Add timestamp for unique scenario identification
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        scenario_id = f"execution_{timestamp}"
+        
+        # Create timestamped directories for this execution
+        scenario_video_dir = f"./recordings/videos/{scenario_id}"
+        scenario_traces_dir = f"./recordings/debug.traces/{scenario_id}"
+        scenario_har_path = f"./recordings/network.traces/{scenario_id}.har"
+        
+        # Ensure directories exist
+        Path(scenario_video_dir).mkdir(parents=True, exist_ok=True)
+        Path(scenario_traces_dir).mkdir(parents=True, exist_ok=True)
+        Path("./recordings/network.traces").mkdir(parents=True, exist_ok=True)
+        
+        # Create the browser agent with recording parameters
+        browser_agent = TrackingBrowserAgent(
+            task="Execute test scenarios",
+            llm=browser_use_llm,
+            generate_gif=True,
+            record_video_dir=scenario_video_dir,
+            record_har_path=scenario_har_path,
+            traces_dir=scenario_traces_dir,
+            highlight_elements=BROWSER_CONFIG.get("highlight_elements", True),
+            use_vision=BROWSER_CONFIG.get("use_vision", True),
+            record_har_content=BROWSER_CONFIG.get("record_har_content", "embed"),
+            record_har_mode=BROWSER_CONFIG.get("record_har_mode", "full"),
+            vision_detail_level=BROWSER_CONFIG.get("vision_detail_level", "auto"),
+            max_history_items=BROWSER_CONFIG.get("max_history_items"),
+            save_conversation_path=BROWSER_CONFIG.get("save_conversation_path"),
+            headless=BROWSER_CONFIG.get("headless", False),
+            window_size=BROWSER_CONFIG.get("window_size", {"width": 1280, "height": 720})
+        )
+
+        # Debug output to verify recording parameters
+        print(f"DEBUG: Recording parameters for execution {scenario_id}:")
+        print(f"  record_video_dir: {scenario_video_dir}")
+        print(f"  record_har_path: {scenario_har_path}")
+        print(f"  traces_dir: {scenario_traces_dir}")
+        print(f"  generate_gif: {browser_agent.generate_gif}")
+        
+        # Check if browser profile has the recording settings
+        if hasattr(browser_agent, 'browser_profile'):
+            bp = browser_agent.browser_profile
+            print(f"  browser_profile.record_video_dir: {getattr(bp, 'record_video_dir', None)}")
+            print(f"  browser_profile.record_har_path: {getattr(bp, 'record_har_path', None)}")
+            print(f"  browser_profile.traces_dir: {getattr(bp, 'traces_dir', None)}")
+        
+        # Set the on_step_end callback using our custom method
+        browser_agent.set_on_step_end_callback(on_step_end)
 
         # Execute each scenario in sequence with proper session management
         for i, scenario in enumerate(scenarios):
             try:
-                # Update execution context with current state
-                if history and hasattr(history, 'urls') and history.urls():
-                    execution_context["visited_urls"] = list(set(execution_context["visited_urls"] + history.urls()))
-                    # Get the current URL if available
-                    try:
-                        # We'll set this after creating the agent
-                        pass
-                    except:
-                        # Fallback to last URL in history
-                        execution_context["current_url"] = history.urls()[-1] if history.urls() else ""
-                else:
-                    # If no history, set current URL to about:blank
-                    execution_context["current_url"] = "about:blank"
-                
-                # Generate task with context BEFORE creating the agent
-                task_prompt = generate_browser_task(scenario, execution_context)
-                
-                # Create a new browser agent for each scenario with enhanced configuration
-                browser_agent = TrackingBrowserAgent(
-                    task=task_prompt,  # Pass the generated task directly
-                    llm=browser_use_llm,
-                    use_vision=BROWSER_CONFIG["use_vision"],
-                    generate_gif=BROWSER_CONFIG["generate_gif"],
-                    highlight_elements=BROWSER_CONFIG["highlight_elements"],
-                    record_video_dir=BROWSER_CONFIG["record_video_dir"],
-                    record_har_path=BROWSER_CONFIG["record_har_path"],
-                    traces_dir=BROWSER_CONFIG["traces_dir"],
-                    record_har_content=BROWSER_CONFIG["record_har_content"],
-                    record_har_mode=BROWSER_CONFIG["record_har_mode"],
-                    vision_detail_level=BROWSER_CONFIG["vision_detail_level"],
-                    max_history_items=BROWSER_CONFIG["max_history_items"],
-                    save_conversation_path=BROWSER_CONFIG["save_conversation_path"],
-                    headless=BROWSER_CONFIG["headless"],
-                    window_size=BROWSER_CONFIG["window_size"]
-                )
-                
-                # Set the on_step_end callback using our custom method
-                browser_agent.set_on_step_end_callback(on_step_end)
-
                 # Update the current URL in execution context after agent is created
                 if history and hasattr(history, 'urls') and history.urls():
                     try:
@@ -602,7 +609,7 @@ def _save_execution_history(
         # Enhanced data from browser-use features
         "screenshots": history.screenshots(),
         "screenshot_paths": history.screenshot_paths(),
-        "gif_path": getattr(history, 'gif_path', None) if hasattr(history, 'gif_path') else None,
+        "gif_path": st.session_state.history.get('gif_path') if 'history' in st.session_state else None,
         "total_duration": history.total_duration_seconds(),
         "number_of_steps": history.number_of_steps(),
         # Additional browser-use features
@@ -610,7 +617,13 @@ def _save_execution_history(
         "final_result": history.final_result(),    # Final extracted content
         "is_done": history.is_done(),              # Completion status
         "is_successful": history.is_successful(),  # Success status
-        "vision_details": getattr(history, 'vision_data', None) if hasattr(history, 'vision_data') else None
+        "vision_details": getattr(history, 'vision_data', None) if hasattr(history, 'vision_data') else None,
+        # Recording paths for UI display
+        "recording_paths": {
+            "videos": "./recordings/videos",
+            "network_traces": "./recordings/network.traces",
+            "debug_traces": "./recordings/debug.traces"
+        }
     }
     
     # Add comprehensive element tracking data
