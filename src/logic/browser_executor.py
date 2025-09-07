@@ -75,60 +75,64 @@ async def execute_test(steps: str) -> None:
                 # Silently handle errors in hooks
                 pass
 
-        # Create browser agent with proper recording configuration
-        # Add timestamp for unique scenario identification
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        scenario_id = f"execution_{timestamp}"
-        
-        # Create timestamped directories for this execution
-        scenario_video_dir = f"./recordings/videos/{scenario_id}"
-        scenario_traces_dir = f"./recordings/debug.traces/{scenario_id}"
-        scenario_har_path = f"./recordings/network.traces/{scenario_id}.har"
-        
-        # Ensure directories exist
-        Path(scenario_video_dir).mkdir(parents=True, exist_ok=True)
-        Path(scenario_traces_dir).mkdir(parents=True, exist_ok=True)
-        Path("./recordings/network.traces").mkdir(parents=True, exist_ok=True)
-        
-        # Create the browser agent with recording parameters
-        browser_agent = TrackingBrowserAgent(
-            task="Execute test scenarios",
-            llm=browser_use_llm,
-            generate_gif=True,
-            record_video_dir=scenario_video_dir,
-            record_har_path=scenario_har_path,
-            traces_dir=scenario_traces_dir,
-            highlight_elements=BROWSER_CONFIG.get("highlight_elements", True),
-            use_vision=BROWSER_CONFIG.get("use_vision", True),
-            record_har_content=BROWSER_CONFIG.get("record_har_content", "embed"),
-            record_har_mode=BROWSER_CONFIG.get("record_har_mode", "full"),
-            vision_detail_level=BROWSER_CONFIG.get("vision_detail_level", "auto"),
-            max_history_items=BROWSER_CONFIG.get("max_history_items"),
-            save_conversation_path=BROWSER_CONFIG.get("save_conversation_path"),
-            headless=BROWSER_CONFIG.get("headless", False),
-            window_size=BROWSER_CONFIG.get("window_size", {"width": 1280, "height": 720})
-        )
-
-        # Debug output to verify recording parameters
-        print(f"DEBUG: Recording parameters for execution {scenario_id}:")
-        print(f"  record_video_dir: {scenario_video_dir}")
-        print(f"  record_har_path: {scenario_har_path}")
-        print(f"  traces_dir: {scenario_traces_dir}")
-        print(f"  generate_gif: {browser_agent.generate_gif}")
-        
-        # Check if browser profile has the recording settings
-        if hasattr(browser_agent, 'browser_profile'):
-            bp = browser_agent.browser_profile
-            print(f"  browser_profile.record_video_dir: {getattr(bp, 'record_video_dir', None)}")
-            print(f"  browser_profile.record_har_path: {getattr(bp, 'record_har_path', None)}")
-            print(f"  browser_profile.traces_dir: {getattr(bp, 'traces_dir', None)}")
-        
-        # Set the on_step_end callback using our custom method
-        browser_agent.set_on_step_end_callback(on_step_end)
-
-        # Execute each scenario in sequence with proper session management
+        # Execute each scenario in its own browser session
         for i, scenario in enumerate(scenarios):
             try:
+                # Create browser agent with proper recording configuration for each scenario
+                # Add timestamp and scenario index for unique scenario identification
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                scenario_id = f"execution_{timestamp}_scenario_{i+1}"
+                
+                # Create timestamped directories for this execution
+                scenario_video_dir = f"./recordings/videos/{scenario_id}"
+                scenario_traces_dir = f"./recordings/debug.traces/{scenario_id}"
+                scenario_har_path = f"./recordings/network.traces/{scenario_id}.har"
+                
+                # Ensure directories exist
+                Path(scenario_video_dir).mkdir(parents=True, exist_ok=True)
+                Path(scenario_traces_dir).mkdir(parents=True, exist_ok=True)
+                Path("./recordings/network.traces").mkdir(parents=True, exist_ok=True)
+                
+                # Generate the enhanced browser task prompt using our designed prompt
+                enhanced_task = generate_browser_task(scenario, execution_context)
+                
+                # Create the browser agent with recording parameters for this specific scenario
+                browser_agent = TrackingBrowserAgent(
+                    task=enhanced_task,  # Use the enhanced task prompt instead of raw scenario
+                    llm=browser_use_llm,
+                    generate_gif=True,
+                    record_video_dir=scenario_video_dir,
+                    record_har_path=scenario_har_path,
+                    traces_dir=scenario_traces_dir,
+                    highlight_elements=BROWSER_CONFIG.get("highlight_elements", True),
+                    use_vision=BROWSER_CONFIG.get("use_vision", True),
+                    record_har_content=BROWSER_CONFIG.get("record_har_content", "embed"),
+                    record_har_mode=BROWSER_CONFIG.get("record_har_mode", "full"),
+                    vision_detail_level=BROWSER_CONFIG.get("vision_detail_level", "auto"),
+                    max_history_items=BROWSER_CONFIG.get("max_history_items"),
+                    save_conversation_path=BROWSER_CONFIG.get("save_conversation_path"),
+                    headless=BROWSER_CONFIG.get("headless", False),
+                    window_size=BROWSER_CONFIG.get("window_size", {"width": 1280, "height": 720})
+                )
+
+                # Debug output to verify recording parameters
+                print(f"DEBUG: Recording parameters for scenario {i+1} execution {scenario_id}:")
+                print(f"  task: {enhanced_task[:100]}...")  # Show first 100 chars of enhanced task
+                print(f"  record_video_dir: {scenario_video_dir}")
+                print(f"  record_har_path: {scenario_har_path}")
+                print(f"  traces_dir: {scenario_traces_dir}")
+                print(f"  generate_gif: {browser_agent.generate_gif}")
+                
+                # Check if browser profile has the recording settings
+                if hasattr(browser_agent, 'browser_profile'):
+                    bp = browser_agent.browser_profile
+                    print(f"  browser_profile.record_video_dir: {getattr(bp, 'record_video_dir', None)}")
+                    print(f"  browser_profile.record_har_path: {getattr(bp, 'record_har_path', None)}")
+                    print(f"  browser_profile.traces_dir: {getattr(bp, 'traces_dir', None)}")
+                
+                # Set the on_step_end callback using our custom method
+                browser_agent.set_on_step_end_callback(on_step_end)
+
                 # Update the current URL in execution context after agent is created
                 if history and hasattr(history, 'urls') and history.urls():
                     try:
