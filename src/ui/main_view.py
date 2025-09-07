@@ -99,9 +99,28 @@ def render_user_story_input() -> str:
         str: User input story
     """
     st.markdown('<div class="card fade-in">', unsafe_allow_html=True)
-    st.markdown('<h3 class="glow-text">Enter User Story</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="glow-text">Enter User Story or Jira Ticket</h3>', unsafe_allow_html=True)
+    
+    # Check if Jira is configured
+    jira_configured = (
+        st.session_state.get("jira_server_url") and 
+        st.session_state.get("jira_username") and 
+        st.session_state.get("jira_token")
+    )
+    
+    if jira_configured:
+        st.markdown(
+            '<p style="color: #4CAF50; font-size: 0.9em;">✅ Jira integration is configured. You can enter a Jira ticket number (e.g., PROJECT-123)</p>', 
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            '<p style="color: #FF9800; font-size: 0.9em;">⚠️ Configure Jira credentials in the sidebar to enable Jira ticket integration</p>', 
+            unsafe_allow_html=True
+        )
+    
     user_story = st.text_area(
-        "Enter User Story",
+        "Enter User Story or Jira Ticket",
         placeholder=UI_TEXT["user_story_placeholder"],
         label_visibility="hidden"
     )

@@ -1,10 +1,6 @@
 import re
 from typing import Dict, Any, Union
 import json
-
-import re
-from typing import Dict, Any, Union
-import json
 import streamlit as st
 
 from src.Agents.agents import (
@@ -53,6 +49,14 @@ def enhance_user_story(user_story: str, model_instance: Union[object, Any]) -> s
         # Dynamically assign the model instance
         user_story_enhancement_agent.model = model_instance
         
+        # Check if the input looks like a Jira ticket number (e.g., PROJECT-123)
+        import re
+        jira_ticket_pattern = re.compile(r"^[A-Z]+-\d+$")
+        
+        if jira_ticket_pattern.match(user_story.strip()):
+            # It looks like a Jira ticket number, add context about Jira tools
+            user_story = f"Please fetch the details for Jira ticket {user_story} and enhance it into a proper user story."
+        
         run_response = user_story_enhancement_agent.run(user_story)
         # The agent is expected to return the enhanced user story text
         enhanced_story_content = run_response.content
@@ -64,7 +68,7 @@ def enhance_user_story(user_story: str, model_instance: Union[object, Any]) -> s
 def extract_code_content(text: str) -> str:
     """Extract code from markdown code blocks if present"""
     # Look for content between triple backticks with optional language identifier
-    code_block_pattern = re.compile(r"```(?:python|gherkin|javascript|java|robot|markdown)?\n(.*?)```", re.DOTALL)
+    code_block_pattern = re.compile(r"```(?:python|gherkin|javascript|java|robot|```\n(.*?)```", re.DOTALL)
     match = code_block_pattern.search(text)
 
     if match:

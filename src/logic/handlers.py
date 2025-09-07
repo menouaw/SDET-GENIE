@@ -6,6 +6,7 @@ Contains all the handler functions for button clicks and agent calls.
 import asyncio
 import pandas as pd
 import streamlit as st
+import os
 from typing import Dict, Any
 
 from src.Prompts.agno_prompts import (
@@ -22,6 +23,7 @@ from src.config import (
     APP_CONFIG
 )
 from src.ui.main_view import display_status_message, show_execution_preview
+from src.Agents.agents import user_story_enhancement_agent
 
 
 def handle_enhance_story(user_story: str) -> None:
@@ -45,6 +47,14 @@ def handle_enhance_story(user_story: str) -> None:
             agno_llm = get_llm_instance(provider, model, for_agno=True)
             
             if agno_llm:
+                # Configure Jira tools with credentials from session state
+                jira_server_url = st.session_state.get("jira_server_url", "")
+                jira_username = st.session_state.get("jira_username", "")
+                jira_token = st.session_state.get("jira_token", "")
+                
+                # Initialize Jira tools for the agent
+                _initialize_jira_tools(user_story_enhancement_agent, jira_server_url, jira_username, jira_token)
+                
                 # Call the user story enhancement agent
                 enhanced_user_story = enhance_user_story(user_story, agno_llm)
                 st.session_state[SESSION_KEYS["enhanced_user_story"]] = enhanced_user_story
@@ -228,6 +238,47 @@ def initialize_session_state() -> None:
     for key, default_value in essential_defaults.items():
         if key not in st.session_state:
             st.session_state[key] = default_value
+
+
+def _initialize_jira_tools(agent, jira_server_url: str, jira_username: str, jira_token: str):
+    """
+    Initialize Jira tools for the agent based on provided credentials or environment variables.
+    
+    Args:
+        agent: The agent to initialize tools for
+        jira_server_url: Jira server URL from UI
+        jira_username: Jira username from UI
+        jira_token: Jira token from UI
+    """
+    try:
+        # Prefer UI-provided credentials over environment variables
+        if jira_server_url and jira_username and jira_token:
+            # Use UI-provided credentials
+            from agno.tools.jira import JiraTools
+            agent.tools = [JiraTools(
+                server_url=jira_server_url,
+                username=jira_username,
+                token=jira_token
+            )]
+        else:
+            # Check if environment variables are set for Jira
+            import os
+            env_jira_server_url = os.getenv("JIRA_SERVER_URL")
+            env_jira_username = os.getenv("JIRA_USERNAME")
+            env_jira_token = os.getenv("JIRA_TOKEN")
+            
+            # Use environment variables if available
+            if env_jira_server_url and env_jira_username and env_jira_token:
+                from agno.tools.jira import JiraTools
+                agent.tools = [JiraTools()]
+            else:
+                # No Jira credentials available, leave tools empty
+                agent.tools = []
+    except Exception as e:
+        # If there's any error initializing Jira tools, leave tools empty
+        agent.tools = []
+        # Log the error for debugging (in a real application, you might want to log this properly)
+        pass
 
 
 def _parse_manual_test_cases(manual_test_cases_markdown: str) -> list:

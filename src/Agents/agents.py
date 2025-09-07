@@ -1,12 +1,33 @@
 import os
-import os
 from agno.agent import Agent
 from agno.tools.reasoning import ReasoningTools
 from agno.models.google import Gemini
+from agno.tools.jira import JiraTools
 from dotenv import load_dotenv
 from textwrap import dedent
 
 load_dotenv()
+
+# Initialize JiraTools with environment variables if available
+def _create_jira_tools():
+    """Create JiraTools instance if environment variables are set."""
+    try:
+        # Check if required JIRA environment variables are set
+        jira_server_url = os.getenv("JIRA_SERVER_URL")
+        jira_username = os.getenv("JIRA_USERNAME")
+        jira_token = os.getenv("JIRA_TOKEN")
+        
+        # Only initialize JiraTools if environment variables are available
+        if jira_server_url and jira_username and jira_token:
+            return [JiraTools()]
+        else:
+            return []
+    except Exception:
+        # If there's any error, return empty tools list
+        return []
+
+# Initialize with JiraTools if environment variables are set, otherwise empty list
+jira_tools = _create_jira_tools()
 
 user_story_enhancement_agent = Agent(
     # model will be assigned dynamically
@@ -18,6 +39,10 @@ user_story_enhancement_agent = Agent(
     focus on the WHO, WHAT, and WHY to bring context and user perspective into
     development, while ensuring they provide clear guidance for QA automation
     and testing strategies.
+    
+    You also have access to Jira tools that allow you to fetch issue details when provided with a Jira ticket number.
+    When a user provides a Jira ticket number (e.g., "PROJECT-123"), use the get_issue tool to fetch the details
+    and then enhance the user story based on that information.
     """),
     instructions=dedent("""
     # User Story Enhancement Process
@@ -25,6 +50,22 @@ user_story_enhancement_agent = Agent(
         Transform the provided rough user story into a comprehensive, customer-focused user story 
         that follows Agile best practices. Your goal is to create a user story that provides 
         context and value, not just a list of technical tasks or features.
+
+        ## Input Handling
+        The input can be either:
+        1. A direct user story text
+        2. A Jira ticket number (e.g., "PROJECT-123")
+        
+        If the input appears to be a Jira ticket number (contains a hyphen and alphanumeric characters),
+        first use the get_issue tool to fetch the Jira issue details, then use those details to create
+        an enhanced user story.
+
+        ## Using Jira Tools
+        When you receive a Jira ticket number:
+        1. Use the get_issue tool with the ticket number to retrieve the Jira issue details
+        2. Extract the summary and description from the returned JSON
+        3. Use this information to create a well-structured user story
+        4. Include relevant details from the Jira issue in your enhanced user story
 
         ## 1. Core User Story Structure
         Ensure the user story includes the three essential components:
@@ -98,6 +139,7 @@ user_story_enhancement_agent = Agent(
         
         Return ONLY the enhanced user story text without any additional explanations, introductions, or conclusions.
     """),
+    tools=jira_tools,  # Initialize with JiraTools if environment variables are set, otherwise empty list
     expected_output=dedent("""\
     # User Story: [Brief Title]
 

@@ -22,33 +22,53 @@ def render_sidebar():
             unsafe_allow_html=True
         )
 
-        # Model selection
-        st.markdown('<div class="sidebar-heading">🤖 Model Selection</div>', unsafe_allow_html=True)
-        
-        # Provider selection
-        selected_provider = st.selectbox(
-            "Select LLM Provider:",
-            list(SUPPORTED_MODELS.keys()),
-            key='selected_provider'
-        )
-        
-        # Model selection (updates based on provider)
-        if selected_provider:  # Add safety check
-            available_models = list(SUPPORTED_MODELS[selected_provider]["models"].keys())
-            selected_model = st.selectbox(
-                "Select Model:",
-                available_models,
-                key='selected_model'
+        # Model selection expandable container
+        with st.expander("🤖 Model Selection", expanded=True):
+            # Provider selection
+            selected_provider = st.selectbox(
+                "Select LLM Provider:",
+                list(SUPPORTED_MODELS.keys()),
+                key='selected_provider'
             )
             
-            # Display required API key
-            api_key_env = SUPPORTED_MODELS[selected_provider]["api_key_env"]
-            st.info(f"This model requires the '{api_key_env}' environment variable to be set.")
-        else:
-            st.error("Please select a provider first.")
+            # Model selection (updates based on provider)
+            if selected_provider:  # Add safety check
+                available_models = list(SUPPORTED_MODELS[selected_provider]["models"].keys())
+                selected_model = st.selectbox(
+                    "Select Model:",
+                    available_models,
+                    key='selected_model'
+                )
+                
+                # Display required API key
+                api_key_env = SUPPORTED_MODELS[selected_provider]["api_key_env"]
+                st.info(f"This model requires the '{api_key_env}' environment variable to be set.")
+            else:
+                st.error("Please select a provider first.")
+        
+        # Jira Configuration Section expandable container
+        with st.expander("Jira Configuration", expanded=False):
+            # Jira credentials input
+            jira_server_url = st.text_input("Jira Server URL", value=st.session_state.get("jira_server_url", ""), help="Enter your Jira server URL (e.g., https://your-domain.atlassian.net)")
+            jira_username = st.text_input("Jira Username", value=st.session_state.get("jira_username", ""), help="Enter your Jira username or email")
+            jira_token = st.text_input("Jira API Token", value=st.session_state.get("jira_token", ""), type="password", help="Enter your Jira API token")
+            
+            # Save Jira credentials to session state
+            if jira_server_url or jira_username or jira_token:
+                st.session_state["jira_server_url"] = jira_server_url
+                st.session_state["jira_username"] = jira_username
+                st.session_state["jira_token"] = jira_token
+            
+            # Display status
+            if jira_server_url and jira_username and jira_token:
+                st.success("Jira credentials configured")
+            elif jira_server_url or jira_username or jira_token:
+                st.warning("Please complete all Jira credentials")
+            else:
+                st.info("Optional: Configure Jira credentials to fetch ticket details")
         
         st.markdown("---")
-
+        
         # Framework selection
         st.markdown(
             f'<div class="sidebar-heading">{UI_TEXT["frameworks_heading"]}</div>', 

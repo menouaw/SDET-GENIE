@@ -91,7 +91,7 @@ UI_TEXT = {
     "subtitle": "User Stories to Automated Tests : The Future of QA Automation using AI Agents",
     "header_text": "AI Agents powered by AGNO and BROWSER-USE",
     "footer_text": "© 2025 WAIGENIE | AI-Powered Test Automation",
-    "user_story_placeholder": "e.g., As a user, I want to log in with valid credentials so that I can access my account.",
+    "user_story_placeholder": "Enter a user story or Jira ticket (e.g., PROJECT-123)",
     "sidebar_heading": "WAIGENIE",
     "frameworks_heading": "Available Frameworks"
 }

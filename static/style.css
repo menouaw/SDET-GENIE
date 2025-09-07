@@ -89,6 +89,36 @@
     gap: 2rem;
 }
 
+/* Expandable section styling */
+.streamlit-expander {
+    background-color: #F0F8FF;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(70, 130, 180, 0.2);
+}
+
+.streamlit-expander:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(70, 130, 180, 0.3);
+}
+
+.streamlit-expanderHeader {
+    background-color: #4682B4;
+    border-radius: 12px 12px 0 0;
+    padding: 10px 15px;
+    font-weight: 600;
+    color: white;
+}
+
+.streamlit-expanderHeader:hover {
+    background-color: #5F9EA0;
+}
+
+.streamlit-expanderContent {
+    padding: 15px;
+}
+
 /* Footer Styling */
 .footer {
     text-align: center;
