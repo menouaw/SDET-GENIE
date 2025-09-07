@@ -775,8 +775,8 @@ def _render_details_tab(history):
                 if gif_path and Path(gif_path).exists():
                     st.markdown('<h6>🎥 Execution GIF</h6>', unsafe_allow_html=True)
                     st.info("A GIF animation of the execution is available for review.")
-                    # In a real implementation, you would display the GIF here
-                    # st.image(gif_path, caption="Execution Animation", use_column_width=True)
+                    # Display the GIF here
+                    st.image(gif_path, caption="Execution Animation", use_container_width=True)
         
         with detail_tab3:
             # Raw model actions for debugging

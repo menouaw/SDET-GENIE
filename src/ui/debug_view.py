@@ -56,7 +56,7 @@ def _render_recordings(history: Dict[str, Any]):
         st.success("✅ Execution GIF animation generated successfully")
         st.info(f"Location: {gif_path}")
         # Display the GIF here
-        st.image(gif_path, caption="Execution Animation", use_column_width=True)
+        st.image(gif_path, caption="Execution Animation", use_container_width=True)
     else:
         # Check for GIF files in scenario directories
         if videos_dir and Path(videos_dir).exists():
@@ -69,7 +69,7 @@ def _render_recordings(history: Dict[str, Any]):
                         st.info(f"Location: {gif_file}")
                         # Display the GIF here
                         if gif_file.exists():
-                            st.image(str(gif_file), caption=f"Execution Animation - {gif_file.parent.name}", use_column_width=True)
+                            st.image(str(gif_file), caption=f"Execution Animation - {gif_file.parent.name}", use_container_width=True)
             else:
                 st.info("No GIF animations were generated for this execution.")
         else:
@@ -125,7 +125,7 @@ def _render_screenshots(history: Dict[str, Any]):
                     # Decode base64 screenshot
                     st.markdown(f"<p><strong>Screenshot {i+1}:</strong></p>", unsafe_allow_html=True)
                     # Display the image
-                    st.image(base64.b64decode(screenshot), caption=f"Screenshot {i+1}", use_column_width=True)
+                    st.image(base64.b64decode(screenshot), caption=f"Screenshot {i+1}", use_container_width=True)
                 except Exception as e:
                     st.warning(f"Could not display screenshot {i+1}: {str(e)}")
     else:
@@ -137,12 +137,17 @@ def _render_screenshots(history: Dict[str, Any]):
             screenshot_files = list(Path(videos_dir).rglob("*.png"))
             if screenshot_files:
                 st.success(f"✅ {len(screenshot_files)} screenshot(s) found in recordings")
-                for screenshot_file in screenshot_files:
-                    with st.expander(f"Screenshot: {screenshot_file.parent.name}"):
+                # Show first 3 screenshots
+                for i, screenshot_file in enumerate(screenshot_files[:3]):
+                    with st.expander(f"Screenshot {i+1}: {screenshot_file.parent.name}"):
                         st.info(f"Location: {screenshot_file}")
                         # Display the image
                         if screenshot_file.exists():
-                            st.image(str(screenshot_file), caption=f"Screenshot - {screenshot_file.parent.name}", use_column_width=True)
+                            st.image(str(screenshot_file), caption=f"Screenshot {i+1} - {screenshot_file.parent.name}", use_container_width=True)
+                # Show all screenshot paths
+                st.markdown("<p><strong>All Screenshot Locations:</strong></p>", unsafe_allow_html=True)
+                for screenshot_file in screenshot_files:
+                    st.markdown(f"<div style='background-color: #e3f2fd; padding: 5px; margin: 2px 0; border-radius: 3px;'>{screenshot_file}</div>", unsafe_allow_html=True)
             else:
                 st.info("No screenshots were captured during execution.")
         else:
