@@ -1,9 +1,44 @@
-def generate_browser_task(scenario: str) -> str:
+def generate_browser_task(scenario: str, context: dict | None = None) -> str:
     """Generate the browser task prompt for executing Gherkin scenarios"""
+    
+    context_section = ""
+    if context:
+        context_section = "\n**Execution Context:**\n"
+        if "current_url" in context:
+            context_section += f"- Current URL: {context['current_url']}\n"
+        if "visited_urls" in context:
+            context_section += f"- Previously visited URLs: {', '.join(context['visited_urls'])}\n"
+        if "session_data" in context:
+            context_section += f"- Session data: {context['session_data']}\n"
+        context_section += "\n"
+    
+    # Check if the scenario needs a default navigation step
+    needs_navigation = False
+    scenario_lines = scenario.strip().split('\n')
+    if scenario_lines:
+        first_step_line = None
+        for line in scenario_lines:
+            stripped = line.strip()
+            if stripped.startswith(('Given', 'When', 'Then', 'And', 'But')):
+                first_step_line = stripped
+                break
+        
+        # If the first step doesn't mention navigation and we're on about:blank, 
+        # we need to add a navigation step
+        if (first_step_line and 
+            not any(keyword in first_step_line.lower() for keyword in ['navigate', 'go to', 'visit', 'open']) and
+            context and context.get("current_url") == "about:blank"):
+            needs_navigation = True
+    
+    navigation_instruction = ""
+    if needs_navigation:
+        navigation_instruction = "\n**Important Navigation Note:** Since the current URL is about:blank and the first step doesn't explicitly navigate to a page, you should first navigate to the Swag Labs login page at 'https://www.saucedemo.com/' before executing the first step.\n"
+    
     return f"""
     You are a browser automation agent tasked with executing the following Gherkin scenario.
     Interpret each step (Given, When, Then, And, But) as instructions for interacting with a web page or verifying its state.
 
+    {context_section}
     **Execution Strategy:**
 
     1.  **Interpret Gherkin Steps:** Read each Gherkin step and understand the high-level action or verification required.
@@ -55,13 +90,14 @@ def generate_browser_task(scenario: str) -> str:
         *   For `Then` steps, the verification performed (e.g., "Verifying text content of element X is 'Expected Text'", "Verifying element Y is visible") and the result (Pass/Fail), including actual vs. expected values if it's a comparison.
         *   Any errors encountered.
 
+    {navigation_instruction}
     **Important:** For each element you interact with, make sure to capture its detailed information using the "Get detailed element information" action. This will provide comprehensive element attributes (ID, tag name, class name, XPaths, CSS selectors) that are essential for generating robust test scripts.
+
+    **TASK TO EXECUTE:** Execute the following Gherkin scenario step-by-step, following the strategy above. Prioritize successful execution and clear reporting. Do not ask clarifying questions; infer actions based on the detailed Gherkin steps and attempt the most probable browser action.
 
     **Given Gherkin Scenario:**
 
     ```gherkin
     {scenario}
     ```
-
-    Execute this scenario step-by-step, following the strategy above. Prioritize successful execution and clear reporting. Do not ask clarifying questions; infer actions based on the detailed Gherkin steps and attempt the most probable browser action.
     """

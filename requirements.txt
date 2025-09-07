@@ -1,5 +1,5 @@
 agno
-browser-use
+browser-use>=0.1.0
 google-genai
 numpy
 streamlit
@@ -7,3 +7,7 @@ langchain-google-genai
 langchain-openai
 langchain-anthropic
 langchain-groq
+tabulate
+matplotlib
+pandas
+playwright

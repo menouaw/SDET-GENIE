@@ -32,7 +32,7 @@ The framework integrates five powerful AI agents working in sequence:
 
 ### 3. Gherkin Scenario Agent
 
-- Transforms manual test cases into well-structured Gherkin scenarios
+- Transforms manual test cases into well-structured Gherkin feature files
 - Creates human-readable feature files with proper Given/When/Then syntax
 - Supports scenario outlines for data-driven testing
 - Adds appropriate tags for test organization and filtering
@@ -43,6 +43,14 @@ The framework integrates five powerful AI agents working in sequence:
 - Dynamic element identification and mapping
 - Comprehensive DOM detail capture
 - Robust element selector generation
+- **Enhanced with Browser-Use Features:**
+  - 🎥 GIF Generation - Automatic creation of animated GIFs showing test execution
+  - 📸 Video Recording - WebM recordings of entire browser sessions
+  - 🌐 Network Tracing - HAR files capturing all HTTP activity
+  - 👁️ AI Vision Integration - Computer vision for improved element identification
+  - ✨ Element Highlighting - Visual highlighting of interactive elements
+  - 📜 Comprehensive Agent History - Complete record of actions, decisions, and outcomes
+  - 🔬 Advanced Debugging - Detailed execution traces for troubleshooting
 
 ### 5. Code Generation Agent
 
@@ -58,6 +66,7 @@ The framework integrates five powerful AI agents working in sequence:
 - Selenium/Playwright
 - Gherkin/Cucumber
 - Browser Automation Technologies
+- **Browser-Use Library** - Advanced browser automation with AI capabilities
 
 ## 📦 Installation - Quick start
 
@@ -159,10 +168,13 @@ Read our in-depth article: [From User Stories to Automated Tests: The Future of 
 
 Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
 
+For detailed information about all browser-use features implemented in SDET-GENIE, see [BROWSER_USE_FEATURES.md](BROWSER_USE_FEATURES.md)
+
 ## 🌈 Acknowledgments
 
 - Inspired by the challenges in modern software quality assurance
 - Powered by cutting-edge AI technologies
+- Enhanced with the browser-use library for advanced browser automation capabilities
 
 ## How it works:
 

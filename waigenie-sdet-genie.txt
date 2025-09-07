@@ -1,0 +1,2853 @@
+Directory structure:
+└── waigenie-sdet-genie/
+    ├── Readme.md
+    ├── app.py
+    ├── LICENCE
+    ├── requirements.txt
+    └── src/
+        ├── Agents/
+        │   └── agents.py
+        ├── Prompts/
+        │   ├── agno_prompts.py
+        │   └── browser_prompts.py
+        └── Utilities/
+            └── utils.py
+
+================================================
+FILE: Readme.md
+================================================
+# SDET-GENIE: AI-AGENTS in QA Automation --> @AGNO ^ @ Browser-use
+
+![image](https://github.com/user-attachments/assets/87ecb2a9-0638-4dee-b630-74aed4e95326)
+
+## 🚀 Project Overview
+
+SDET-GENIE is a cutting-edge, AI-powered Quality Assurance (QA) automation framework that revolutionizes the software testing process. Leveraging a suite of specialized AI agents, SDET-GENIE transforms rough user stories into comprehensive, executable test automation code through a seamless end-to-end process.
+
+The framework integrates five powerful AI agents working in sequence:
+
+1. **User Story Enhancement Agent** - Transforms rough ideas into detailed JIRA-style user stories
+2. **Manual Test Case Agent** - Converts enhanced user stories into comprehensive test cases
+3. **Gherkin Scenario Agent** - Transforms test cases into structured Gherkin feature files
+4. **Browser Agent** - Executes Gherkin scenarios in real browsers and captures interaction data
+5. **Code Generation Agent** - Produces ready-to-run automation code in multiple frameworks
+
+## 🌟 Key Features
+
+### 1. User Story Enhancement Agent
+
+- Transforms rough, incomplete user stories into detailed, valuable JIRA-style user stories
+- Ensures proper WHO, WHAT, and WHY structure
+- Adds comprehensive acceptance criteria and implementation notes
+- Creates appropriately sized stories that can be completed in a single sprint
+
+### 2. Manual Test Case Agent
+
+- Converts user stories and acceptance criteria into comprehensive manual test cases
+- Generates positive, negative, edge, and boundary test scenarios
+- Creates detailed test steps with expected results
+- Produces industry-standard test documentation
+
+### 3. Gherkin Scenario Agent
+
+- Transforms manual test cases into well-structured Gherkin scenarios
+- Creates human-readable feature files with proper Given/When/Then syntax
+- Supports scenario outlines for data-driven testing
+- Adds appropriate tags for test organization and filtering
+
+### 4. Intelligent Browser Agent
+
+- Automated browser interaction and test execution
+- Dynamic element identification and mapping
+- Comprehensive DOM detail capture
+- Robust element selector generation
+
+### 5. Code Generation Agent
+
+- Produces production-ready automation code from Gherkin scenarios
+- Supports multiple testing frameworks (Selenium, Playwright, Cypress, etc.)
+- Generates clean, well-structured, and maintainable code
+- Includes all necessary imports, dependencies, and helper functions
+
+## 🔧 Technology Stack
+
+- Python
+- AI Models (Google Gemini 2.0 Flash)
+- Selenium/Playwright
+- Gherkin/Cucumber
+- Browser Automation Technologies
+
+## 📦 Installation - Quick start
+
+install playwright:
+
+```shell
+playwright install
+```
+
+```bash
+
+git clone https://github.com/WaiGenie/SDET-GENIE.git
+
+cd SDET-GENIE
+
+python -m venv .venv
+
+.venv\Scripts\activate
+
+pip install-requirements.txt
+
+Create .env file
+Place your GOOGLE_API_KEY=AIzaXXXXXXXXXXXXXX
+
+streamlit run app.py
+
+```
+
+## 🖥️ Quick Start
+
+1. Prepare your user story
+2. Run the AI agents
+3. Generate and execute automated tests
+
+## 🤝 Contributing
+
+We're excited to welcome contributors to SDET-GENIE! Whether you're fixing bugs, improving documentation, or adding new features, your contributions are highly valued.
+
+### 💡 Why Contribute?
+
+- Gain experience with cutting-edge AI and test automation technologies
+- Join a growing community of QA automation enthusiasts
+- Help shape the future of AI-powered testing
+- Get your name featured in our contributors list
+- Learn best practices in test automation
+
+### 🚀 Getting Started with Contributions
+
+```
+2. Create a new branch (`git checkout -b feature/your-feature-name`)
+3. Make your changes
+4. Run tests
+5. Commit your changes
+6. Push to your fork
+7. Open a Pull Request
+```
+
+## 🔍 Areas for Contribution
+
+- Bug fixes
+- Documentation improvements
+- New test automation framework support
+- Performance optimizations
+- Cloud browser provider integrations
+- UI/UX improvements
+- Test coverage enhancements
+
+## 📄 License
+
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0)
+
+### License Highlights
+
+✔️ Personal and educational use allowed
+
+✔️ Code modification permitted
+
+✔️ Copyright and license notices must be preserved
+
+✔️ Source code must be disclosed when distributing
+
+✔️ Changes must be released under the same license
+
+❌ No commercial use without explicit permission
+
+❌ No warranty provided
+
+For full license details, see the [LICENSE](LICENSE) file or visit [GNU AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.en.html)
+
+## 🤔 Questions or Need Help?
+
+- Open a GitHub Discussion
+- Check existing issues
+- Join our community Discord - https://discord.gg/QqF68r39
+
+## 📚 Blog Post
+
+Read our in-depth article: [From User Stories to Automated Tests: The Future of QA Automation using AI Agents](https://medium.com/@honeyricky1m3/from-user-stories-to-automated-tests-the-future-of-qa-automation-using-ai-agents-cfe7fe878954)
+
+Demo - https://youtu.be/z0fSNoUZTzw?si=xrfbDsGWlnTJzcYK
+
+## 🌈 Acknowledgments
+
+- Inspired by the challenges in modern software quality assurance
+- Powered by cutting-edge AI technologies
+
+## How it works:
+
+```
+1. Entrypoint: User provides a rough user story about what to test in the website.
+
+2. User Story Enhancement:
+   - The User Story Enhancement Agent transforms the rough user story into a detailed, JIRA-style user story
+   - Adds proper structure (WHO, WHAT, WHY), acceptance criteria, and implementation notes
+
+3. Manual Test Case Generation:
+   - The Manual Test Case Agent converts the enhanced user story into comprehensive test cases
+   - Generates positive, negative, edge, and boundary test scenarios with detailed steps
+
+4. Gherkin Scenario Generation:
+   - The Gherkin Agent transforms manual test cases into well-structured Gherkin scenarios
+   - Creates feature files with proper Given/When/Then syntax and scenario outlines
+
+5. Browser Automation:
+   - The Browser Agent executes each Gherkin scenario in a real browser
+   - Custom actions registered:
+     -> "Get XPath of element using index"
+     -> "Get element property"
+     -> "Perform element action"
+   - Executes and collects results:
+     history = await browser_agent.run()
+
+6. Data Collection from Browser:
+   - Collects XPaths, actions, and extracted content from browser interactions
+   - Saves combined history to session state:
+     st.session_state.history = {
+         "urls": history.urls(),
+         "action_names": history.action_names(),
+         "detailed_actions": all_actions,
+         "element_xpaths": element_xpath_map,
+         "extracted_content": all_extracted_content,
+         "errors": history.errors(),
+         "model_actions": history.model_actions(),
+         "execution_date": st.session_state.get("execution_date", "Unknown")
+     }
+
+7. Test Automation Code Generation:
+   - The Code Generation Agent produces ready-to-execute test automation code
+   - Uses Gherkin scenarios and browser interaction data to generate code
+   - Supports multiple frameworks (Selenium, Playwright, Cypress, etc.)
+   - automation_code = generator_function(
+         generated_steps,  # Generated Gherkin scenarios
+         history           # Browser interaction data
+     )
+```
+
+**Made with ❤️ by the WaiGenie Team**
+
+
+
+================================================
+FILE: app.py
+================================================
+import pandas as pd
+import streamlit as st
+import sys
+import asyncio
+import os
+import re
+from dotenv import load_dotenv
+
+from browser_use import Browser, Agent as BrowserAgent
+from src.Utilities.utils import controller
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+from src.Prompts.agno_prompts import (
+    generate_selenium_pytest_bdd,
+    generate_playwright_python,
+    generate_cypress_js,
+    generate_robot_framework,
+    generate_java_selenium,
+    generate_gherkin_scenarios,
+    enhance_user_story,
+    generate_manual_test_cases
+)
+
+from src.Prompts.browser_prompts import (
+    generate_browser_task
+)
+# from src.Utilities.run_self_healing_demo import run_self_healing_demo
+# # Load environment variables
+load_dotenv()
+
+# Handle Windows asyncio policy
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
+
+# Dictionary mapping framework names to their generation functions
+FRAMEWORK_GENERATORS = {
+    "Selenium + PyTest BDD (Python)": generate_selenium_pytest_bdd,
+    "Playwright (Python)": generate_playwright_python,
+    "Cypress (JavaScript)": generate_cypress_js,
+    "Robot Framework": generate_robot_framework,
+    "Selenium + Cucumber (Java)": generate_java_selenium
+}
+
+# Dictionary mapping framework names to their file extensions
+FRAMEWORK_EXTENSIONS = {
+    "Selenium + PyTest BDD (Python)": "py",
+    "Playwright (Python)": "py",
+    "Cypress (JavaScript)": "js",
+    "Robot Framework": "robot",
+    "Selenium + Cucumber (Java)": "java"
+}
+
+# Framework descriptions
+framework_descriptions = {
+    "Selenium + PyTest BDD (Python)": "Popular Python testing framework combining Selenium WebDriver with PyTest BDD for behavior-driven development. Best for Python developers who want strong test organization and reporting.",
+    "Playwright (Python)": "Modern, powerful browser automation framework with built-in async support and cross-browser testing capabilities. Excellent for modern web applications and complex scenarios.",
+    "Cypress (JavaScript)": "Modern, JavaScript-based end-to-end testing framework with real-time reloading and automatic waiting. Perfect for front-end developers and modern web applications.",
+    "Robot Framework": "Keyword-driven testing framework that uses simple, tabular syntax. Great for teams with mixed technical expertise and for creating readable test cases.",
+    "Selenium + Cucumber (Java)": "Robust combination of Selenium WebDriver with Cucumber for Java, supporting BDD. Ideal for Java teams and enterprise applications."
+}
+
+def main():
+
+    st.set_page_config(page_title="SDET-GENIE", layout="wide")
+
+    # Apply custom CSS
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    /* General App Styling */
+    .stApp {
+        font-family: 'Poppins', sans-serif;
+        background-color: #87CEEB; /* Sky blue background */
+        color: #333333;
+        padding: 2rem;
+    }
+
+    /* Navigation Bar Styling */
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #4682B4; /* Steel blue for header */
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+    }
+
+    .header-item {
+        color: #FFFFFF;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-align: center;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .header-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+    }
+
+    /* Button Styling */
+    .stButton > button {
+        background-color: #4682B4; /* Steel blue for buttons */
+        color: #FFFFFF;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        border: none;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .stButton > button:hover {
+        background-color: #5F9EA0; /* Cadet blue on hover */
+        transform: scale(1.05);
+    }
+
+    /* Input Fields Styling */
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea {
+        background-color: #F0F8FF; /* Alice blue for input fields */
+        border: 1px solid #4682B4;
+        color: #333333;
+        border-radius: 8px;
+        padding: 0.6rem;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        border-color: #4682B4;
+        box-shadow: 0 0 8px rgba(70, 130, 180, 0.6);
+    }
+
+    /* Form Controls Styling */
+    .stRadio > div {
+        background-color: #F0F8FF;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .stRadio > div:hover {
+        background-color: #E6F3FF;
+    }
+
+    /* Grid Layout Styling */
+    .stContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    /* Footer Styling */
+    .footer {
+        text-align: center;
+        padding: 1rem;
+        background-color: #4682B4;
+        border-radius: 10px;
+        margin-top: 3rem;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+        color: white;
+    }
+
+    .main-title {
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 45px;
+        font-weight: 600;
+        color: #333333;
+        padding: 10px 0;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #4682B4;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .subtitle {
+        font-family: 'Poppins', sans-serif;
+        font-size: 24px;
+        color: #333333;
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 400;
+    }
+
+    .card {
+        background-color: #F0F8FF;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(70, 130, 180, 0.3);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .code-container {
+        background-color: #F8F8FF;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .glow-text {
+        color: #4682B4;
+    }
+
+    .sidebar-heading {
+        background-color: #4682B4;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    .status-success {
+        background-color: #90EE90;
+        color: #333333;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .status-error {
+        background-color: #FFA07A;
+        color: #333333;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .tab-container {
+        background-color: #F0F8FF;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .download-btn {
+        background-color: #4682B4;
+        color: white;
+        text-align: center;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        display: block;
+        margin: 20px auto;
+        width: fit-content;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .download-btn:hover {
+        background-color: #5F9EA0;
+        transform: scale(1.05);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .fade-in {
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Spinner styling */
+    .stSpinner > div > div {
+        border-color: #4682B4 #4682B4 transparent !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Custom Header
+    st.markdown('<div class="header fade-in"><span class="header-item">AI Agents powered by AGNO and BROWSER-USE</span></div>', unsafe_allow_html=True)
+
+    # Main Title with custom styling
+    st.markdown('<h1 class="main-title fade-in">SDET - GENIE</h1>', unsafe_allow_html=True)
+    st.markdown('<p class="subtitle fade-in">User Stories to Automated Tests : The Future of QA Automation using AI Agents</p>', unsafe_allow_html=True)
+    # Sidebar styling
+    with st.sidebar:
+        st.markdown('<div class="sidebar-heading"><a href="https://www.waigenie.tech/" target="_blank" style="color: white; text-decoration: none;">WAIGENIE</a></div>', unsafe_allow_html=True)
+
+        st.markdown('<div class="sidebar-heading">Avilable Frameworks</div>', unsafe_allow_html=True)
+        selected_framework = st.selectbox(
+            "Select framework:",
+            list(FRAMEWORK_GENERATORS.keys()),
+            index=0
+        )
+        #New About WaiGenie section with tabs
+        with st.expander("About WaiGenie"):
+            tab1, tab2, tab3, tab4, tab5 = st.tabs([
+                "Vision & Mission",
+                "Features",
+                "How It Works",
+                "Workflow",
+                "Benefits"
+            ])
+
+            with tab1:
+                st.subheader("Our Vision")
+                st.write("Revolutionizing Quality Assurance with AI-powered solutions that empower teams to deliver flawless software at unprecedented speeds.")
+
+                st.subheader("Our Mission")
+                st.write("Empower QA teams with cutting-edge AI solutions tailored for enterprise needs, enabling them to deliver high-quality software faster and more efficiently than ever before.")
+
+            with tab2:
+                st.markdown("#### 🧠 AI-Powered Test Generation")
+                st.write("Generate comprehensive test scenarios using advanced AI algorithms.")
+                st.markdown("#### 🔍 Intelligent Element Inspector")
+                st.write("Automatically identify and analyze web elements with precision.")
+                st.markdown("#### 📝 Gherkin Feature Generator")
+                st.write("Transform user stories into clear, concise Gherkin feature files.")
+                st.markdown("#### 💻 Automated Code Generation")
+                st.write("Generate test automation scripts in multiple languages automatically.")
+                st.markdown("#### 🤖 Web Agent Explorer")
+                st.write("Leverage AI to automatically explore and test complex user journeys.")
+                st.markdown("#### 📊 Advanced Analytics")
+                st.write("Gain insights into your testing processes and identify areas for improvement.")
+
+            with tab3:
+                col1, col2 = st.columns([1, 5])
+                with col1:
+                    st.markdown("### 1")
+                with col2:
+                    st.markdown("#### Sign Up")
+                    st.write("Create your WaiGenie account and set up your organization profile.")
+                col1, col2 = st.columns([1, 5])
+                with col1:
+                    st.markdown("### 2")
+                with col2:
+                    st.markdown("#### Connect")
+                    st.write("Integrate WaiGenie with your existing QA tools and workflows.")
+                col1, col2 = st.columns([1, 5])
+                with col1:
+                    st.markdown("### 3")
+                with col2:
+                    st.markdown("#### Analyze")
+                    st.write("Let our AI analyze your application and generate test scenarios.")
+                col1, col2 = st.columns([1, 5])
+                with col1:
+                    st.markdown("### 4")
+                with col2:
+                    st.markdown("#### Optimize")
+                    st.write("Continuously improve your QA process with AI-driven insights.")
+
+            with tab4:
+                st.subheader("AI-Powered QA Workflow")
+                st.markdown("#### 1. QA Agent")
+                st.write("• Converts user stories into Gherkin scenarios")
+                st.write("• Generates positive and negative test cases")
+                st.markdown("#### 2. Browser Agent")
+                st.write("• Executes Gherkin scenarios in a browser")
+                st.write("• Captures detailed DOM information")
+                st.write("• Records element details like XPaths")
+                st.markdown("#### 3. Code Generation Agent")
+                st.write("• Transforms scenarios into automation scripts")
+                st.write("• Includes necessary imports and dependencies")
+                st.write("• Handles errors and provides helper functions")
+
+            with tab5:
+                st.write("• 90% reduction in time-to-test")
+                st.write("• Enhanced test coverage")
+                st.write("• Consistent code implementation")
+                st.write("• Lower maintenance overhead")
+                st.write("• Bridges skill gaps")
+                st.write("• Preserves testing knowledge")
+            # Add contact button and separator
+            st.markdown("---")
+            email = "richardsongunde@waigenie.tech"
+            gmail_link = f"https://mail.google.com/mail/?view=cm&fs=1&to={email}"
+            st.markdown(
+                f'<a href="{gmail_link}" target="_blank"><button style="width: 100%; background: linear-gradient(90deg, #6A0572, #240046); color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Contact Us</button></a>',
+                unsafe_allow_html=True
+            )
+            # Add logo and branding at the bottom
+            st.markdown("""
+            <div style="text-align: center; margin-top: 30px;">
+                <img src="https://www.waigenie.tech/logo.png" style="width: 96px; height: auto; margin-bottom: 10px;">
+                <img src="https://www.waigenie.tech/logotext.svg" style="width: 180px; height: auto; display: block; margin: 0 auto;">
+                <p style="font-size: 0.75rem; color: #E6E6FA; margin-top: 10px;">© 2025 www.waigenie.tech. All rights reserved.</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        # Add YouTube demo button
+        youtube_url = "https://youtu.be/qH30GvQebqg?feature=shared"
+        st.markdown(
+            f'<a href="{youtube_url}" target="_blank"><button style="width: 100%; background: linear-gradient(90deg, #FF0000, #CC0000); color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">▶️ YouTube Demo</button></a>',
+            unsafe_allow_html=True
+        )
+
+    # Main content area with card styling
+    st.markdown('<div class="card fade-in">', unsafe_allow_html=True)
+    st.markdown('<h3 class="glow-text">Enter User Story</h3>', unsafe_allow_html=True)
+    user_story = st.text_area(
+        "",
+        placeholder="e.g., As a user, I want to log in with valid credentials so that I can access my account."
+    )
+    st.markdown('</div>', unsafe_allow_html=True)
+    # Buttons with better layout
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
+    with col1:
+        enhance_story_btn = st.button("✨ Enhance User Story")
+    with col2:
+        generate_manual_btn = st.button("📝 Generate Manual Test Cases")
+    with col3:
+        generate_gherkin_btn = st.button(" Generate Gherkin")
+    with col4:
+        execute_btn = st.button("▶️ Execute Steps")
+    with col5:
+        generate_code_btn = st.button("💻 Generate Code")
+    with col6:
+        self_healing_btn = st.button("🔧 Self-Healing")
+
+    # User Story Enhancement Section
+    if enhance_story_btn and user_story:
+        with st.spinner("Enhancing user story..."):
+            # Call the user story enhancement agent
+            enhanced_user_story = enhance_user_story(user_story)
+            st.session_state.enhanced_user_story = enhanced_user_story
+            st.markdown('<div class="status-success fade-in">User story enhanced successfully!</div>', unsafe_allow_html=True)
+
+    # Display enhanced user story if available
+    if "enhanced_user_story" in st.session_state:
+        st.markdown('<div class="card code-container fade-in">', unsafe_allow_html=True)
+        st.markdown('<h3 class="glow-text">Enhanced User Story</h3>', unsafe_allow_html=True)
+        st.text_area(
+            "Review and edit the enhanced user story:",
+            value=st.session_state.enhanced_user_story,
+            height=300,
+            key="enhanced_user_story_editor"
+        )
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # Manual Test Case Generation Section
+    if generate_manual_btn: # No longer requires user_story directly
+        if "enhanced_user_story" not in st.session_state:
+             st.markdown('<div class="status-error">Please enhance the user story first.</div>', unsafe_allow_html=True)
+        else:
+            with st.spinner("Generating manual test cases..."):
+                # Call the manual test case generation function with the enhanced user story
+                manual_test_cases_markdown = generate_manual_test_cases(st.session_state.enhanced_user_story)
+
+                # Parse the markdown table into a pandas DataFrame
+                # Assuming the agent returns a markdown table with headers:
+                # | Test Case ID | Test Case Title | Description | Preconditions | Test Steps | Expected Result | Test Data | Priority | Status | Postconditions |
+                # |---|---|---|---|---|---|---|---|---|---|
+                # | TC_US_[ID]_001 | ... | ... | ... | ... | 1. ...\n2. ... | ... | ... | ... | ... |
+                lines = manual_test_cases_markdown.strip().split('\n')
+                # Find the header and separator lines
+                header_line = None
+                separator_line = None
+                for i, line in enumerate(lines):
+                    if '| Test Case ID' in line:
+                        header_line = i
+                    elif line.startswith('|---'):
+                        separator_line = i
+                        break # Assume the first separator after header is the correct one
+
+                if header_line is not None and separator_line is not None:
+                    header = [h.strip() for h in lines[header_line].strip('|').split('|')]
+                    data_lines = lines[separator_line + 1:]
+                    data = []
+                    for line in data_lines:
+                        if line.strip().startswith('|'):
+                            # Split by '|' and strip whitespace, remove first and last empty strings
+                            row_data = [cell.strip() for cell in line.strip('|').split('|')]
+                            data.append(row_data)
+
+                    manual_test_cases_data = pd.DataFrame(data, columns=header).to_dict('records')
+
+                    st.session_state.manual_test_cases = manual_test_cases_data
+                    st.session_state.edited_manual_test_cases = manual_test_cases_data # Initialize edited state
+
+                    st.markdown('<div class="status-success fade-in">Manual test cases generated successfully!</div>', unsafe_allow_html=True)
+                else:
+                     st.markdown('<div class="status-error fade-in">Failed to parse manual test cases from agent output.</div>', unsafe_allow_html=True)
+                     st.write("Agent Output:", manual_test_cases_markdown) # Display agent output for debugging
+
+    # Display manual test cases editor
+    if "manual_test_cases" in st.session_state:
+        st.markdown('<div class="card code-container fade-in">', unsafe_allow_html=True)
+        st.markdown('<h3 class="glow-text">Your Manual Test Cases</h3>', unsafe_allow_html=True)
+
+        # Display editable dataframe
+        edited_df = st.data_editor(
+            pd.DataFrame(st.session_state.edited_manual_test_cases),
+            key="manual_test_case_editor",
+            num_rows="dynamic"
+        )
+
+        # Add a save button for manual test cases
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            if st.button("💾 Save Manual Changes", key="save_manual_changes_btn"):
+                st.session_state.edited_manual_test_cases = edited_df.to_dict('records')
+                st.session_state.manual_changes_saved = True
+                st.rerun()
+
+        # Display save status for manual test cases
+        with col2:
+            if "manual_changes_saved" in st.session_state and st.session_state.manual_changes_saved:
+                st.markdown('<div class="status-success" style="margin: 0;">Manual test case changes saved successfully!</div>', unsafe_allow_html=True)
+                st.session_state.manual_changes_saved = False # Reset the flag
+            # Note: Checking for unsaved changes in data_editor is more complex, skipping for now.
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # Gherkin Generation Section
+    if generate_gherkin_btn: # No longer requires user_story directly
+        if "edited_manual_test_cases" not in st.session_state:
+             st.markdown('<div class="status-error">Please generate manual test cases first.</div>', unsafe_allow_html=True)
+        else:
+            with st.spinner("Generating Gherkin scenarios from manual test cases..."):
+                # Call the Gherkin agent with the edited manual test cases
+                # Convert the list of dicts back to a readable format for the agent
+                manual_test_cases_text = ""
+                if st.session_state.edited_manual_test_cases:
+                    manual_test_cases_text = pd.DataFrame(st.session_state.edited_manual_test_cases).to_markdown(index=False)
+
+                generated_steps = generate_gherkin_scenarios(manual_test_cases_text) # Pass manual test cases
+
+                # Initialize both generated_steps and edited_steps in session state
+                st.session_state.generated_steps = generated_steps
+                st.session_state.edited_steps = generated_steps
+
+            st.markdown('<div class="status-success fade-in">Gherkin scenarios generated successfully!</div>', unsafe_allow_html=True)
+
+    # Display scenarios editor (whether newly generated or from session state)
+    if "edited_steps" in st.session_state:
+        st.markdown('<div class="card code-container fade-in">', unsafe_allow_html=True)
+        st.markdown('<h3 class="glow-text">Your Gherkin Scenarios</h3>', unsafe_allow_html=True)
+
+        # Display editable text area with the current edited steps
+        edited_steps = st.text_area(
+            "Edit scenarios if needed:",
+            value=st.session_state.edited_steps,
+            height=300,
+            key="scenario_editor"
+        )
+
+        # Add a save button and show status
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            if st.button("💾 Save Changes", key="save_changes_btn"):
+                st.session_state.edited_steps = edited_steps
+                st.session_state.changes_saved = True
+                st.rerun()
+
+        # Display save status
+        with col2:
+            if "changes_saved" in st.session_state and st.session_state.changes_saved:
+                st.markdown('<div class="status-success" style="margin: 0;">Changes saved successfully!</div>', unsafe_allow_html=True)
+                # Reset the flag after displaying
+                st.session_state.changes_saved = False
+            elif edited_steps != st.session_state.edited_steps:
+                st.markdown('<div style="color: #FFA500; font-weight: bold;">* You have unsaved changes</div>', unsafe_allow_html=True)
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # Test Execution Section
+    if execute_btn:
+        if "edited_steps" not in st.session_state:
+            st.markdown('<div class="status-error">Please generate Gherkin scenarios first.</div>', unsafe_allow_html=True)
+        else:
+            # Check if there are unsaved changes and warn the user
+            if "scenario_editor" in st.session_state and st.session_state.get("scenario_editor", "") != st.session_state.edited_steps:
+                st.warning("You have unsaved changes. Please save your changes before executing steps.")
+            else:
+                with st.spinner("Executing test steps..."):
+                    # Display the scenarios that will be executed
+                    st.markdown('<div class="card code-container fade-in">', unsafe_allow_html=True)
+                    st.markdown('<h4 class="glow-text">Executing Scenarios:</h4>', unsafe_allow_html=True)
+                    st.code(st.session_state.edited_steps, language="gherkin")
+                    st.markdown('</div>', unsafe_allow_html=True)
+
+                    # Use the edited steps for execution
+                    steps_to_execute = st.session_state.edited_steps
+            # Modify the execute_test function to store more detailed information
+            async def execute_test(steps: str):
+                try:
+                    browser = Browser()
+
+                    async with await browser.new_context() as context:
+                        # Parse the Gherkin content to extract scenarios
+                        scenarios = []
+                        current_scenario = []
+                        for line in steps.split('\n'):
+                            if line.strip().startswith('Scenario:'):
+                                if current_scenario:
+                                    scenarios.append('\n'.join(current_scenario))
+                                current_scenario = [line]
+                            elif current_scenario:
+                                current_scenario.append(line)
+                        if current_scenario:
+                            scenarios.append('\n'.join(current_scenario))
+
+                        # Execute each scenario separately
+                        all_results = []
+                        all_actions = []
+                        all_extracted_content = []
+                        element_xpath_map = {}
+
+                        for scenario in scenarios:
+                            browser_agent = BrowserAgent(
+                                task=generate_browser_task(scenario),
+                                llm=ChatGoogleGenerativeAI(model='gemini-2.0-flash', api_key=os.environ.get("GOOGLE_API_KEY")),
+                                browser=browser,
+                                use_vision=True,
+                                controller=controller,
+                            )
+
+                            # Execute and collect results
+                            history = await browser_agent.run()
+                            history.save_to_file("agent_history.json")
+                            result = history.final_result()
+                            if isinstance(result, str):
+                                # Convert string result to JSON format
+                                result = {"status": result, "details": "Execution completed"}
+                            all_results.append(result)
+
+                            # Log all model actions for debugging
+                            st.write("Debug - Model Actions:", history.model_actions())
+
+                            # Process model actions to extract element details
+                            for i, action_data in enumerate(history.model_actions()):
+                                action_name = history.action_names()[i] if i < len(history.action_names()) else "Unknown Action"
+
+                                # Create a detail record for each action
+                                action_detail = {
+                                    "name": action_name,
+                                    "index": i,
+                                    "element_details": {}
+                                }
+
+                                # Check if this is a get_xpath_of_element action
+                                if "get_xpath_of_element" in action_data:
+                                    element_index = action_data["get_xpath_of_element"].get("index")
+                                    action_detail["element_details"]["index"] = element_index
+
+                                    # Check if the interacted_element field contains XPath information
+                                    if "interacted_element" in action_data and action_data["interacted_element"]:
+                                        element_info = action_data["interacted_element"]
+
+                                        # Extract XPath from the DOMHistoryElement string
+                                        xpath_match = re.search(r"xpath='([^']+)'", str(element_info))
+                                        if xpath_match:
+                                            xpath = xpath_match.group(1)
+                                            element_xpath_map[element_index] = xpath
+                                            action_detail["element_details"]["xpath"] = xpath
+
+                                # Check if this is an action on an element
+                                elif any(key in action_data for key in ["input_text", "click_element", "perform_element_action"]):
+                                    # Find the action parameters
+                                    for key in ["input_text", "click_element", "perform_element_action"]:
+                                        if key in action_data:
+                                            action_params = action_data[key]
+                                            if "index" in action_params:
+                                                element_index = action_params["index"]
+                                                action_detail["element_details"]["index"] = element_index
+
+                                                # If we have already captured the XPath for this element, add it
+                                                if element_index in element_xpath_map:
+                                                    action_detail["element_details"]["xpath"] = element_xpath_map[element_index]
+
+                                                # Also check interacted_element
+                                                if "interacted_element" in action_data and action_data["interacted_element"]:
+                                                    element_info = action_data["interacted_element"]
+                                                    xpath_match = re.search(r"xpath='([^']+)'", str(element_info))
+                                                    if xpath_match:
+                                                        xpath = xpath_match.group(1)
+                                                        element_xpath_map[element_index] = xpath
+                                                        action_detail["element_details"]["xpath"] = xpath
+
+                                all_actions.append(action_detail)
+
+                            # Also extract from content if available
+                            for content in history.extracted_content():
+                                all_extracted_content.append(content)
+
+                                # Look for XPath information in extracted content
+                                if isinstance(content, str):
+                                    xpath_match = re.search(r"The xpath of the element is (.+)", content)
+                                    if xpath_match:
+                                        xpath = xpath_match.group(1)
+                                        # Try to match with an element index from previous actions
+                                        index_match = re.search(r"element (\d+)", content)
+                                        if index_match:
+                                            element_index = int(index_match.group(1))
+                                            element_xpath_map[element_index] = xpath
+
+                        # Save combined history to session state
+                        st.session_state.history = {
+                            "urls": history.urls(),
+                            "action_names": history.action_names(),
+                            "detailed_actions": all_actions,
+                            "element_xpaths": element_xpath_map,
+                            "extracted_content": all_extracted_content,
+                            "errors": history.errors(),
+                            "model_actions": history.model_actions(),
+                            "execution_date": st.session_state.get("execution_date", "Unknown")
+                        }
+
+                        # Display test execution details
+                        st.markdown('<div class="status-success fade-in">Test execution completed!</div>', unsafe_allow_html=True)
+
+                        # Display key information in tabs
+                        st.markdown('<div class="tab-container fade-in">', unsafe_allow_html=True)
+                        tab1, tab2, tab3, tab4 = st.tabs(["Results", "Actions", "Elements", "Details"])
+                        with tab1:
+                            for i, result in enumerate(all_results):
+                                st.markdown(f'<h4 class="glow-text">Scenario {i+1}</h4>', unsafe_allow_html=True)
+                                st.json(result)
+
+                        with tab2:
+                            st.markdown('<h4 class="glow-text">Actions Performed</h4>', unsafe_allow_html=True)
+                            for i, action in enumerate(all_actions):
+                                action_text = f"{i+1}. {action['name']}"
+                                if 'element_details' in action and action['element_details']:
+                                    if 'xpath' in action['element_details']:
+                                        action_text += f" (XPath: {action['element_details']['xpath']})"
+                                    elif 'index' in action['element_details']:
+                                        action_text += f" (Element index: {action['element_details']['index']})"
+                                st.write(action_text)
+
+                        with tab3:
+                            st.markdown('<h4 class="glow-text">Element Details</h4>', unsafe_allow_html=True)
+                            if element_xpath_map:
+                                # Create a dataframe for better visualization
+                                import pandas as pd
+                                element_df = pd.DataFrame([
+                                    {"Element Index": index, "XPath": xpath}
+                                    for index, xpath in element_xpath_map.items()
+                                ])
+                                st.dataframe(element_df)
+                            else:
+                                st.info("No element XPaths were captured during test execution.")
+
+                                # Display raw DOM information for debugging
+                                st.markdown('<h4 class="glow-text">Raw DOM Information</h4>', unsafe_allow_html=True)
+                                for i, action_data in enumerate(history.model_actions()):
+                                    if "interacted_element" in action_data and action_data["interacted_element"]:
+                                        st.write(f"Action {i}: {history.action_names()[i] if i < len(history.action_names()) else 'Unknown'}")
+                                        st.code(str(action_data["interacted_element"]))
+
+                        with tab4:
+                            st.markdown('<h4 class="glow-text">Extracted Content</h4>', unsafe_allow_html=True)
+                            for content in all_extracted_content:
+                                st.write(content)
+                        st.markdown('</div>', unsafe_allow_html=True)
+
+                except Exception as e:
+                    st.markdown(f'<div class="status-error">An error occurred during test execution: {str(e)}</div>', unsafe_allow_html=True)
+
+            st.session_state.execution_date = "February 26, 2025"
+            asyncio.run(execute_test(steps_to_execute))  # Use steps_to_execute instead of generated_steps
+    # Code Generation Section
+    if generate_code_btn:
+        if "edited_steps" not in st.session_state or "history" not in st.session_state:
+            st.markdown('<div class="status-error">Please generate and execute Gherkin scenarios first.</div>', unsafe_allow_html=True)
+        else:
+            with st.spinner(f"Generating {selected_framework} automation code..."):
+                try:
+                    # Get the appropriate generator function
+                    generator_function = FRAMEWORK_GENERATORS[selected_framework]
+
+                    # Generate automation code using the edited steps instead of generated_steps
+                    automation_code = generator_function(
+                        st.session_state.edited_steps,  # Use edited_steps instead of generated_steps
+                        st.session_state.history
+                    )
+
+                    # Store in session state
+                    st.session_state.automation_code = automation_code
+
+                    # Display code
+                    st.markdown('<div class="card code-container fade-in">', unsafe_allow_html=True)
+                    st.markdown(f'<h3 class="glow-text">Generated {selected_framework} Automation Code</h3>', unsafe_allow_html=True)
+
+                    # Use appropriate language for syntax highlighting
+                    code_language = "python"
+                    if selected_framework == "Cypress (JavaScript)":
+                        code_language = "javascript"
+                    elif selected_framework == "Robot Framework":
+                        code_language = "robot"
+                    elif selected_framework == "Selenium + Cucumber (Java)":
+                        code_language = "java"
+
+                    st.code(automation_code, language=code_language)
+                    st.markdown('</div>', unsafe_allow_html=True)
+
+                    # Extract feature name for file naming - use edited_steps instead of generated_steps
+                    feature_name = "automated_test"
+                    feature_match = re.search(r"Feature:\s*(.+?)(?:\n|$)", st.session_state.edited_steps)
+                    if feature_match:
+                        feature_name = feature_match.group(1).strip().replace(" ", "_").lower()
+
+                    # Get appropriate file extension
+                    file_ext = FRAMEWORK_EXTENSIONS[selected_framework]
+
+                    # Add download button
+                    col1, col2, col3 = st.columns([1, 2, 1])
+                    with col2:
+                        st.download_button(
+                            label=f"📥 Download {selected_framework} Code",
+                            data=automation_code,
+                            file_name=f"{feature_name}_automation.{file_ext}",
+                            mime="text/plain",
+                        )
+
+                    st.markdown('<div class="status-success fade-in">Automation code generated successfully!</div>', unsafe_allow_html=True)
+
+                except Exception as e:
+                    st.markdown(f'<div class="status-error">Error generating {selected_framework} code: {str(e)}</div>', unsafe_allow_html=True)
+
+    # Footer
+    st.markdown('<div class="footer fade-in">© 2025 WAIGENIE | AI-Powered Test Automation</div>', unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
+
+
+## USER-STORY
+
+# as a user i want to login into https://www.saucedemo.com/ with user name "standard_user", password "secret_sauce" and add this product to cart "Sauce Labs Bolt T-Shirt'
+
+
+
+================================================
+FILE: LICENCE
+================================================
+                    GNU AFFERO GENERAL PUBLIC LICENSE
+                       Version 3, 19 November 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+                            Preamble
+
+  The GNU Affero General Public License is a free, copyleft license for
+software and other kinds of works, specifically designed to ensure
+cooperation with the community in the case of network server software.
+
+  The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+our General Public Licenses are intended to guarantee your freedom to
+share and change all versions of a program--to make sure it remains free
+software for all its users.
+
+  When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+them if you wish), that you receive source code or can get it if you
+want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+
+  Developers that use our General Public Licenses protect your rights
+with two steps: (1) assert copyright on the software, and (2) offer
+you this License which gives you legal permission to copy, distribute
+and/or modify the software.
+
+  A secondary benefit of defending all users' freedom is that
+improvements made in alternate versions of the program, if they
+receive widespread use, become available for other developers to
+incorporate.  Many developers of free software are heartened and
+encouraged by the resulting cooperation.  However, in the case of
+software used on network servers, this result may fail to come about.
+The GNU General Public License permits making a modified version and
+letting the public access it on a server without ever releasing its
+source code to the public.
+
+  The GNU Affero General Public License is designed specifically to
+ensure that, in such cases, the modified source code becomes available
+to the community.  It requires the operator of a network server to
+provide the source code of the modified version running there to the
+users of that server.  Therefore, public use of a modified version, on
+a publicly accessible server, gives the public access to the source
+code of the modified version.
+
+  An older license, called the Affero General Public License and
+published by Affero, was designed to accomplish similar goals.  This is
+a different license, not a version of the Affero GPL, but Affero has
+released a new version of the Affero GPL which permits relicensing under
+this license.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.
+
+                       TERMS AND CONDITIONS
+
+  0. Definitions.
+
+  "This License" refers to version 3 of the GNU Affero General Public License.
+
+  "Copyright" also means copyright-like laws that apply to other kinds of
+works, such as semiconductor masks.
+
+  "The Program" refers to any copyrightable work licensed under this
+License.  Each licensee is addressed as "you".  "Licensees" and
+"recipients" may be individuals or organizations.
+
+  To "modify" a work means to copy from or adapt all or part of the work
+in a fashion requiring copyright permission, other than the making of an
+exact copy.  The resulting work is called a "modified version" of the
+earlier work or a work "based on" the earlier work.
+
+  A "covered work" means either the unmodified Program or a work based
+on the Program.
+
+  To "propagate" a work means to do anything with it that, without
+permission, would make you directly or secondarily liable for
+infringement under applicable copyright law, except executing it on a
+computer or modifying a private copy.  Propagation includes copying,
+distribution (with or without modification), making available to the
+public, and in some countries other activities as well.
+
+  To "convey" a work means any kind of propagation that enables other
+parties to make or receive copies.  Mere interaction with a user through
+a computer network, with no transfer of a copy, is not conveying.
+
+  An interactive user interface displays "Appropriate Legal Notices"
+to the extent that it includes a convenient and prominently visible
+feature that (1) displays an appropriate copyright notice, and (2)
+tells the user that there is no warranty for the work (except to the
+extent that warranties are provided), that licensees may convey the
+work under this License, and how to view a copy of this License.  If
+the interface presents a list of user commands or options, such as a
+menu, a prominent item in the list meets this criterion.
+
+  1. Source Code.
+
+  The "source code" for a work means the preferred form of the work
+for making modifications to it.  "Object code" means any non-source
+form of a work.
+
+  A "Standard Interface" means an interface that either is an official
+standard defined by a recognized standards body, or, in the case of
+interfaces specified for a particular programming language, one that
+is widely used among developers working in that language.
+
+  The "System Libraries" of an executable work include anything, other
+than the work as a whole, that (a) is included in the normal form of
+packaging a Major Component, but which is not part of that Major
+Component, and (b) serves only to enable use of the work with that
+Major Component, or to implement a Standard Interface for which an
+implementation is available to the public in source code form.  A
+"Major Component", in this context, means a major essential component
+(kernel, window system, and so on) of the specific operating system
+(if any) on which the executable work runs, or a compiler used to
+produce the work, or an object code interpreter used to run it.
+
+  The "Corresponding Source" for a work in object code form means all
+the source code needed to generate, install, and (for an executable
+work) run the object code and to modify the work, including scripts to
+control those activities.  However, it does not include the work's
+System Libraries, or general-purpose tools or generally available free
+programs which are used unmodified in performing those activities but
+which are not part of the work.  For example, Corresponding Source
+includes interface definition files associated with source files for
+the work, and the source code for shared libraries and dynamically
+linked subprograms that the work is specifically designed to require,
+such as by intimate data communication or control flow between those
+subprograms and other parts of the work.
+
+  The Corresponding Source need not include anything that users
+can regenerate automatically from other parts of the Corresponding
+Source.
+
+  The Corresponding Source for a work in source code form is that
+same work.
+
+  2. Basic Permissions.
+
+  All rights granted under this License are granted for the term of
+copyright on the Program, and are irrevocable provided the stated
+conditions are met.  This License explicitly affirms your unlimited
+permission to run the unmodified Program.  The output from running a
+covered work is covered by this License only if the output, given its
+content, constitutes a covered work.  This License acknowledges your
+rights of fair use or other equivalent, as provided by copyright law.
+
+  You may make, run and propagate covered works that you do not
+convey, without conditions so long as your license otherwise remains
+in force.  You may convey covered works to others for the sole purpose
+of having them make modifications exclusively for you, or provide you
+with facilities for running those works, provided that you comply with
+the terms of this License in conveying all material for which you do
+not control copyright.  Those thus making or running the covered works
+for you must do so exclusively on your behalf, under your direction
+and control, on terms that prohibit them from making any copies of
+your copyrighted material outside their relationship with you.
+
+  Conveying under any other circumstances is permitted solely under
+the conditions stated below.  Sublicensing is not allowed; section 10
+makes it unnecessary.
+
+  3. Protecting Users' Legal Rights From Anti-Circumvention Law.
+
+  No covered work shall be deemed part of an effective technological
+measure under any applicable law fulfilling obligations under article
+11 of the WIPO copyright treaty adopted on 20 December 1996, or
+similar laws prohibiting or restricting circumvention of such
+measures.
+
+  When you convey a covered work, you waive any legal power to forbid
+circumvention of technological measures to the extent such circumvention
+is effected by exercising rights under this License with respect to
+the covered work, and you disclaim any intention to limit operation or
+modification of the work as a means of enforcing, against the work's
+users, your or third parties' legal rights to forbid circumvention of
+technological measures.
+
+  4. Conveying Verbatim Copies.
+
+  You may convey verbatim copies of the Program's source code as you
+receive it, in any medium, provided that you conspicuously and
+appropriately publish on each copy an appropriate copyright notice;
+keep intact all notices stating that this License and any
+non-permissive terms added in accord with section 7 apply to the code;
+keep intact all notices of the absence of any warranty; and give all
+recipients a copy of this License along with the Program.
+
+  You may charge any price or no price for each copy that you convey,
+and you may offer support or warranty protection for a fee.
+
+  5. Conveying Modified Source Versions.
+
+  You may convey a work based on the Program, or the modifications to
+produce it from the Program, in the form of source code under the
+terms of section 4, provided that you also meet all of these conditions:
+
+    a) The work must carry prominent notices stating that you modified
+    it, and giving a relevant date.
+
+    b) The work must carry prominent notices stating that it is
+    released under this License and any conditions added under section
+    7.  This requirement modifies the requirement in section 4 to
+    "keep intact all notices".
+
+    c) You must license the entire work, as a whole, under this
+    License to anyone who comes into possession of a copy.  This
+    License will therefore apply, along with any applicable section 7
+    additional terms, to the whole of the work, and all its parts,
+    regardless of how they are packaged.  This License gives no
+    permission to license the work in any other way, but it does not
+    invalidate such permission if you have separately received it.
+
+    d) If the work has interactive user interfaces, each must display
+    Appropriate Legal Notices; however, if the Program has interactive
+    interfaces that do not display Appropriate Legal Notices, your
+    work need not make them do so.
+
+  A compilation of a covered work with other separate and independent
+works, which are not by their nature extensions of the covered work,
+and which are not combined with it such as to form a larger program,
+in or on a volume of a storage or distribution medium, is called an
+"aggregate" if the compilation and its resulting copyright are not
+used to limit the access or legal rights of the compilation's users
+beyond what the individual works permit.  Inclusion of a covered work
+in an aggregate does not cause this License to apply to the other
+parts of the aggregate.
+
+  6. Conveying Non-Source Forms.
+
+  You may convey a covered work in object code form under the terms
+of sections 4 and 5, provided that you also convey the
+machine-readable Corresponding Source under the terms of this License,
+in one of these ways:
+
+    a) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by the
+    Corresponding Source fixed on a durable physical medium
+    customarily used for software interchange.
+
+    b) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by a
+    written offer, valid for at least three years and valid for as
+    long as you offer spare parts or customer support for that product
+    model, to give anyone who possesses the object code either (1) a
+    copy of the Corresponding Source for all the software in the
+    product that is covered by this License, on a durable physical
+    medium customarily used for software interchange, for a price no
+    more than your reasonable cost of physically performing this
+    conveying of source, or (2) access to copy the
+    Corresponding Source from a network server at no charge.
+
+    c) Convey individual copies of the object code with a copy of the
+    written offer to provide the Corresponding Source.  This
+    alternative is allowed only occasionally and noncommercially, and
+    only if you received the object code with such an offer, in accord
+    with subsection 6b.
+
+    d) Convey the object code by offering access from a designated
+    place (gratis or for a charge), and offer equivalent access to the
+    Corresponding Source in the same way through the same place at no
+    further charge.  You need not require recipients to copy the
+    Corresponding Source along with the object code.  If the place to
+    copy the object code is a network server, the Corresponding Source
+    may be on a different server (operated by you or a third party)
+    that supports equivalent copying facilities, provided you maintain
+    clear directions next to the object code saying where to find the
+    Corresponding Source.  Regardless of what server hosts the
+    Corresponding Source, you remain obligated to ensure that it is
+    available for as long as needed to satisfy these requirements.
+
+    e) Convey the object code using peer-to-peer transmission, provided
+    you inform other peers where the object code and Corresponding
+    Source of the work are being offered to the general public at no
+    charge under subsection 6d.
+
+  A separable portion of the object code, whose source code is excluded
+from the Corresponding Source as a System Library, need not be
+included in conveying the object code work.
+
+  A "User Product" is either (1) a "consumer product", which means any
+tangible personal property which is normally used for personal, family,
+or household purposes, or (2) anything designed or sold for incorporation
+into a dwelling.  In determining whether a product is a consumer product,
+doubtful cases shall be resolved in favor of coverage.  For a particular
+product received by a particular user, "normally used" refers to a
+typical or common use of that class of product, regardless of the status
+of the particular user or of the way in which the particular user
+actually uses, or expects or is expected to use, the product.  A product
+is a consumer product regardless of whether the product has substantial
+commercial, industrial or non-consumer uses, unless such uses represent
+the only significant mode of use of the product.
+
+  "Installation Information" for a User Product means any methods,
+procedures, authorization keys, or other information required to install
+and execute modified versions of a covered work in that User Product from
+a modified version of its Corresponding Source.  The information must
+suffice to ensure that the continued functioning of the modified object
+code is in no case prevented or interfered with solely because
+modification has been made.
+
+  If you convey an object code work under this section in, or with, or
+specifically for use in, a User Product, and the conveying occurs as
+part of a transaction in which the right of possession and use of the
+User Product is transferred to the recipient in perpetuity or for a
+fixed term (regardless of how the transaction is characterized), the
+Corresponding Source conveyed under this section must be accompanied
+by the Installation Information.  But this requirement does not apply
+if neither you nor any third party retains the ability to install
+modified object code on the User Product (for example, the work has
+been installed in ROM).
+
+  The requirement to provide Installation Information does not include a
+requirement to continue to provide support service, warranty, or updates
+for a work that has been modified or installed by the recipient, or for
+the User Product in which it has been modified or installed.  Access to a
+network may be denied when the modification itself materially and
+adversely affects the operation of the network or violates the rules and
+protocols for communication across the network.
+
+  Corresponding Source conveyed, and Installation Information provided,
+in accord with this section must be in a format that is publicly
+documented (and with an implementation available to the public in
+source code form), and must require no special password or key for
+unpacking, reading or copying.
+
+  7. Additional Terms.
+
+  "Additional permissions" are terms that supplement the terms of this
+License by making exceptions from one or more of its conditions.
+Additional permissions that are applicable to the entire Program shall
+be treated as though they were included in this License, to the extent
+that they are valid under applicable law.  If additional permissions
+apply only to part of the Program, that part may be used separately
+under those permissions, but the entire Program remains governed by
+this License without regard to the additional permissions.
+
+  When you convey a copy of a covered work, you may at your option
+remove any additional permissions from that copy, or from any part of
+it.  (Additional permissions may be written to require their own
+removal in certain cases when you modify the work.)  You may place
+additional permissions on material, added by you to a covered work,
+for which you have or can give appropriate copyright permission.
+
+  Notwithstanding any other provision of this License, for material you
+add to a covered work, you may (if authorized by the copyright holders of
+that material) supplement the terms of this License with terms:
+
+    a) Disclaiming warranty or limiting liability differently from the
+    terms of sections 15 and 16 of this License; or
+
+    b) Requiring preservation of specified reasonable legal notices or
+    author attributions in that material or in the Appropriate Legal
+    Notices displayed by works containing it; or
+
+    c) Prohibiting misrepresentation of the origin of that material, or
+    requiring that modified versions of such material be marked in
+    reasonable ways as different from the original version; or
+
+    d) Limiting the use for publicity purposes of names of licensors or
+    authors of the material; or
+
+    e) Declining to grant rights under trademark law for use of some
+    trade names, trademarks, or service marks; or
+
+    f) Requiring indemnification of licensors and authors of that
+    material by anyone who conveys the material (or modified versions of
+    it) with contractual assumptions of liability to the recipient, for
+    any liability that these contractual assumptions directly impose on
+    those licensors and authors.
+
+  All other non-permissive additional terms are considered "further
+restrictions" within the meaning of section 10.  If the Program as you
+received it, or any part of it, contains a notice stating that it is
+governed by this License along with a term that is a further
+restriction, you may remove that term.  If a license document contains
+a further restriction but permits relicensing or conveying under this
+License, you may add to a covered work material governed by the terms
+of that license document, provided that the further restriction does
+not survive such relicensing or conveying.
+
+  If you add terms to a covered work in accord with this section, you
+must place, in the relevant source files, a statement of the
+additional terms that apply to those files, or a notice indicating
+where to find the applicable terms.
+
+  Additional terms, permissive or non-permissive, may be stated in the
+form of a separately written license, or stated as exceptions;
+the above requirements apply either way.
+
+  8. Termination.
+
+  You may not propagate or modify a covered work except as expressly
+provided under this License.  Any attempt otherwise to propagate or
+modify it is void, and will automatically terminate your rights under
+this License (including any patent licenses granted under the third
+paragraph of section 11).
+
+  However, if you cease all violation of this License, then your
+license from a particular copyright holder is reinstated (a)
+provisionally, unless and until the copyright holder explicitly and
+finally terminates your license, and (b) permanently, if the copyright
+holder fails to notify you of the violation by some reasonable means
+prior to 60 days after the cessation.
+
+  Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+
+  Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, you do not qualify to receive new licenses for the same
+material under section 10.
+
+  9. Acceptance Not Required for Having Copies.
+
+  You are not required to accept this License in order to receive or
+run a copy of the Program.  Ancillary propagation of a covered work
+occurring solely as a consequence of using peer-to-peer transmission
+to receive a copy likewise does not require acceptance.  However,
+nothing other than this License grants you permission to propagate or
+modify any covered work.  These actions infringe copyright if you do
+not accept this License.  Therefore, by modifying or propagating a
+covered work, you indicate your acceptance of this License to do so.
+
+  10. Automatic Licensing of Downstream Recipients.
+
+  Each time you convey a covered work, the recipient automatically
+receives a license from the original licensors, to run, modify and
+propagate that work, subject to this License.  You are not responsible
+for enforcing compliance by third parties with this License.
+
+  An "entity transaction" is a transaction transferring control of an
+organization, or substantially all assets of one, or subdividing an
+organization, or merging organizations.  If propagation of a covered
+work results from an entity transaction, each party to that
+transaction who receives a copy of the work also receives whatever
+licenses to the work the party's predecessor in interest had or could
+give under the previous paragraph, plus a right to possession of the
+Corresponding Source of the work from the predecessor in interest, if
+the predecessor has it or can get it with reasonable efforts.
+
+  You may not impose any further restrictions on the exercise of the
+rights granted or affirmed under this License.  For example, you may
+not impose a license fee, royalty, or other charge for exercise of
+rights granted under this License, and you may not initiate litigation
+(including a cross-claim or counterclaim in a lawsuit) alleging that
+any patent claim is infringed by making, using, selling, offering for
+sale, or importing the Program or any portion of it.
+
+  11. Patents.
+
+  A "contributor" is a copyright holder who authorizes use under this
+License of the Program or a work on which the Program is based.  The
+work thus licensed is called the contributor's "contributor version".
+
+  A contributor's "essential patent claims" are all patent claims
+owned or controlled by the contributor, whether already acquired or
+hereafter acquired, that would be infringed by some manner, permitted
+by this License, of making, using, or selling its contributor version,
+but do not include claims that would be infringed only as a
+consequence of further modification of the contributor version.  For
+purposes of this definition, "control" includes the right to grant
+patent sublicenses in a manner consistent with the requirements of
+this License.
+
+  Each contributor grants you a non-exclusive, worldwide, royalty-free
+patent license under the contributor's essential patent claims, to
+make, use, sell, offer for sale, import and otherwise run, modify and
+propagate the contents of its contributor version.
+
+  In the following three paragraphs, a "patent license" is any express
+agreement or commitment, however denominated, not to enforce a patent
+(such as an express permission to practice a patent or covenant not to
+sue for patent infringement).  To "grant" such a patent license to a
+party means to make such an agreement or commitment not to enforce a
+patent against the party.
+
+  If you convey a covered work, knowingly relying on a patent license,
+and the Corresponding Source of the work is not available for anyone
+to copy, free of charge and under the terms of this License, through a
+publicly available network server or other readily accessible means,
+then you must either (1) cause the Corresponding Source to be so
+available, or (2) arrange to deprive yourself of the benefit of the
+patent license for this particular work, or (3) arrange, in a manner
+consistent with the requirements of this License, to extend the patent
+license to downstream recipients.  "Knowingly relying" means you have
+actual knowledge that, but for the patent license, your conveying the
+covered work in a country, or your recipient's use of the covered work
+in a country, would infringe one or more identifiable patents in that
+country that you have reason to believe are valid.
+
+  If, pursuant to or in connection with a single transaction or
+arrangement, you convey, or propagate by procuring conveyance of, a
+covered work, and grant a patent license to some of the parties
+receiving the covered work authorizing them to use, propagate, modify
+or convey a specific copy of the covered work, then the patent license
+you grant is automatically extended to all recipients of the covered
+work and works based on it.
+
+  A patent license is "discriminatory" if it does not include within
+the scope of its coverage, prohibits the exercise of, or is
+conditioned on the non-exercise of one or more of the rights that are
+specifically granted under this License.  You may not convey a covered
+work if you are a party to an arrangement with a third party that is
+in the business of distributing software, under which you make payment
+to the third party based on the extent of your activity of conveying
+the work, and under which the third party grants, to any of the
+parties who would receive the covered work from you, a discriminatory
+patent license (a) in connection with copies of the covered work
+conveyed by you (or copies made from those copies), or (b) primarily
+for and in connection with specific products or compilations that
+contain the covered work, unless you entered into that arrangement,
+or that patent license was granted, prior to 28 March 2007.
+
+  Nothing in this License shall be construed as excluding or limiting
+any implied license or other defenses to infringement that may
+otherwise be available to you under applicable patent law.
+
+  12. No Surrender of Others' Freedom.
+
+  If conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot convey a
+covered work so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you may
+not convey it at all.  For example, if you agree to terms that obligate you
+to collect a royalty for further conveying from those to whom you convey
+the Program, the only way you could satisfy both those terms and this
+License would be to refrain entirely from conveying the Program.
+
+  13. Remote Network Interaction; Use with the GNU General Public License.
+
+  Notwithstanding any other provision of this License, if you modify the
+Program, your modified version must prominently offer all users
+interacting with it remotely through a computer network (if your version
+supports such interaction) an opportunity to receive the Corresponding
+Source of your version by providing access to the Corresponding Source
+from a network server at no charge, through some standard or customary
+means of facilitating copying of software.  This Corresponding Source
+shall include the Corresponding Source for any work covered by version 3
+of the GNU General Public License that is incorporated pursuant to the
+following paragraph.
+
+  Notwithstanding any other provision of this License, you have
+permission to link or combine any covered work with a work licensed
+under version 3 of the GNU General Public License into a single
+combined work, and to convey the resulting work.  The terms of this
+License will continue to apply to the part which is the covered work,
+but the work with which it is combined will remain governed by version
+3 of the GNU General Public License.
+
+  14. Revised Versions of this License.
+
+  The Free Software Foundation may publish revised and/or new versions of
+the GNU Affero General Public License from time to time.  Such new versions
+will be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+  Each version is given a distinguishing version number.  If the
+Program specifies that a certain numbered version of the GNU Affero General
+Public License "or any later version" applies to it, you have the
+option of following the terms and conditions either of that numbered
+version or of any later version published by the Free Software
+Foundation.  If the Program does not specify a version number of the
+GNU Affero General Public License, you may choose any version ever published
+by the Free Software Foundation.
+
+  If the Program specifies that a proxy can decide which future
+versions of the GNU Affero General Public License can be used, that proxy's
+public statement of acceptance of a version permanently authorizes you
+to choose that version for the Program.
+
+  Later license versions may give you additional or different
+permissions.  However, no additional obligations are imposed on any
+author or copyright holder as a result of your choosing to follow a
+later version.
+
+  15. Disclaimer of Warranty.
+
+  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. Limitation of Liability.
+
+  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+  17. Interpretation of Sections 15 and 16.
+
+  If the disclaimer of warranty and limitation of liability provided
+above cannot be given local legal effect according to their terms,
+reviewing courts shall apply local law that most closely approximates
+an absolute waiver of all civil liability in connection with the
+Program, unless a warranty or assumption of liability accompanies a
+copy of the Program in return for a fee.
+
+                     END OF TERMS AND CONDITIONS
+
+            How to Apply These Terms to Your New Programs
+
+  If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these terms.
+
+  To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+state the exclusion of warranty; and each file should have at least
+the "copyright" line and a pointer to where the full notice is found.
+
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) <year>  <name of author>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Also add information on how to contact you by electronic and paper mail.
+
+  If your software can interact with users remotely through a computer
+network, you should also make sure that it provides a way for users to
+get its source.  For example, if your program is a web application, its
+interface could display a "Source" link that leads users to an archive
+of the code.  There are many ways you could offer source, and different
+solutions will be better for different programs; see section 13 for the
+specific requirements.
+
+  You should also get your employer (if you work as a programmer) or school,
+if any, to sign a "copyright disclaimer" for the program, if necessary.
+For more information on this, and how to apply and follow the GNU AGPL, see
+<https://www.gnu.org/licenses/>.
+
+
+================================================
+FILE: requirements.txt
+================================================
+agno
+browser-use
+google-genai
+numpy
+streamlit
+langchain-google-genai
+langchain-openai
+langchain-anthropic
+langchain-groq
+
+
+================================================
+FILE: src/Agents/agents.py
+================================================
+import os
+import os
+from agno.agent import Agent
+from agno.tools.reasoning import ReasoningTools
+from agno.models.google import Gemini
+from dotenv import load_dotenv
+from textwrap import dedent
+
+load_dotenv()
+
+user_story_enhancement_agent = Agent(
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
+    markdown=True,
+    description=dedent("""
+    You are an expert Business Analyst specializing in transforming rough, incomplete
+    user stories into detailed, valuable JIRA-style user stories. You understand that
+    user stories should focus on the WHO, WHAT, and WHY to bring context and user
+    perspective into development, rather than just listing features or technical tasks.
+    """),
+    instructions=dedent("""
+    # User Story Enhancement Process
+
+        Transform the provided rough user story into a comprehensive, customer-focused user story 
+        that follows Agile best practices. Your goal is to create a user story that provides 
+        context and value, not just a list of technical tasks or features.
+
+        ## 1. Core User Story Structure
+        Ensure the user story includes the three essential components:
+        - **WHO** - As a [specific user type/role]
+        - **WHAT** - I want [clear intention or capability]
+        - **WHY** - So that [explicit value or benefit received]
+
+        Make these elements specific, clear, and customer-focused.
+
+        ## 2. Story Elaboration
+        Add a brief elaboration section that provides:
+        - Additional context about the user's situation
+        - Clarification of terminology if needed
+        - Business value explanation
+        - Any constraints or assumptions
+
+        ## 3. Acceptance Criteria
+        Create clear acceptance criteria that:
+        - Define when the story is considered "done"
+        - Are testable and verifiable
+        - Cover both functional and non-functional requirements
+        - Consider edge cases and potential issues
+
+        Avoid including development process steps (like "code review completed") in acceptance criteria.
+
+        ## 4. Implementation Notes (Optional)
+        Include any helpful technical context that might assist developers without prescribing the solution:
+        - Technical considerations
+        - Potential approaches
+        - Related components/systems
+        - Security or performance considerations
+
+        ## 5. Story Size
+        Ensure the story is appropriately sized:
+        - Small enough to be completed in a single sprint
+        - Focused on a single piece of functionality
+        - Can be estimated by the development team
+
+        ## Output Format
+        Structure the enhanced user story with clear headings:
+
+        ```
+        # User Story: [Brief Title]
+
+        ## Story Definition
+        As a [specific user type/role],
+        I want [clear intention or capability],
+        So that [explicit value or benefit received].
+
+        ## Story Elaboration
+        [Additional context, clarification, and business value explanation]
+
+        ## Acceptance Criteria
+        1. [Clear, testable criterion 1]
+        2. [Clear, testable criterion 2]
+        3. [Clear, testable criterion 3]
+        4. [Additional criteria as needed]
+
+        ## Implementation Notes
+        - [Technical consideration 1]
+        - [Technical consideration 2]
+        - [Additional notes as needed]
+
+        ## Attachments/References
+        - [Any mockups, designs, or related documents]
+        - [Links to relevant specifications]
+
+        ## Related Stories/Epics
+        - [Parent epic or related stories]
+        ```
+        
+        Return ONLY the enhanced user story text without any additional explanations, introductions, or conclusions.
+    """),
+    expected_output=dedent("""\
+    # User Story: [Brief Title]
+
+    ## Story Definition
+    As a [specific user type/role],
+    I want [clear intention or capability],
+    So that [explicit value or benefit received].
+
+    ## Story Elaboration
+    [Additional context, clarification, and business value explanation]
+
+    ## Acceptance Criteria
+    1. [Clear, testable criterion 1]
+    2. [Clear, testable criterion 2]
+    3. [Clear, testable criterion 3]
+    4. [Additional criteria as needed]
+
+    ## Implementation Notes
+    - [Technical consideration 1]
+    - [Technical consideration 2]
+    - [Additional notes as needed]
+
+    ## Attachments/References
+    - [Any mockups, designs, or related documents]
+    - [Links to relevant specifications]
+
+    ## Related Stories/Epics
+    - [Parent epic or related stories]
+    """),
+)
+
+manual_test_case_agent = Agent(
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
+    markdown=True,
+    description=dedent("""
+    You are a highly skilled Quality Assurance (QA) expert specializing in
+    converting user stories and their acceptance criteria into comprehensive,
+    detailed, and industry-standard manual test cases. You are adept at identifying
+    and articulating test scenarios, including positive, negative, edge, and boundary
+    cases, and presenting them in a structured, clear, and actionable format suitable
+    for manual execution and serving as a strong basis for automation script development.
+    You understand the importance of traceability between test cases and requirements.
+    """),
+    instructions=dedent("""
+    Analyze the provided user story, paying close attention to its acceptance criteria.
+    Your goal is to generate a set of comprehensive, detailed, and industry-standard
+    manual test cases that directly verify the functionality described in the user
+    story and its acceptance criteria.
+
+        Ensure the test cases cover all relevant scenarios derived from the user story and
+        its acceptance criteria, including:
+        -   Positive flows (happy path).
+        -   Negative scenarios (invalid input, error conditions).
+        -   Edge cases (extreme ends of input ranges).
+        -   Boundary conditions (values at boundaries of valid/invalid ranges).
+
+        For each test case, provide the following information in a clear, precise, and
+        structured format, adhering to industry best practices. The detail level should
+        be sufficient for a manual tester to execute the test steps without ambiguity
+        and for an SDET to use it as a basis for automation:
+
+        -   **Test Case ID:** A unique identifier (e.g., TC_US_[UserStoryID/Ref]_[SequenceNumber]). Link implicitly to the user story being tested.
+        -   **Test Case Title:** A clear, concise, and action-oriented title summarizing the specific scenario being tested (e.g., "Verify successful login with valid credentials").
+        -   **Description:** A brief explanation of what this specific test case verifies, explicitly linking it back to the relevant part of the user story or an acceptance criterion.
+        -   **Preconditions:** Any necessary setup or state required before executing the test steps. Be specific and actionable (e.g., "User account 'testuser' exists with password 'password123'", "Application is open and the login page is displayed").
+        -   **Test Steps:** A numbered list of explicit, unambiguous, and actionable steps a manual tester must follow. Each step should describe a single user action or system interaction. Be highly specific about UI elements and expected immediate system responses or UI changes. Include specific test data directly within the steps where it is used, or clearly reference it from the Test Data field.
+            *   Example: "1. Navigate to the Login page (URL: https://myapp.com/login)."
+            *   Example: "2. In the 'Username' input field, enter the value 'valid_user'."
+            *   Example: "3. In the 'Password' input field, enter the value 'correct_password'."
+            *   Example: "4. Click the 'Sign In' button."
+        -   **Expected Result:** A clear, specific, and verifiable outcome after performing *all* the test steps. Describe the exact expected state of the system, UI changes, messages displayed (including exact text if possible), data updates, navigation, or other observable results. This should directly map to the "Then" part of the acceptance criteria scenarios where applicable.
+            *   Example: "The user is successfully logged in and redirected to the Dashboard page (URL: https://myapp.com/dashboard)."
+            *   Example: "An error message 'Invalid username or password' is displayed beneath the login form."
+        -   **Test Data:** List any specific data required for this test case if not fully described within the steps. Specify data types or formats if relevant (e.g., Valid Username: "testuser", Invalid Password: "wrongpass123").
+        -   **Priority:** Assign a priority level (e.g., High, Medium, Low) based on the criticality of the functionality and the likelihood/impact of defects in this scenario.
+        -   **Status:** Initialize the status as 'Not Executed'.
+        -   **Postconditions:** (Optional) Any cleanup or system state expected after the test case execution (e.g., "User is logged out," "Test data is cleaned up"). Include only if necessary for clarifying the end state.
+
+        Present the generated test cases in a markdown table format as specified in the expected output. Ensure the table is well-formatted, easy to read, and contains all the specified columns. The level of detail in the steps and expected results is crucial for enabling unambiguous manual execution and supporting subsequent automation efforts.
+
+        **IMPORTANT:** Your final output MUST be ONLY the markdown table content. Do not include any other text, explanations, or tool calls before or after the markdown table.
+    """),
+    # tools=[ # Keep tools commented out unless explicitly needed for this agent's function
+    #     ReasoningTools(
+    #         think=True,
+    #         analyze=True,
+    #         add_instructions=True,
+    #         add_few_shot=True,
+    #     ),
+    # ],
+    expected_output=dedent("""\
+    ```markdown
+    ### Manual Test Cases for [User Story Summary/Title]
+
+    | Test Case ID | Test Case Title | Description | Preconditions | Test Steps | Expected Result | Test Data | Priority | Status | Postconditions |
+    |---|---|---|---|---|---|---|---|---|---|
+    | TC_US_[ID]_001 | [Clear and Actionable Title for Scenario 1] | Verifies [specific aspect] based on [User Story/Acceptance Criterion reference]. | [Necessary setup/state] | 1. [Step 1]\\n2. [Step 2]\\n3. [Step 3]... | [Exact expected outcome] | [Specific test data used] | [High/Medium/Low] | Not Executed | [Optional cleanup/state] |
+    | TC_US_[ID]_002 | [Clear and Actionable Title for Scenario 2] | Verifies [another aspect] based on [User Story/Acceptance Criterion reference], covering a [negative/edge/boundary] case. | [Necessary setup/state] | 1. [Step 1]\\n2. [Step 2]... | [Exact expected outcome, e.g., specific error message] | [Specific test data used for this scenario] | [High/Medium/Low] | Not Executed | [Optional cleanup/state] |
+    ... (Include test cases for all relevant positive, negative, edge, and boundary scenarios)
+    ```
+    Return ONLY the markdown content for the manual test cases, adhering to the specified table format and column headers.
+    """),
+)
+
+# Initialize the agents
+gherkhin_agent = Agent(
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
+    markdown=True,
+    description=dedent("""
+    You are a highly skilled Quality Assurance (QA) expert specializing in
+    converting detailed manual test cases (which are derived from user stories and
+    acceptance criteria) into comprehensive, well-structured, and human-readable
+    Gherkin scenarios and scenario outlines. You understand that Gherkin serves
+    as living documentation and a communication tool for the whole team. Your goal
+    is to create Gherkin feature files that accurately represent the desired
+    behavior, are easy to understand for both technical and non-technical
+    stakeholders, and serve as a solid foundation for test automation.
+    """),
+    instructions=dedent("""
+    Analyze the provided input, which is a set of detailed manual test cases.
+    Each manual test case represents a specific scenario or example of how the
+    system should behave based on the original user story and its acceptance criteria.
+
+        Your task is to convert these manual test cases into comprehensive and
+        well-structured Gherkin scenarios and scenario outlines within a single
+        Feature file.
+
+        **Best Practices for Gherkin Generation:**
+
+        1.  **Feature Description:** Start the output with a clear and concise `Feature:` description that summarizes the overall functionality being tested. This should align with the user story's main goal.
+        2.  **Scenario vs. Scenario Outline:**
+            *   Use a `Scenario:` for individual test cases that cover a unique flow or specific set of inputs/outcomes.
+            *   Use a `Scenario Outline:` when multiple manual test cases cover the *same* workflow or steps but with *different test data* (inputs and potentially expected simple outcomes). Extract the varying data into an `Examples:` table below the Scenario Outline and use placeholders (< >) in the steps. This promotes the DRY (Don't Repeat Yourself) principle.
+        3.  **Descriptive Titles:** Use clear, concise, and action-oriented titles for both `Scenario` and `Scenario Outline`, derived from the manual test case titles or descriptions. The title should quickly convey the purpose of the scenario.
+        4.  **Tags:** Apply relevant and meaningful `@tags` above each Scenario or Scenario Outline (e.g., `@smoke`, `@regression`, `@login`, `@negative`, `@boundary`). Consider tags based on the test case type, priority, or related feature area to aid in test execution filtering and reporting.
+        5.  **Structured Steps (Given/When/Then/And/But):**
+            *   `Given`: Describe the initial context or preconditions required to perform the test (e.g., "Given the user is logged in", "Given the product is out of stock"). These set the scene. Avoid user interaction details here.
+            *   `When`: Describe the specific action or event that triggers the behavior being tested (e.g., "When the user adds the item to the cart", "When invalid credentials are provided"). There should ideally be only one main `When` per scenario.
+            *   `Then`: Describe the expected outcome or result after the action is performed. This verifies the behavior (e.g., "Then the item should appear in the cart", "Then an error message should be displayed"). This should directly map to the Expected Result in the manual test case.
+            *   `And` / `But`: Use these to extend a previous Given, When, or Then step. `And` is typically for additive conditions or actions, while `But` can be used for negative conditions (though `And not` is often clearer). Limit the number of `And` steps to maintain readability.
+        6.  **Level of Abstraction (What, Not How):** Write Gherkin steps at a high level, focusing on the *intent* and *behavior* (what the system does or what the user achieves) rather than the technical implementation details (how it's done, e.g., "click button X", "fill field Y"). Abstract away UI interactions where possible.
+        7.  **Clarity and Readability:** Use plain, unambiguous language that is easy for both technical and non-technical team members to understand. Avoid technical jargon. Maintain consistent phrasing. Use empty lines to separate scenarios for better readability.
+        8.  **Background:** If multiple scenarios within the feature file share the same initial preconditions, consider using a `Background:` section at the top of the feature file. This reduces repetition but ensure it doesn't make scenarios harder to understand.
+        9.  **Traceability (Optional but Recommended):** If the manual test cases reference user story or requirement IDs (e.g., Jira IDs), you can include these as tags or comments (using `#`) near the Feature or Scenario title for traceability.
+
+        Convert each relevant manual test case into one or more Gherkin scenarios/scenario outlines based on the above principles. Ensure the generated Gherkin accurately reflects the preconditions, steps, and expected results described in the manual test cases, while elevating the level of abstraction.
+
+        **IMPORTANT:** Your final output MUST be ONLY the markdown code block containing the Gherkin feature file content. Do not include any other text, explanations, or tool calls before or after the code block.
+    """),
+    # tools=[
+    #     ReasoningTools(
+    #         think=True,
+    #         analyze=True,
+    #         add_instructions=True,
+    #         add_few_shot=True,
+    #     ),
+    # ],
+    expected_output=dedent("""\
+    ```gherkin
+    Feature: [Clear and Concise Feature Description aligned with User Story]
+
+    @tag1 @tag2
+    Background:
+    Given [Common precondition 1]
+    And [Common precondition 2]
+    # Use Background for steps repeated at the start of every scenario in the file
+
+    @tag3
+    Scenario: [Descriptive Scenario Title for a specific case]
+    Given [Precondition specific to this scenario, if not in Background]
+    When [Action performed by the user or system event]
+    Then [Expected verifiable outcome 1]
+    And [Another expected outcome, if any]
+
+    @tag4 @tag5
+    Scenario Outline: [Descriptive Title for a set of similar cases with varying data]
+    Given [Precondition(s)]
+    When [Action using <placeholder>]
+    Then [Expected outcome using <placeholder>]
+    And [Another expected outcome using <placeholder>]
+
+    Examples:
+        | placeholder1 | placeholder2 | expected_outcome_data |
+        | data1_row1   | data2_row1   | outcome_data_row1     |
+        | data1_row2   | data2_row2   | outcome_data_row2     |
+        # Include columns for all placeholders in steps and relevant expected data
+
+    # Include scenarios/scenario outlines for positive, negative, edge, and boundary cases
+    # derived from the manual test cases.
+
+    # @jira-id-[number] # Optional: Add traceability tag
+    ```
+    Return ONLY the markdown code block containing the Gherkin feature file content.
+    """),
+)
+
+code_gen_agent = Agent(
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GOOGLE_API_KEY")),
+    markdown=True,
+    description=dedent("""
+    You are an expert test automation engineer capable of generating clean,
+    functional, and well-structured automation code in various programming
+    languages and frameworks (e.g., Python with Selenium/Playwright, JavaScript with Cypress, Java with Selenium/Cucumber, Robot Framework).
+    You translate Gherkin steps and browser interaction data into executable test scripts.
+    """),
+    instructions=dedent("""
+    Based on the provided Gherkin steps and browser interaction details (selectors, actions, URLs),
+    generate a single, self-contained test automation file in the requested format.
+    Include all necessary imports, dependencies, and helper functions.
+    Follow best practices for the specified language/framework (e.g., Page Object Model for Java, describe/it for Cypress).
+    Add clear comments and documentation where necessary.
+    Ensure the generated code is ready to be executed.
+    """),
+    # tools=[
+        # ReasoningTools(
+        # think=True,
+        # analyze=True,
+        # add_instructions=True,
+        # add_few_shot=True,
+        # ),
+    # ],
+    expected_output=dedent("""
+    ```[language_or_framework]
+    #[Feature Description (if applicable)]
+
+    #[Generated code based on instructions]
+    ...
+    ```
+    Return ONLY the code block in the specified language or framework.
+    """),
+)
+
+
+
+================================================
+FILE: src/Prompts/agno_prompts.py
+================================================
+import re
+from typing import Dict, Any
+import json
+
+import re
+from typing import Dict, Any
+import json
+import streamlit as st
+
+from src.Agents.agents import (
+    gherkhin_agent, # Import gherkhin_agent
+    code_gen_agent,
+    manual_test_case_agent,# Import the new agent
+    user_story_enhancement_agent)
+
+from src.Utilities.utils import (
+    extract_selectors_from_history,
+    analyze_actions)
+
+def generate_gherkin_scenarios(manual_test_cases_markdown: str) -> str:
+    """Generate Gherkin scenarios from manual test cases using the QA agent"""
+    try:
+        # The QA agent's description, instructions, and expected_output handle the Gherkin generation logic.
+        # We need to provide the manual test cases as the input to the agent's run method.
+        run_response = gherkhin_agent.run(manual_test_cases_markdown)
+        # Extract the content from the agent's response
+        gherkin_content = extract_code_content(run_response.content)
+        return gherkin_content
+    except Exception as e:
+        st.error(f"Error generating Gherkin scenarios: {str(e)}")
+        raise
+
+def generate_manual_test_cases(user_story: str) -> str:
+    """Generate manual test cases from a user story using the manual test case agent"""
+    try:
+        run_response = manual_test_case_agent.run(user_story)
+        # The manual test case agent is expected to return markdown
+        manual_test_cases_content = extract_code_content(run_response.content)
+        return manual_test_cases_content
+    except Exception as e:
+        st.error(f"Error generating manual test cases: {str(e)}")
+        raise
+
+def enhance_user_story(user_story: str) -> str:
+    """Enhance a raw user story using the user story enhancement agent"""
+    try:
+        run_response = user_story_enhancement_agent.run(user_story)
+        # The agent is expected to return the enhanced user story text
+        enhanced_story_content = run_response.content
+        return enhanced_story_content
+    except Exception as e:
+        st.error(f"Error enhancing user story: {str(e)}")
+    raise
+
+def extract_code_content(text: str) -> str:
+    """Extract code from markdown code blocks if present"""
+    # Look for content between triple backticks with optional language identifier
+    code_block_pattern = re.compile(r"```(?:python|gherkin|javascript|java|robot|markdown)?\n(.*?)```", re.DOTALL)
+    match = code_block_pattern.search(text)
+
+    if match:
+        return match.group(1).strip()
+    return text.strip()
+
+def generate_selenium_pytest_bdd(gherkin_steps: str, history_data: Dict[str, Any]) -> str:
+    """Generate a single Python file with Selenium PyTest BDD automation code using the code generation agent"""
+
+    # Extract feature name from Gherkin (optional, for context)
+    feature_match = re.search(r"Feature:\s*(.+?)(?:\n|$)", gherkin_steps)
+    feature_name = feature_match.group(1).strip() if feature_match else "Automated Test"
+
+    # Extract selectors and actions
+    selectors = extract_selectors_from_history(history_data)
+    actions = analyze_actions(history_data)
+
+    # Get URLs visited
+    urls = history_data.get('urls', [])
+    base_url = urls[0] if urls else "https://example.com"
+
+    # Create prompt for Selenium PyTest BDD code
+    # The code generation agent's description, instructions, and expected_output handle the code generation logic.
+    # We provide the Gherkin steps and execution details as context.
+    code_file_prompt = f"""
+    Generate Selenium PyTest BDD code based on the following:
+
+    Gherkin Steps:
+    ```gherkin
+    {gherkin_steps}
+    ```
+
+    Agent Execution Details:
+    - Base URL: {base_url}
+    - Element Selectors: {json.dumps(selectors, indent=2)}
+    - Actions Performed: {json.dumps(actions, indent=2)}
+    - Extracted Content: {json.dumps(history_data.get('extracted_content', []), indent=2)}
+    """
+
+    try:
+        # Generate the single file
+        code_response = code_gen_agent.run(code_file_prompt)
+        code_content = extract_code_content(code_response.content)
+
+        return code_content
+
+    except Exception as e:
+        st.error(f"Error generating Selenium PyTest BDD code: {str(e)}")
+        raise
+
+def generate_playwright_python(gherkin_steps: str, history_data: Dict[str, Any]) -> str:
+    """Generate a single Python file with Playwright automation code using the code generation agent"""
+
+    # Extract feature name from Gherkin (optional, for context)
+    feature_match = re.search(r"Feature:\s*(.+?)(?:\n|$)", gherkin_steps)
+    feature_name = feature_match.group(1).strip() if feature_match else "Automated Test"
+
+    # Extract selectors and actions
+    selectors = extract_selectors_from_history(history_data)
+    actions = analyze_actions(history_data)
+
+    # Get URLs visited
+    urls = history_data.get('urls', [])
+    base_url = urls[0] if urls else "https://example.com"
+
+    # Create prompt for Playwright code
+    # The code generation agent's description, instructions, and expected_output handle the code generation logic.
+    # We provide the Gherkin steps and execution details as context.
+    code_file_prompt = f"""
+    Generate Playwright Python code based on the following:
+
+    Gherkin Steps:
+    ```gherkin
+    {gherkin_steps}
+    ```
+
+    Agent Execution Details:
+    - Base URL: {base_url}
+    - Element Selectors: {json.dumps(selectors, indent=2)}
+    - Actions Performed: {json.dumps(actions, indent=2)}
+    - Extracted Content: {json.dumps(history_data.get('extracted_content', []), indent=2)}
+    """
+
+    try:
+        # Generate the single file
+        code_response = code_gen_agent.run(code_file_prompt)
+        code_content = extract_code_content(code_response.content)
+
+        return code_content
+
+    except Exception as e:
+        st.error(f"Error generating Playwright code: {str(e)}")
+        raise
+
+def generate_cypress_js(gherkin_steps: str, history_data: Dict[str, Any]) -> str:
+    """Generate a single JavaScript file with Cypress automation code using the code generation agent"""
+
+    # Extract feature name from Gherkin (optional, for context)
+    feature_match = re.search(r"Feature:\s*(.+?)(?:\n|$)", gherkin_steps)
+    feature_name = feature_match.group(1).strip() if feature_match else "Automated Test"
+
+    # Extract selectors and actions
+    selectors = extract_selectors_from_history(history_data)
+    actions = analyze_actions(history_data)
+
+    # Get URLs visited
+    urls = history_data.get('urls', [])
+    base_url = urls[0] if urls else "https://example.com"
+
+    # Create prompt for Cypress code
+    # The code generation agent's description, instructions, and expected_output handle the code generation logic.
+    # We provide the Gherkin steps and execution details as context.
+    code_file_prompt = f"""
+    Generate Cypress JavaScript code based on the following:
+
+    Gherkin Steps:
+    ```gherkin
+    {gherkin_steps}
+    ```
+
+    Agent Execution Details:
+    - Base URL: {base_url}
+    - Element Selectors: {json.dumps(selectors, indent=2)}
+    - Actions Performed: {json.dumps(actions, indent=2)}
+    - Extracted Content: {json.dumps(history_data.get('extracted_content', []), indent=2)}
+    """
+
+    try:
+        # Generate the single file
+        code_response = code_gen_agent.run(code_file_prompt)
+        code_content = extract_code_content(code_response.content)
+
+        return code_content
+
+    except Exception as e:
+        st.error(f"Error generating Cypress code: {str(e)}")
+        raise
+
+def generate_robot_framework(gherkin_steps: str, history_data: Dict[str, Any]) -> str:
+    """Generate Robot Framework test file using the code generation agent"""
+
+    # Extract feature name from Gherkin (optional, for context)
+    feature_match = re.search(r"Feature:\s*(.+?)(?:\n|$)", gherkin_steps)
+    feature_name = feature_match.group(1).strip() if feature_match else "Automated Test"
+
+    # Extract selectors and actions
+    selectors = extract_selectors_from_history(history_data)
+    actions = analyze_actions(history_data)
+
+    # Get URLs visited
+    urls = history_data.get('urls', [])
+    base_url = urls[0] if urls else "https://example.com"
+
+    # Create prompt for Robot Framework code
+    # The code generation agent's description, instructions, and expected_output handle the code generation logic.
+    # We provide the Gherkin steps and execution details as context.
+    code_file_prompt = f"""
+    Generate Robot Framework code based on the following:
+
+    Gherkin Steps:
+    ```gherkin
+    {gherkin_steps}
+    ```
+
+    Agent Execution Details:
+    - Base URL: {base_url}
+    - Element Selectors: {json.dumps(selectors, indent=2)}
+    - Actions Performed: {json.dumps(actions, indent=2)}
+    - Extracted Content: {json.dumps(history_data.get('extracted_content', []), indent=2)}
+    """
+
+    try:
+        # Generate the single file
+        code_response = code_gen_agent.run(code_file_prompt)
+        code_content = extract_code_content(code_response.content)
+
+        return code_content
+
+    except Exception as e:
+        st.error(f"Error generating Robot Framework code: {str(e)}")
+        raise
+
+def generate_java_selenium(gherkin_steps: str, history_data: Dict[str, Any]) -> str:
+    """Generate a Java file with Selenium and Cucumber automation code using the code generation agent"""
+
+    # Extract feature name from Gherkin (optional, for context)
+    feature_match = re.search(r"Feature:\s*(.+?)(?:\n|$)", gherkin_steps)
+    feature_name = feature_match.group(1).strip() if feature_match else "Automated Test"
+
+    # Extract selectors and actions
+    selectors = extract_selectors_from_history(history_data)
+    actions = analyze_actions(history_data)
+
+    # Get URLs visited
+    urls = history_data.get('urls', [])
+    base_url = urls[0] if urls else "https://example.com"
+
+    # Create prompt for Java Selenium Cucumber code
+    # The code generation agent's description, instructions, and expected_output handle the code generation logic.
+    # We provide the Gherkin steps and execution details as context.
+    code_file_prompt = f"""
+    Generate Java Selenium Cucumber code based on the following:
+
+    Gherkin Steps:
+    ```gherkin
+    {gherkin_steps}
+    ```
+
+    Agent Execution Details:
+    - Base URL: {base_url}
+    - Element Selectors: {json.dumps(selectors, indent=2)}
+    - Actions Performed: {json.dumps(actions, indent=2)}
+    - Extracted Content: {json.dumps(history_data.get('extracted_content', []), indent=2)}
+    """
+
+    try:
+        # Generate the single file
+        code_response = code_gen_agent.run(code_file_prompt)
+        code_content = extract_code_content(code_response.content)
+
+        return code_content
+
+    except Exception as e:
+        st.error(f"Error generating Java Selenium Cucumber code: {str(e)}")
+        raise
+
+
+
+================================================
+FILE: src/Prompts/browser_prompts.py
+================================================
+def generate_browser_task(scenario: str) -> str:
+    """Generate the browser task prompt for executing Gherkin scenarios"""
+    return f"""
+    You are a browser automation agent tasked with executing the following Gherkin scenario.
+    Interpret each step (Given, When, Then, And, But) as instructions for interacting with a web page or verifying its state.
+
+    **Execution Strategy:**
+
+    1.  **Interpret Gherkin Steps:** Read each Gherkin step and understand the high-level action or verification required.
+        *   `Given`: Set up the initial state or context (e.g., navigate to a page, ensure an element is visible).
+        *   `When`: Perform the primary action or trigger the event being tested (e.g., click a button, type text, submit a form).
+        *   `Then`: Verify the expected outcome or system state after the 'When' action (e.g., check for visible text, assert element presence, verify URL, check data).
+        *   `And`/`But`: Continue the action or verification of the preceding step (Given, When, or Then).
+
+    2.  **Element Identification:** When a step requires interacting with or verifying an element, use a robust strategy to locate it. Do NOT rely solely on XPath from a previous step or a single type of selector.
+        *   **Prioritize Selectors:** Attempt to locate elements using the most reliable selectors first:
+            *   ID (if available and unique)
+            *   Name attribute
+            *   CSS Selectors (preferable for readability and robustness over brittle XPaths)
+            *   Link Text or Partial Link Text (for anchor tags)
+            *   Button Text or Value
+            *   XPath (use as a fallback, prioritize reliable, less brittle XPaths if possible, e.g., relative paths or paths using attributes).
+        *   **Contextual Identification:** Use the text content, role, or other attributes mentioned or implied in the Gherkin step description to help identify the *correct* element among similar ones. For example, if the step is "When the user clicks the 'Submit' button", look for a button element containing the text "Submit".
+        *   **Locate BEFORE Action/Verification:** Always attempt to locate the element successfully *before* performing an action (click, type) or verification on it.
+        *   **Capture Detailed Element Information:** After locating an element but before interacting with it, use the "Get detailed element information" action to capture comprehensive details about the element including its ID, tag name, class name, XPaths (absolute and relative), and CSS selectors. This information is crucial for generating robust test scripts.
+
+    3.  **Perform Actions:** For `When` (and sometimes `Given` or `And`) steps requiring interaction:
+        *   `Click`: If the step implies clicking (e.g., "clicks the button", "selects the link"), use the "Perform element action" with action="click".
+        *   `Type Text`: If the step implies entering text (e.g., "enters 'value' into the field"), use the "Perform element action" with action="fill" and value="text". Use the exact text specified in the Gherkin.
+        *   `Select Option`: If the step implies selecting from a dropdown, use appropriate actions to interact with select elements.
+        *   Handle other interactions as implied by the step description.
+
+    4.  **Perform Verifications:** For `Then` (and sometimes `And` or `But`) steps requiring verification:
+        *   Check for element visibility or presence on the page.
+        *   Verify the text content of an element matches expected text using "Get element property" with property_name="innerText".
+        *   Verify an element's state (e.g., enabled, disabled, selected).
+        *   Verify the current page URL.
+        *   Verify the presence or content of specific messages (e.g., error messages, success messages).
+        *   Perform other assertions as implied by the Gherkin step's expected outcome.
+
+    5.  **Handle Timing and Dynamic Content:** Web pages can load elements dynamically.
+        *   **Wait Implicitly/Explicitly:** After navigation or an action that triggers a page change or dynamic content load, wait intelligently for the target element(s) of the *next* step to be visible, clickable, or present in the DOM before attempting to interact with or verify them. Avoid fixed waits.
+        *   **Retry Strategy:** If an element is not immediately found, implement a short retry mechanism before failing the step.
+
+    6.  **Error Handling:** If a step fails (e.g., element not found, element not interactive, verification fails, unexpected alert):
+        *   Immediately stop executing the current scenario.
+        *   Log the failure clearly, including the step that failed and the reason.
+
+    7.  **Detailed Logging:** Log every significant action and verification attempt:
+        *   The Gherkin step being executed.
+        *   The specific browser action being attempted (e.g., "Attempting to click element", "Attempting to type text").
+        *   The selector(s) used to find the target element and the result of the find operation (found, not found).
+        *   If found, key properties of the element (e.g., tag name, text, relevant attributes like `id`, `name`, `class`, `value`, `role`).
+        *   The outcome of the action (successful, failed).
+        *   For `Then` steps, the verification performed (e.g., "Verifying text content of element X is 'Expected Text'", "Verifying element Y is visible") and the result (Pass/Fail), including actual vs. expected values if it's a comparison.
+        *   Any errors encountered.
+
+    **Important:** For each element you interact with, make sure to capture its detailed information using the "Get detailed element information" action. This will provide comprehensive element attributes (ID, tag name, class name, XPaths, CSS selectors) that are essential for generating robust test scripts.
+
+    **Given Gherkin Scenario:**
+
+    ```gherkin
+    {scenario}
+    ```
+
+    Execute this scenario step-by-step, following the strategy above. Prioritize successful execution and clear reporting. Do not ask clarifying questions; infer actions based on the detailed Gherkin steps and attempt the most probable browser action.
+    """
+
+
+
+================================================
+FILE: src/Utilities/utils.py
+================================================
+from browser_use import Browser, Agent as BrowserAgent, Controller, ActionResult
+
+import re
+
+from pydantic import BaseModel
+from typing import Dict, Any, Optional, List
+
+# Set up custom controller actions
+controller = Controller()
+
+class JobDetails(BaseModel):
+    title: str
+    company: str
+    job_link: str
+    salary: Optional[str] = None
+
+@controller.action(
+    'Save job details which you found on page',
+    param_model=JobDetails
+)
+async def save_job(params: JobDetails, browser: Browser):
+    print(f"Saving job: {params.title} at {params.company}")
+    # Access browser if needed
+    page = browser.get_current_page()
+    await page.goto(params.job_link)
+    return ActionResult(success=True, extracted_content=f"Saved job: {params.title} at {params.company}", include_in_memory=True)
+
+class ElementOnPage(BaseModel):
+    index: int
+    xpath: Optional[str] = None
+
+@controller.action("Get XPath of element using index", param_model=ElementOnPage)
+async def get_xpath_of_element(params: ElementOnPage, browser: Browser):
+    session = await browser.get_session()
+    state = session.cached_state
+    if params.index not in state.selector_map:
+        return ActionResult(error="Element not found")
+    element_node = state.selector_map[params.index]
+    xpath = element_node.xpath
+    if xpath is None:
+        return ActionResult(error="Element not found, try another index")
+    return ActionResult(extracted_content="The xpath of the element is "+xpath, include_in_memory=True)
+
+class ElementProperties(BaseModel):
+    index: int
+    property_name: str = "innerText"
+
+@controller.action("Get element property", param_model=ElementProperties)
+async def get_element_property(params: ElementProperties, browser: Browser):
+    page = browser.get_current_page()
+    session = await browser.get_session()
+    state = session.cached_state
+    
+    if params.index not in state.selector_map:
+        return ActionResult(error="Element not found")
+    
+    element_node = state.selector_map[params.index]
+    element = await page.query_selector(element_node.selector)
+    
+    if element is None:
+        return ActionResult(error="Element not found on page")
+    
+    try:
+        property_value = await element.get_property(params.property_name)
+        json_value = await property_value.json_value()
+        return ActionResult(
+            extracted_content=f"Element {params.index} {params.property_name}: {json_value}",
+            include_in_memory=True
+        )
+    except Exception as e:
+        return ActionResult(error=f"Error getting property: {str(e)}")
+
+class ElementAction(BaseModel):
+    index: int
+    action: str = "click"  # click, hover, focus, etc.
+    value: Optional[str] = None  # For actions like fill
+
+@controller.action("Perform element action", param_model=ElementAction)
+async def perform_element_action(params: ElementAction, browser: Browser):
+    page = browser.get_current_page()
+    session = await browser.get_session()
+    state = session.cached_state
+    
+    if params.index not in state.selector_map:
+        return ActionResult(error="Element not found")
+    
+    element_node = state.selector_map[params.index]
+    element = await page.query_selector(element_node.selector)
+    
+    if element is None:
+        return ActionResult(error="Element not found on page")
+    
+    # Capture detailed element information before performing action
+    element_details = await get_detailed_element_info(element, element_node, page)
+    
+    try:
+        if params.action == "click":
+            await element.click()
+            return ActionResult(
+                extracted_content=f"Clicked element {params.index}\nElement Details: {element_details}",
+                include_in_memory=True
+            )
+        elif params.action == "hover":
+            await element.hover()
+            return ActionResult(
+                extracted_content=f"Hovered over element {params.index}\nElement Details: {element_details}",
+                include_in_memory=True
+            )
+        elif params.action == "fill" and params.value is not None:
+            await element.fill(params.value)
+            return ActionResult(
+                extracted_content=f"Filled element {params.index} with '{params.value}'\nElement Details: {element_details}",
+                include_in_memory=True
+            )
+        else:
+            return ActionResult(error=f"Unsupported action: {params.action}")
+    except Exception as e:
+        return ActionResult(error=f"Error performing action: {str(e)}")
+
+class ElementDetails(BaseModel):
+    index: int
+
+@controller.action("Get detailed element information", param_model=ElementDetails)
+async def get_element_details(params: ElementDetails, browser: Browser):
+    page = browser.get_current_page()
+    session = await browser.get_session()
+    state = session.cached_state
+    
+    if params.index not in state.selector_map:
+        return ActionResult(error="Element not found")
+    
+    element_node = state.selector_map[params.index]
+    element = await page.query_selector(element_node.selector)
+    
+    if element is None:
+        return ActionResult(error="Element not found on page")
+    
+    element_details = await get_detailed_element_info(element, element_node, page)
+    
+    # Format the element details in a more structured way for better display
+    formatted_details = {
+        "Element Index": params.index,
+        "Basic Information": {
+            "Tag": element_details.get("tag", ""),
+            "ID": element_details.get("id", ""),
+            "Name": element_details.get("name", ""),
+            "Type": element_details.get("type", ""),
+            "Class": element_details.get("class", ""),
+            "Placeholder": element_details.get("placeholder", ""),
+            "Value": element_details.get("value", ""),
+            "Text": element_details.get("text", ""),
+            "Is Visible": element_details.get("is_visible", False)
+        },
+        "Selectors": {
+            "Absolute XPath": element_details.get("absolute_xpath", ""),
+            "Relative XPath": element_details.get("relative_xpath", ""),
+            "CSS Selector": element_details.get("css_selector", ""),
+            "XPath Variations": element_details.get("xpath_variations", []),
+            "CSS Variations": element_details.get("css_variations", [])
+        },
+        "Dimensions": element_details.get("dimensions", {}),
+        "All Attributes": element_details.get("attributes", {})
+    }
+    
+    return ActionResult(
+        extracted_content=formatted_details,
+        include_in_memory=True
+    )
+
+async def get_detailed_element_info(element, element_node, page):
+    """Extract detailed information about an element for automation script generation"""
+    try:
+        # Get tag name
+        tag_name = await page.evaluate("(element) => element.tagName.toLowerCase()", element)
+        
+        # Get element attributes
+        attributes = await page.evaluate("""
+        (element) => {
+            const attrs = {};
+            for (const attr of element.attributes) {
+                attrs[attr.name] = attr.value;
+            }
+            return attrs;
+        }
+        """, element)
+        
+        # Extract common attributes
+        element_id = attributes.get('id', '')
+        class_name = attributes.get('class', '')
+        name_attr = attributes.get('name', '')
+        placeholder = attributes.get('placeholder', '')
+        value = attributes.get('value', '')
+        type_attr = attributes.get('type', '')
+        
+        # Get absolute XPath
+        absolute_xpath = element_node.xpath if element_node.xpath else ''
+        
+        # Generate relative XPath based on ID, class, or other attributes
+        relative_xpath = ''
+        if element_id:
+            relative_xpath = f"//{tag_name}[@id='{element_id}']"
+        elif name_attr:
+            relative_xpath = f"//{tag_name}[@name='{name_attr}']"
+        elif class_name:
+            relative_xpath = f"//{tag_name}[@class='{class_name}']"
+        elif placeholder:
+            relative_xpath = f"//{tag_name}[@placeholder='{placeholder}']"
+        
+        # Generate additional XPath variations for better selector options
+        xpath_variations = []
+        if element_id:
+            xpath_variations.append(f"//*[@id='{element_id}']")
+        if name_attr:
+            xpath_variations.append(f"//*[@name='{name_attr}']")
+        if placeholder:
+            xpath_variations.append(f"//*[@placeholder='{placeholder}']")
+        if type_attr and value:
+            xpath_variations.append(f"//{tag_name}[@type='{type_attr}' and @value='{value}']")
+        
+        # Generate CSS selector
+        css_selector = ''
+        if element_id:
+            css_selector = f"#{element_id}"
+        elif class_name:
+            # Convert space-separated classes to CSS class selector format
+            css_classes = '.'.join(class_name.split())
+            css_selector = f"{tag_name}.{css_classes}"
+        elif name_attr:
+            css_selector = f"{tag_name}[name='{name_attr}']"
+        elif placeholder:
+            css_selector = f"{tag_name}[placeholder='{placeholder}']"
+        
+        # Generate additional CSS selector variations
+        css_variations = []
+        if element_id:
+            css_variations.append(f"#{element_id}")
+        if class_name:
+            css_classes = '.'.join(class_name.split())
+            css_variations.append(f".{css_classes}")
+        if name_attr:
+            css_variations.append(f"[name='{name_attr}']")
+        if placeholder:
+            css_variations.append(f"[placeholder='{placeholder}']")
+        
+        # Get element text content
+        text_content = await page.evaluate("(element) => element.textContent.trim()", element)
+        
+        # Get element dimensions and position
+        bounding_box = await page.evaluate("""
+        (element) => {
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.x,
+                y: rect.y,
+                width: rect.width,
+                height: rect.height
+            };
+        }
+        """, element)
+        
+        # Check if element is visible
+        is_visible = await element.is_visible()
+        
+        # Format the detailed information
+        details = {
+            "tag": tag_name,
+            "id": element_id,
+            "class": class_name,
+            "name": name_attr,
+            "type": type_attr,
+            "placeholder": placeholder,
+            "value": value,
+            "text": text_content[:50] + ('...' if len(text_content) > 50 else ''),
+            "absolute_xpath": absolute_xpath,
+            "relative_xpath": relative_xpath,
+            "xpath_variations": xpath_variations,
+            "css_selector": css_selector,
+            "css_variations": css_variations,
+            "dimensions": bounding_box,
+            "is_visible": is_visible,
+            "attributes": attributes
+        }
+        
+        return details
+    except Exception as e:
+        return {"error": f"Failed to get element details: {str(e)}"}
+
+# Helper functions for code generation
+def extract_selectors_from_history(history_data: Dict[str, Any]) -> Dict[str, str]:
+    """Extract element selectors from agent history"""
+    selectors = {}
+    xpath_pattern = re.compile(r"The xpath of the element is (.*)")
+    element_details_pattern = re.compile(r"Element Details: \{(.+?)\}")
+    
+    for content in history_data.get('extracted_content', []):
+        if isinstance(content, str):
+            # Extract XPath from direct XPath actions
+            match = xpath_pattern.search(content)
+            if match:
+                xpath = match.group(1)
+                name = "element_" + str(len(selectors) + 1)
+                selectors[name] = xpath
+                continue
+                
+            # Extract from detailed element information
+            details_match = element_details_pattern.search(content)
+            if details_match:
+                try:
+                    # Try to parse the JSON-like string
+                    details_str = '{' + details_match.group(1) + '}'
+                    # Clean up the string for proper JSON parsing
+                    details_str = details_str.replace("'", "\"")
+                    details = json.loads(details_str)
+                    
+                    # Use the best selector available
+                    selector = None
+                    if details.get("id"):
+                        selector = details.get("css_selector")
+                    elif details.get("relative_xpath"):
+                        selector = details.get("relative_xpath")
+                    elif details.get("absolute_xpath"):
+                        selector = details.get("absolute_xpath")
+                    
+                    if selector:
+                        name = f"element_{len(selectors) + 1}"
+                        selectors[name] = selector
+                except Exception as e:
+                    print(f"Error parsing element details: {e}")
+    
+    return selectors
+
+def analyze_actions(history_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Analyze the actions performed by the agent to create step implementations"""
+    actions = []
+    element_details_pattern = re.compile(r"Element Details: (\{.+?\})")
+    
+    for i, action_name in enumerate(history_data.get('action_names', [])):
+        action_info = {
+            "name": action_name,
+            "index": i,
+            "type": "unknown",
+            "element_details": None
+        }
+        
+        # Determine action type
+        if "navigate" in action_name.lower() or "goto" in action_name.lower():
+            action_info["type"] = "navigation"
+        elif "click" in action_name.lower():
+            action_info["type"] = "click"
+        elif "type" in action_name.lower() or "fill" in action_name.lower() or "enter" in action_name.lower():
+            action_info["type"] = "input"
+        elif "check" in action_name.lower() or "verify" in action_name.lower() or "assert" in action_name.lower():
+            action_info["type"] = "verification"
+        elif "get xpath" in action_name.lower():
+            action_info["type"] = "xpath"
+        elif "get detailed element information" in action_name.lower():
+            action_info["type"] = "element_details"
+        elif "save job details" in action_name.lower():
+            action_info["type"] = "custom_save"
+        
+        # Extract element details if available in the content
+        if i < len(history_data.get('extracted_content', [])):
+            content = history_data.get('extracted_content', [])[i]
+            if isinstance(content, str):
+                details_match = element_details_pattern.search(content)
+                if details_match:
+                    try:
+                        details_str = details_match.group(1)
+                        # Clean up the string for proper JSON parsing
+                        details_str = details_str.replace("'", "\"")
+                        details = json.loads(details_str)
+                        action_info["element_details"] = details
+                    except Exception as e:
+                        print(f"Error parsing element details in action analysis: {e}")
+        
+        actions.append(action_info)
+    
+    return actions
+
+

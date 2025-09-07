@@ -1,0 +1,322 @@
+
+# All Parameters
+
+> Complete reference for all browser configuration options
+
+## Core Settings
+
+* `cdp_url`: CDP URL for connecting to existing browser instance (e.g., `"http://localhost:9222"`)
+
+## Display & Appearance
+
+* `headless` (default: `None`): Run browser without UI. Auto-detects based on display availability (`True`/`False`/`None`)
+* `window_size`: Browser window size for headful mode. Use dict `{'width': 1920, 'height': 1080}` or `ViewportSize` object
+* `window_position` (default: `{'width': 0, 'height': 0}`): Window position from top-left corner in pixels
+* `viewport`: Content area size, same format as `window_size`. Use `{'width': 1280, 'height': 720}` or `ViewportSize` object
+* `no_viewport` (default: `None`): Disable viewport emulation, content fits to window size
+* `device_scale_factor`: Device scale factor (DPI). Set to `2.0` or `3.0` for high-resolution screenshots
+
+## Browser Behavior
+
+* `keep_alive` (default: `None`): Keep browser running after agent completes
+* `allowed_domains`: Restrict navigation to specific domains. Domain pattern formats:
+  * `'example.com'` - Matches only `https://example.com/*`
+  * `'*.example.com'` - Matches `https://example.com/*` and any subdomain `https://*.example.com/*`
+  * `'http*://example.com'` - Matches both `http://` and `https://` protocols
+  * `'chrome-extension://*'` - Matches any Chrome extension URL
+  * **Security**: Wildcards in TLD (e.g., `example.*`) are **not allowed** for security
+  * Use list like `['*.google.com', 'https://example.com', 'chrome-extension://*']`
+* `enable_default_extensions` (default: `True`): Load automation extensions (uBlock Origin, cookie handlers, ClearURLs)
+* `cross_origin_iframes` (default: `False`): Enable cross-origin iframe support (may cause complexity)
+* `is_local` (default: `True`): Whether this is a local browser instance. Set to `False` for remote browsers. If we have a `executable_path` set, it will be automatically set to `True`. This can effect your download behavior.
+
+## User Data & Profiles
+
+* `user_data_dir` (default: auto-generated temp): Directory for browser profile data. Use `None` for incognito mode
+* `profile_directory` (default: `'Default'`): Chrome profile subdirectory name (`'Profile 1'`, `'Work Profile'`, etc.)
+* `storage_state`: Browser storage state (cookies, localStorage). Can be file path string or dict object
+
+## Network & Security
+
+* `proxy`: Proxy configuration using `ProxySettings(server='http://host:8080', bypass='localhost,127.0.0.1', username='user', password='pass')`
+
+* `permissions` (default: `['clipboardReadWrite', 'notifications']`): Browser permissions to grant. Use list like `['camera', 'microphone', 'geolocation']`
+
+* `headers`: Additional HTTP headers for connect requests (remote browsers only)
+
+## Browser Launch
+
+* `executable_path`: Path to browser executable for custom installations. Platform examples:
+  * macOS: `'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'`
+  * Windows: `'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'`
+  * Linux: `'/usr/bin/google-chrome'`
+* `channel`: Browser channel (`'chromium'`, `'chrome'`, `'chrome-beta'`, `'msedge'`, etc.)
+* `args`: Additional command-line arguments for the browser. Use list format: `['--disable-gpu', '--custom-flag=value', '--another-flag']`
+* `env`: Environment variables for browser process. Use dict like `{'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'CUSTOM_VAR': 'test'}`
+* `chromium_sandbox` (default: `True` except in Docker): Enable Chromium sandboxing for security
+* `devtools` (default: `False`): Open DevTools panel automatically (requires `headless=False`)
+* `ignore_default_args`: List of default args to disable, or `True` to disable all. Use list like `['--enable-automation', '--disable-extensions']`
+
+## Timing & Performance
+
+* `minimum_wait_page_load_time` (default: `0.25`): Minimum time to wait before capturing page state in seconds
+* `wait_for_network_idle_page_load_time` (default: `0.5`): Time to wait for network activity to cease in seconds
+* `wait_between_actions` (default: `0.5`): Time to wait between agent actions in seconds
+
+## AI Integration
+
+* `highlight_elements` (default: `True`): Highlight interactive elements for AI vision
+
+## Downloads & Files
+
+* `accept_downloads` (default: `True`): Automatically accept all downloads
+* `downloads_path`: Directory for downloaded files. Use string like `'./downloads'` or `Path` object
+* `auto_download_pdfs` (default: `True`): Automatically download PDFs instead of viewing in browser
+
+## Device Emulation
+
+* `user_agent`: Custom user agent string. Example: `'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)'`
+* `screen`: Screen size information, same format as `window_size`
+
+## Recording & Debugging
+
+* `record_video_dir`: Directory to save video recordings as `.webm` files
+* `record_har_path`: Path to save network trace files as `.har` format
+* `traces_dir`: Directory to save complete trace files for debugging
+* `record_har_content` (default: `'embed'`): HAR content mode (`'omit'`, `'embed'`, `'attach'`)
+* `record_har_mode` (default: `'full'`): HAR recording mode (`'full'`, `'minimal'`)
+
+## Advanced Options
+
+* `disable_security` (default: `False`): ⚠️ **NOT RECOMMENDED** - Disables all browser security features
+* `deterministic_rendering` (default: `False`): ⚠️ **NOT RECOMMENDED** - Forces consistent rendering but reduces performance
+
+***
+
+## Outdated BrowserProfile
+
+For backward compatibility, you can pass all the parameters from above to the `BrowserProfile` and then to the `Browser`.
+
+```python
+from browser_use import BrowserProfile
+profile = BrowserProfile(headless=False)
+browser = Browser(browser_profile=profile)
+```
+
+## Browser vs BrowserSession
+
+`Browser` is an alias for `BrowserSession` - they are exactly the same class:
+Use `Browser` for cleaner, more intuitive code.
+# All Parameters
+
+> Complete reference for all browser configuration options
+
+## Core Settings
+
+* `cdp_url`: CDP URL for connecting to existing browser instance (e.g., `"http://localhost:9222"`)
+
+## Display & Appearance
+
+* `headless` (default: `None`): Run browser without UI. Auto-detects based on display availability (`True`/`False`/`None`)
+* `window_size`: Browser window size for headful mode. Use dict `{'width': 1920, 'height': 1080}` or `ViewportSize` object
+* `window_position` (default: `{'width': 0, 'height': 0}`): Window position from top-left corner in pixels
+* `viewport`: Content area size, same format as `window_size`. Use `{'width': 1280, 'height': 720}` or `ViewportSize` object
+* `no_viewport` (default: `None`): Disable viewport emulation, content fits to window size
+* `device_scale_factor`: Device scale factor (DPI). Set to `2.0` or `3.0` for high-resolution screenshots
+
+## Browser Behavior
+
+* `keep_alive` (default: `None`): Keep browser running after agent completes
+* `allowed_domains`: Restrict navigation to specific domains. Domain pattern formats:
+  * `'example.com'` - Matches only `https://example.com/*`
+  * `'*.example.com'` - Matches `https://example.com/*` and any subdomain `https://*.example.com/*`
+  * `'http*://example.com'` - Matches both `http://` and `https://` protocols
+  * `'chrome-extension://*'` - Matches any Chrome extension URL
+  * **Security**: Wildcards in TLD (e.g., `example.*`) are **not allowed** for security
+  * Use list like `['*.google.com', 'https://example.com', 'chrome-extension://*']`
+* `enable_default_extensions` (default: `True`): Load automation extensions (uBlock Origin, cookie handlers, ClearURLs)
+* `cross_origin_iframes` (default: `False`): Enable cross-origin iframe support (may cause complexity)
+* `is_local` (default: `True`): Whether this is a local browser instance. Set to `False` for remote browsers. If we have a `executable_path` set, it will be automatically set to `True`. This can effect your download behavior.
+
+## User Data & Profiles
+
+* `user_data_dir` (default: auto-generated temp): Directory for browser profile data. Use `None` for incognito mode
+* `profile_directory` (default: `'Default'`): Chrome profile subdirectory name (`'Profile 1'`, `'Work Profile'`, etc.)
+* `storage_state`: Browser storage state (cookies, localStorage). Can be file path string or dict object
+
+## Network & Security
+
+* `proxy`: Proxy configuration using `ProxySettings(server='http://host:8080', bypass='localhost,127.0.0.1', username='user', password='pass')`
+
+* `permissions` (default: `['clipboardReadWrite', 'notifications']`): Browser permissions to grant. Use list like `['camera', 'microphone', 'geolocation']`
+
+* `headers`: Additional HTTP headers for connect requests (remote browsers only)
+
+## Browser Launch
+
+* `executable_path`: Path to browser executable for custom installations. Platform examples:
+  * macOS: `'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'`
+  * Windows: `'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'`
+  * Linux: `'/usr/bin/google-chrome'`
+* `channel`: Browser channel (`'chromium'`, `'chrome'`, `'chrome-beta'`, `'msedge'`, etc.)
+* `args`: Additional command-line arguments for the browser. Use list format: `['--disable-gpu', '--custom-flag=value', '--another-flag']`
+* `env`: Environment variables for browser process. Use dict like `{'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'CUSTOM_VAR': 'test'}`
+* `chromium_sandbox` (default: `True` except in Docker): Enable Chromium sandboxing for security
+* `devtools` (default: `False`): Open DevTools panel automatically (requires `headless=False`)
+* `ignore_default_args`: List of default args to disable, or `True` to disable all. Use list like `['--enable-automation', '--disable-extensions']`
+
+## Timing & Performance
+
+* `minimum_wait_page_load_time` (default: `0.25`): Minimum time to wait before capturing page state in seconds
+* `wait_for_network_idle_page_load_time` (default: `0.5`): Time to wait for network activity to cease in seconds
+* `wait_between_actions` (default: `0.5`): Time to wait between agent actions in seconds
+
+## AI Integration
+
+* `highlight_elements` (default: `True`): Highlight interactive elements for AI vision
+
+## Downloads & Files
+
+* `accept_downloads` (default: `True`): Automatically accept all downloads
+* `downloads_path`: Directory for downloaded files. Use string like `'./downloads'` or `Path` object
+* `auto_download_pdfs` (default: `True`): Automatically download PDFs instead of viewing in browser
+
+## Device Emulation
+
+* `user_agent`: Custom user agent string. Example: `'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)'`
+* `screen`: Screen size information, same format as `window_size`
+
+## Recording & Debugging
+
+* `record_video_dir`: Directory to save video recordings as `.webm` files
+* `record_har_path`: Path to save network trace files as `.har` format
+* `traces_dir`: Directory to save complete trace files for debugging
+* `record_har_content` (default: `'embed'`): HAR content mode (`'omit'`, `'embed'`, `'attach'`)
+* `record_har_mode` (default: `'full'`): HAR recording mode (`'full'`, `'minimal'`)
+
+## Advanced Options
+
+* `disable_security` (default: `False`): ⚠️ **NOT RECOMMENDED** - Disables all browser security features
+* `deterministic_rendering` (default: `False`): ⚠️ **NOT RECOMMENDED** - Forces consistent rendering but reduces performance
+
+***
+
+## Outdated BrowserProfile
+
+For backward compatibility, you can pass all the parameters from above to the `BrowserProfile` and then to the `Browser`.
+
+```python
+from browser_use import BrowserProfile
+profile = BrowserProfile(headless=False)
+browser = Browser(browser_profile=profile)
+```
+
+## Browser vs BrowserSession
+
+`Browser` is an alias for `BrowserSession` - they are exactly the same class:
+Use `Browser` for cleaner, more intuitive code.
+
+# All Parameters
+
+> Complete reference for all agent configuration options
+
+## Available Parameters
+
+### Core Settings
+
+* `tools`: Registry of [our tools](https://github.com/browser-use/browser-use/blob/main/browser_use/tools/service.py) the agent can call. [Example for custom tools](https://github.com/browser-use/browser-use/tree/main/examples/custom-functions)
+* `browser`: Browser object where you can specify the browser settings.
+* `output_model_schema`: Pydantic model class for structured output validation. [Example](https://github.com/browser-use/browser-use/blob/main/examples/features/custom_output.py)
+
+### Vision & Processing
+
+* `use_vision` (default: `True`): Enable/disable vision capabilities for processing screenshots
+* `vision_detail_level` (default: `'auto'`): Screenshot detail level - `'low'`, `'high'`, or `'auto'`
+* `page_extraction_llm`: Separate LLM model for page content extraction. You can choose a small & fast model because it only needs to extract text from the page (default: same as `llm`)
+
+### Actions & Behavior
+
+* `initial_actions`: List of actions to run before the main task without LLM. [Example](https://github.com/browser-use/browser-use/blob/main/examples/features/initial_actions.py)
+* `max_actions_per_step` (default: `10`): Maximum actions per step, e.g. for form filling the agent can output 10 fields at once. We execute the actions until the page changes.
+* `max_failures` (default: `3`): Maximum retries for steps with errors
+* `final_response_after_failure` (default: `True`): If True, attempt to force one final model call with intermediate output after max\_failures is reached
+* `use_thinking` (default: `True`): Controls whether the agent uses its internal "thinking" field for explicit reasoning steps.
+* `flash_mode` (default: `False`): Fast mode that skips evaluation, next goal and thinking and only uses memory. If `flash_mode` is enabled, it overrides `use_thinking` and disables the thinking process entirely. [Example](https://github.com/browser-use/browser-use/blob/main/examples/getting_started/05_fast_agent.py)
+
+### System Messages
+
+* `override_system_message`: Completely replace the default system prompt.
+* `extend_system_message`: Add additional instructions to the default system prompt. [Example](https://github.com/browser-use/browser-use/blob/main/examples/features/custom_system_prompt.py)
+
+### File & Data Management
+
+* `save_conversation_path`: Path to save complete conversation history
+* `save_conversation_path_encoding` (default: `'utf-8'`): Encoding for saved conversations
+* `available_file_paths`: List of file paths the agent can access
+* `sensitive_data`: Dictionary of sensitive data to handle carefully. [Example](https://github.com/browser-use/browser-use/blob/main/examples/features/sensitive_data.py)
+
+### Visual Output
+
+* `generate_gif` (default: `False`): Generate GIF of agent actions. Set to `True` or string path
+* `include_attributes`: List of HTML attributes to include in page analysis
+
+### Performance & Limits
+
+* `max_history_items`: Maximum number of last steps to keep in the LLM memory. If `None`, we keep all steps.
+* `llm_timeout` (default: `90`): Timeout in seconds for LLM calls
+* `step_timeout` (default: `120`): Timeout in seconds for each step
+* `directly_open_url` (default: `True`): If we detect a url in the task, we directly open it.
+
+### Advanced Options
+
+* `calculate_cost` (default: `False`): Calculate and track API costs
+* `display_files_in_done_text` (default: `True`): Show file information in completion messages
+
+### Backwards Compatibility
+
+* `controller`: Alias for `tools` for backwards compatibility.
+* `browser_session`: Alias for `browser` for backwards compatibility.
+
+# Available Tools
+
+> Here is the [source code](https://github.com/browser-use/browser-use/blob/main/browser_use/tools/service.py) for the default tools:
+
+### Navigation & Browser Control
+
+* **`search_google`** - Search queries in Google
+* **`go_to_url`** - Navigate to URLs
+* **`go_back`** - Go back in browser history
+* **`wait`** - Wait for specified seconds
+
+### Page Interaction
+
+* **`click_element_by_index`** - Click elements by their index
+* **`input_text`** - Input text into form fields
+* **`upload_file_to_element`** - Upload files to file inputs
+* **`scroll`** - Scroll the page up/down
+* **`scroll_to_text`** - Scroll to specific text on page
+* **`send_keys`** - Send special keys (Enter, Escape, etc.)
+
+### Tab Management
+
+* **`switch_tab`** - Switch between browser tabs
+* **`close_tab`** - Close browser tabs
+
+### Content Extraction
+
+* **`extract_structured_data`** - Extract data from webpages using LLM
+
+### Form Controls
+
+* **`get_dropdown_options`** - Get dropdown option values
+* **`select_dropdown_option`** - Select dropdown options
+
+### File Operations
+
+* **`write_file`** - Write content to files
+* **`read_file`** - Read file contents
+* **`replace_file_str`** - Replace text in files
+
+### Task Completion
+
+* **`done`** - Complete the task (always available)
