@@ -68,7 +68,7 @@ def enhance_user_story(user_story: str, model_instance: Union[object, Any]) -> s
 def extract_code_content(text: str) -> str:
     """Extract code from markdown code blocks if present"""
     # Look for content between triple backticks with optional language identifier
-    code_block_pattern = re.compile(r"```(?:python|gherkin|javascript|java|robot|```\n(.*?)```", re.DOTALL)
+    code_block_pattern = re.compile(r"```(?:python|gherkin|javascript|java|robot|markdown)?\n([\s\S]*?)```", re.DOTALL)
     match = code_block_pattern.search(text)
 
     if match:
