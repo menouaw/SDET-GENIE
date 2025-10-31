@@ -86,7 +86,7 @@ python -m venv .venv
 
 .venv\Scripts\activate
 
-pip install-requirements.txt
+pip install -r requirements.txt
 
 Create .env file
 Place your GOOGLE_API_KEY=AIzaXXXXXXXXXXXXXX
